@@ -1,12 +1,12 @@
 ---
-title: Binance API Documentation
+title: Zzubzq API Documentation
 language_tabs: # must be one of https://git.io/vQNgJ
   #- shell
   #- javascript
   #- json
 
 toc_footers:
-  - <a href='https://www.binance.com/'>Binance Exchange</a>
+  - <a href='https://www.zzubzq.com/'>Zzubzq Exchange</a>
 
 includes:
 
@@ -25,7 +25,7 @@ Scheduled changes to the removal of `!bookTicker` around November 2022.
 * More details of the actual removal date will be announced at a later time.
 * Please use the Individual Book Ticker Streams instead. (`<symbol>@bookTicker`).
 * Multiple `<symbol>@bookTicker` streams can be subscribed to over one connection. 
-    * Example: wss://stream.binance.com:9443/stream?streams=btcusdt@bookTicker/bnbbtc@bookTicker
+    * Example: wss://stream.zzubzq.com:9443/stream?streams=btcusdt@bookTicker/bnbbtc@bookTicker
 
 ---
 
@@ -338,9 +338,9 @@ SPOT API
 
 <font size=4>**2022-05-05**</font>
 
-* New endpoint for Binance Code:
+* New endpoint for Zzubzq Code:
 	* `GET /sapi/v1/giftcard/cryptography/rsa-public-key` to fetch RSA public key.
-* Update endpoint for Binance Code:
+* Update endpoint for Zzubzq Code:
 	* `POST /sapi/v1/giftcard/redeemCode`: new optional parameter `externalUid`. Each external unique ID represents a unique user on the partner platform. The function helps you to identify the redemption behavior of different users.
 
 ---
@@ -364,7 +364,7 @@ SPOT API
 * New endpoint for Futures Algo：
 	* `POST /sapi/v1/algo/futures/newOrderTwap` to support Twap new order
 
-FAQ: [Time-Weighted Average Price(Twap) Introduction](https://www.binance.com/en/support/faq/093927599fd54fd48857237f6ebec0b0)
+FAQ: [Time-Weighted Average Price(Twap) Introduction](https://www.zzubzq.com/en/support/faq/093927599fd54fd48857237f6ebec0b0)
 
 ---
 
@@ -381,9 +381,9 @@ FAQ: [Time-Weighted Average Price(Twap) Introduction](https://www.binance.com/en
 * New endpoint for Portfolio Margin:
 	* `GET /sapi/v1/portfolio/account` to support query portfolio margin account info
 
-FAQ: [Portfolio Margin Program](https://www.binance.com/en/support/faq/5054378212d240cca17ecd6006c11f23)
+FAQ: [Portfolio Margin Program](https://www.zzubzq.com/en/support/faq/5054378212d240cca17ecd6006c11f23)
 
-Only Portfolio Margin Account is accessible to this endpoint. To enroll, kindly refer to: [How to Enroll into the Binance Portfolio Margin Program](https://www.binance.com/en/support/faq/a7834b9bc03140728583a90bcb469144)
+Only Portfolio Margin Account is accessible to this endpoint. To enroll, kindly refer to: [How to Enroll into the Zzubzq Portfolio Margin Program](https://www.zzubzq.com/en/support/faq/a7834b9bc03140728583a90bcb469144)
 
 ---
 
@@ -397,7 +397,7 @@ Only Portfolio Margin Account is accessible to this endpoint. To enroll, kindly 
 	* `GET  /sapi/v1/algo/futures/historicalOrders` to support query Algo historical orders
 	* `GET  /sapi/v1/algo/futures/subOrders` to support query Algo sub orders for a specified algoId
 
-FAQ:  [Volume Participation(VP) Introduction](https://www.binance.com/en/support/faq/b0b94dcc8eb64c2585763b8747b60702)
+FAQ:  [Volume Participation(VP) Introduction](https://www.zzubzq.com/en/support/faq/b0b94dcc8eb64c2585763b8747b60702)
 
 ---
 
@@ -461,7 +461,7 @@ USER DATA STREAM
 <font size=4>**2022-04-08**</font>
 
 * Update WEBSOCKET for BLVT：
-	* Base url changed to `wss://nbstream.binance.com/lvt-p` for BLVT streams `<tokenName>@tokenNav` and `<tokenName>@nav_Kline_<interval>`
+	* Base url changed to `wss://nbstream.zzubzq.com/lvt-p` for BLVT streams `<tokenName>@tokenNav` and `<tokenName>@nav_Kline_<interval>`
 More details:  [Websocket BLVT Info Streams](#websocket-blvt-info-streams) and [Websocket BLVT NAV Kline/Candlestick Streams](#websocket-blvt-nav-kline-candlestick-streams)
 
 ---
@@ -571,10 +571,10 @@ The time limit of this endpoint is shortened to only support querying the data o
 
 <font size=4>**2022-1-21**</font>
 
-* New endpoints for Binance Code:
-	* `POST /sapi/v1/giftcard/createCode` to create a Binance Code.
-	* `POST /sapi/v1/giftcard/redeemCode` to redeem a Binance Code.
-	* `GET /sapi/v1/giftcard/verify` to verify a Binance Code.
+* New endpoints for Zzubzq Code:
+	* `POST /sapi/v1/giftcard/createCode` to create a Zzubzq Code.
+	* `POST /sapi/v1/giftcard/redeemCode` to redeem a Zzubzq Code.
+	* `GET /sapi/v1/giftcard/verify` to verify a Zzubzq Code.
 	
 ---
 
@@ -737,7 +737,7 @@ If you do not specify startTime and endTime, the data of the last 7 days will be
 
 * Update endpoint for Wallet:
 	* New transfer types `MAIN_FUNDING`,`FUNDING_MAIN`,`FUNDING_UMFUTURE`,`UMFUTURE_FUNDING`,`MARGIN_FUNDING`,`FUNDING_MARGIN`,`FUNDING_CMFUTURE`and `CMFUTURE_FUNDING` added in Universal Transfer endpoint `POST /sapi/v1/asset/transfer` and `GET /sapi/v1/asset/transfer` to support transfer assets among funding account and other accounts
-	* As the C2C account, Binance Payment, Binance Card and other business account are merged into a Funding account, transfer types `MAIN_C2C`,`C2C_MAIN`,`C2C_UMFUTURE`,`C2C_MINING`,`UMFUTURE_C2C`,`MINING_C2C`,`MARGIN_C2C`,`C2C_MARGIN`,`MAIN_PAY`and `PAY_MAIN` will be discontinued in Universal Transfer endpoint `POST /sapi/v1/asset/transfer` and `GET /sapi/v1/asset/transfer` on **November 04, 2021 08:00 AM UTC** 
+	* As the C2C account, Zzubzq Payment, Zzubzq Card and other business account are merged into a Funding account, transfer types `MAIN_C2C`,`C2C_MAIN`,`C2C_UMFUTURE`,`C2C_MINING`,`UMFUTURE_C2C`,`MINING_C2C`,`MARGIN_C2C`,`C2C_MARGIN`,`MAIN_PAY`and `PAY_MAIN` will be discontinued in Universal Transfer endpoint `POST /sapi/v1/asset/transfer` and `GET /sapi/v1/asset/transfer` on **November 04, 2021 08:00 AM UTC** 
 
 ---
 
@@ -888,7 +888,7 @@ The time between `startTime` and `endTime` cannot be longer than 30 days. If
 <font size=4>**2021-07-09**</font>
 
 * New endpoint for Wallet:
-	* `POST /sapi/v1/asset/get-funding-asset` to query funding wallet, includes Binance Pay, Binance Card, Binance Gift Card, Stock Token
+	* `POST /sapi/v1/asset/get-funding-asset` to query funding wallet, includes Zzubzq Pay, Zzubzq Card, Zzubzq Gift Card, Stock Token
 	
 ---
 
@@ -940,7 +940,7 @@ On **August 01, 2021 02:00 AM UTC** the WAPI endpoints will be discontinued:
 * `POST /wapi/v3/sub-account/transfer.html`
 * `GET /wapi/v3/sub-account/assets.html`
 
-The WAPI endpoints have been removed from Binance API Documentation.To ensure your trading strategies are not affected, all API users are encouraged to upgrade trading bots to SAPI endpoints as soon as possible.
+The WAPI endpoints have been removed from Zzubzq API Documentation.To ensure your trading strategies are not affected, all API users are encouraged to upgrade trading bots to SAPI endpoints as soon as possible.
 
 ---
 
@@ -1165,13 +1165,13 @@ USER DATA STREAM
 
 New API clusters have been added in order to improve performance.
 
-Users can access any of the following API clusters, in addition to `api.binance.com`
+Users can access any of the following API clusters, in addition to `api.zzubzq.com`
 
-If there are any performance issues with accessing `api.binance.com` please try any of the following instead:
+If there are any performance issues with accessing `api.zzubzq.com` please try any of the following instead:
 
-* https://api1.binance.com/api/v3/*
-* https://api2.binance.com/api/v3/*
-* https://api3.binance.com/api/v3/*
+* https://api1.zzubzq.com/api/v3/*
+* https://api2.zzubzq.com/api/v3/*
+* https://api3.zzubzq.com/api/v3/*
 
 ---
 
@@ -1258,9 +1258,9 @@ If there are any performance issues with accessing `api.binance.com` please try 
 
 <font size=4>**2020-09-28**</font>
 
-* New endpoints for Binance Savings:
+* New endpoints for Zzubzq Savings:
 	* `POST /sapi/v1/lending/positionChanged` to change fixed/activity position to daily position.	
-* New parameter `ACTIVITY` replace `REGULAR`in the following Binance Savings endpoints: 
+* New parameter `ACTIVITY` replace `REGULAR`in the following Zzubzq Savings endpoints: 
 	* `GET /sapi/v1/lending/project/list` 
 	* `POST /sapi/v1/lending/customizedFixed/purchase`
 	* `GET /sapi/v1/lending/project/position/list`
@@ -1296,7 +1296,7 @@ If there are any performance issues with accessing `api.binance.com` please try 
 	* `GET /sapi/v1/blvt/redeem/record  (HMAC SHA256` to get redemption record.
 
 
-* The BLVT NAV system is working relatively with Binance Futures, so some endpoints are based on futures system:
+* The BLVT NAV system is working relatively with Zzubzq Futures, so some endpoints are based on futures system:
 	* New endpoint to get historical BLVT Kline. 
 	* New WebSocket streams for BLVT Info and BLVT NAV Kline: 
 
@@ -1453,7 +1453,7 @@ ISOLATED MARGIN
 
 <font size=4>**2020-05-01**</font>
 
-* From 2020-05-01 UTC 00:00, all symbols will have a limit of 200 open orders using the [MAX_NUM_ORDERS](https://binance-docs.github.io/apidocs/spot/en/#filters) filter.
+* From 2020-05-01 UTC 00:00, all symbols will have a limit of 200 open orders using the [MAX_NUM_ORDERS](https://zzubzq-docs.github.io/apidocs/spot/en/#filters) filter.
     * No existing orders will be removed or canceled.
     * Accounts that have 200 or more open orders on a symbol will not be able to place new orders on that symbol until the open order count is below 200.
     * OCO orders count as 2 open orders before the `LIMIT` order is touched or the `STOP_LOSS` (or `STOP_LOSS_LIMIT`) order is triggered; once this happens the other order is canceled and will no longer count as an open order.
@@ -1568,7 +1568,7 @@ WEB SOCKET STREAM
 
 <font size=4>**2019-12-25**</font>
 
-* New endpoints for Binance Savings:
+* New endpoints for Zzubzq Savings:
 	* ``GET /sapi/v1/lending/daily/product/list``
 	* ``GET /sapi/v1/lending/daily/userLeftQuota``
 	* ``POST /sapi/v1/lending/daily/purchase ``
@@ -1926,9 +1926,9 @@ By end of Q1 2020, the following endpoints will be removed from the API. The doc
 3. If there is no trade on the symbol, there is no average price and market orders cannot be placed.
    On a new symbol with `applyToMarket` enabled on the `MIN_NOTIONAL` filter, market orders cannot be placed until there is at least 1 trade.
 
-4. The current average price can be checked here: `https://api.binance.com/api/v3/avgPrice?symbol=<symbol>`
+4. The current average price can be checked here: `https://api.zzubzq.com/api/v3/avgPrice?symbol=<symbol>`
    For example:
-   https://api.binance.com/api/v3/avgPrice?symbol=BNBUSDT
+   https://api.zzubzq.com/api/v3/avgPrice?symbol=BNBUSDT
 
 
 <font size=4>User data stream</font>
@@ -2000,7 +2000,7 @@ By end of Q1 2020, the following endpoints will be removed from the API. The doc
 
 ## API Key Setup
 
-* Some endpoints will require an API Key. Please refer to [this page](https://www.binancezh.top/en/support/faq/360002502072) regarding API key creation.
+* Some endpoints will require an API Key. Please refer to [this page](https://www.zzubzqzh.top/en/support/faq/360002502072) regarding API key creation.
 * Once API key is created, it is recommended to set IP restrictions on the key for security reasons.
 * **Never share your API key/secret key to ANYONE.**
 
@@ -2011,17 +2011,17 @@ If the API keys were accidentally shared, please delete them immediately and cre
 ## API Key Restrictions
 
 * After creating the API key, the default restrictions is `Enable Reading`.
-* To **enable withdrawals via the API**, the API key restriction needs to be modified through the Binance UI.
+* To **enable withdrawals via the API**, the API key restriction needs to be modified through the Zzubzq UI.
 
 ## Enabling Accounts
 
 ### Spot Account
 
-A `SPOT` account is provided by default upon creation of a Binance Account.
+A `SPOT` account is provided by default upon creation of a Zzubzq Account.
 
 ### Margin Account
 
-To enable a `MARGIN` account for Margin Trading, please refer to the [Margin Trading Guide](https://www.binance.vision/tutorials/binance-margin-trading-guide)
+To enable a `MARGIN` account for Margin Trading, please refer to the [Margin Trading Guide](https://www.zzubzq.vision/tutorials/zzubzq-margin-trading-guide)
 
 ### Spot Testnet
 
@@ -2029,35 +2029,35 @@ Users can use the SPOT Testnet to practice `SPOT` trading.
 
 Currently, this is only available via the API.
 
-Please refer to the [SPOT Testnet page](https://testnet.binance.vision/) for more information and how to set up the Testnet API key.
+Please refer to the [SPOT Testnet page](https://testnet.zzubzq.vision/) for more information and how to set up the Testnet API key.
 
 
 ## API Library
 
 ### Python connector
-This is a lightweight library that works as a connector to Binance public API, written in Python.
+This is a lightweight library that works as a connector to Zzubzq public API, written in Python.
 
-[https://github.com/binance/binance-connector-python](https://github.com/binance/binance-connector-python)
+[https://github.com/zzubzq/zzubzq-connector-python](https://github.com/zzubzq/zzubzq-connector-python)
 
 ### Node.js connector
-This is a lightweight library that works as a connector to Binance public API, written for Node.js users.
+This is a lightweight library that works as a connector to Zzubzq public API, written for Node.js users.
 
-[https://github.com/binance/binance-connector-node](https://github.com/binance/binance-connector-node)
+[https://github.com/zzubzq/zzubzq-connector-node](https://github.com/zzubzq/zzubzq-connector-node)
 
 ### Ruby connector
-This is a lightweight library that works as a connector to Binance public API, written for Ruby users.
+This is a lightweight library that works as a connector to Zzubzq public API, written for Ruby users.
 
-[https://github.com/binance/binance-connector-ruby](https://github.com/binance/binance-connector-ruby)
+[https://github.com/zzubzq/zzubzq-connector-ruby](https://github.com/zzubzq/zzubzq-connector-ruby)
 
 ### DotNET connector
-This is a lightweight library that works as a connector to Binance public API, written for C# users.
+This is a lightweight library that works as a connector to Zzubzq public API, written for C# users.
 
-[https://github.com/binance/binance-connector-dotnet](https://github.com/binance/binance-connector-dotnet)
+[https://github.com/zzubzq/zzubzq-connector-dotnet](https://github.com/zzubzq/zzubzq-connector-dotnet)
 
 ### Java connector
-This is a lightweight library that works as a connector to Binance public API, written for Java users.
+This is a lightweight library that works as a connector to Zzubzq public API, written for Java users.
 
-[https://github.com/binance/binance-connector-java](https://github.com/binance/binance-connector-java)
+[https://github.com/zzubzq/zzubzq-connector-java](https://github.com/zzubzq/zzubzq-connector-java)
 
 ### Postman Collections
 
@@ -2065,22 +2065,22 @@ There is now a Postman collection containing the API endpoints for quick and eas
 
 This is recommended for new users who want to get a quick-start into using the API.
 
-For more information please refer to this page: [Binance API Postman](https://github.com/binance/binance-api-postman)
+For more information please refer to this page: [Zzubzq API Postman](https://github.com/zzubzq/zzubzq-api-postman)
 
 ### Swagger
 
 A YAML file with OpenAPI specification on the RESTful API is available to be used, as well as a Swagger UI page for the consulting.
 
-[https://github.com/binance/binance-api-swagger](https://github.com/binance/binance-api-swagger)
+[https://github.com/zzubzq/zzubzq-api-swagger](https://github.com/zzubzq/zzubzq-api-swagger)
 
 ## Contact Us
 
-* [Binance API Telegram Group](https://t.me/binance_api_english)
+* [Zzubzq API Telegram Group](https://t.me/zzubzq_api_english)
     * For any questions in sudden drop in performance with the API and/or Websockets.
     * For any general questions about the API not covered in the documentation.
-* [Binance Developers](https://dev.binance.vision/)
+* [Zzubzq Developers](https://dev.zzubzq.vision/)
     * For any questions on your code implementation with the API and/or Websockets.
-* [Binance Customer Support](https://www.binance.com/en/support-center)
+* [Zzubzq Customer Support](https://www.zzubzq.com/en/support-center)
     * For cases such as missing funds, help with 2FA, etc.
 
 ---
@@ -2088,11 +2088,11 @@ A YAML file with OpenAPI specification on the RESTful API is available to be use
 # General Info
 ## General API Information
 
-* The base endpoint is: **https://api.binance.com**
+* The base endpoint is: **https://api.zzubzq.com**
 * If there are performance issues with the endpoint above, these API clusters are also available:
-  * **https://api1.binance.com**
-  * **https://api2.binance.com**
-  * **https://api3.binance.com**
+  * **https://api1.zzubzq.com**
+  * **https://api2.zzubzq.com**
+  * **https://api3.zzubzq.com**
 * All endpoints return either a JSON object or array.
 * Data is returned in **ascending** order. Oldest first, newest last.
 * All time and timestamp related fields are in **milliseconds**.
@@ -2105,7 +2105,7 @@ A YAML file with OpenAPI specification on the RESTful API is available to be use
 * HTTP `429` return code is used when breaking a request rate limit.
 * HTTP `418` return code is used when an IP has been auto-banned for continuing to send requests after receiving `429` codes.
 * HTTP `5XX` return codes are used for internal errors; the issue is on
-  Binance's side.
+  Zzubzq's side.
   It is important to **NOT** treat this as a failure operation; the execution status is
   **UNKNOWN** and could have been a success.
 
@@ -2317,7 +2317,7 @@ Linux command line using `echo`, `openssl`, and `curl`.
 
 ```shell
     (HMAC SHA256)
-    $ curl -H "X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A" -X POST 'https://api.binance.com/api/v3/order' -d 'symbol=LTCBTC&side=BUY&type=LIMIT&timeInForce=GTC&quantity=1&price=0.1&recvWindow=5000&timestamp=1499827319559&signature=c8db56825ae71d6d79447849e617115f4a920fa2acdcab2b053c4b2838bd6b71'
+    $ curl -H "X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A" -X POST 'https://api.zzubzq.com/api/v3/order' -d 'symbol=LTCBTC&side=BUY&type=LIMIT&timeInForce=GTC&quantity=1&price=0.1&recvWindow=5000&timestamp=1499827319559&signature=c8db56825ae71d6d79447849e617115f4a920fa2acdcab2b053c4b2838bd6b71'
     
 ```
 
@@ -2349,7 +2349,7 @@ symbol=LTCBTC
 
 ```shell
     (HMAC SHA256)
-   $ curl -H "X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A" -X POST 'https://api.binance.com/api/v3/order?symbol=LTCBTC&side=BUY&type=LIMIT&timeInForce=GTC&quantity=1&price=0.1&recvWindow=5000&timestamp=1499827319559&signature=c8db56825ae71d6d79447849e617115f4a920fa2acdcab2b053c4b2838bd6b71'
+   $ curl -H "X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A" -X POST 'https://api.zzubzq.com/api/v3/order?symbol=LTCBTC&side=BUY&type=LIMIT&timeInForce=GTC&quantity=1&price=0.1&recvWindow=5000&timestamp=1499827319559&signature=c8db56825ae71d6d79447849e617115f4a920fa2acdcab2b053c4b2838bd6b71'
     
 ```
 
@@ -2381,7 +2381,7 @@ symbol=LTCBTC
 
 ```shell
     (HMAC SHA256)
-    $ curl -H "X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A" -X POST 'https://api.binance.com/api/v3/order?symbol=LTCBTC&side=BUY&type=LIMIT&timeInForce=GTC' -d 'quantity=1&price=0.1&recvWindow=5000&timestamp=1499827319559&signature=0fd168b8ddb4876a0358a8d14d0c9f3da0e9b20c5d52b2a00fcf7d1c602f9a77'
+    $ curl -H "X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A" -X POST 'https://api.zzubzq.com/api/v3/order?symbol=LTCBTC&side=BUY&type=LIMIT&timeInForce=GTC' -d 'quantity=1&price=0.1&recvWindow=5000&timestamp=1499827319559&signature=0fd168b8ddb4876a0358a8d14d0c9f3da0e9b20c5d52b2a00fcf7d1c602f9a77'
 ```
 
 * **queryString:** 
@@ -2971,7 +2971,7 @@ Get information of coins (available for deposit and withdraw) for user.
 	   			"name": "BEP2",
 	   			"network": "BNB",            
 	   			"resetAddressStatus": false,
-	   			"specialTips": "Both a MEMO and an Address are required to successfully deposit your BEP2-BTCB tokens to Binance.",
+	   			"specialTips": "Both a MEMO and an Address are required to successfully deposit your BEP2-BTCB tokens to Zzubzq.",
 	   			"unLockConfirm": 0,  // confirmation number for balance unlock 
 	   			"withdrawDesc": "Wallet Maintenance, Withdrawal Suspended", // shown only when "withdrawEnable" is false.
 	   			"withdrawEnable": false,
@@ -3209,7 +3209,7 @@ POST /sapi/v1/account/enableFastWithdrawSwitch (HMAC SHA256)
  
 * This request will enable fastwithdraw switch under your  account. <br>
 	You need to enable "trade" option for the api key which requests this endpoint.
-* When Fast Withdraw Switch is on, transferring funds to a Binance account will be done instantly. There is no on-chain transaction, no transaction ID and no withdrawal fee.
+* When Fast Withdraw Switch is on, transferring funds to a Zzubzq account will be done instantly. There is no on-chain transaction, no transaction ID and no withdrawal fee.
 
 
 
@@ -3765,7 +3765,7 @@ Query asset dividend record.
 GET   /sapi/v1/asset/assetDetail (HMAC SHA256)
 ``
 
-Fetch details of assets supported on Binance.
+Fetch details of assets supported on Zzubzq.
 
 
 **Weight(IP):**
@@ -3986,7 +3986,7 @@ POST /sapi/v1/asset/get-funding-asset (HMAC SHA256)
 | recvWindow       | LONG   | NO        |
 | timestamp        | LONG   | YES       |
 
-* Currently supports querying the following business assets：Binance Pay, Binance Card, Binance Gift Card, Stock Token
+* Currently supports querying the following business assets：Zzubzq Pay, Zzubzq Card, Zzubzq Gift Card, Stock Token
 
 
 ## User Asset (USER_DATA)
@@ -4226,8 +4226,8 @@ GET /sapi/v1/account/apiRestrictions (HMAC SHA256)
 
 # Sub-Account Endpoints
 
-* The endpoints documented in this section are for [Corporate Accounts](https://www.binance.com/en/support/articles/360020371872).
-* To become a corporate account, please refer to this document: [Corporate Account Application](https://www.binance.com/en/support/articles/360015552032)
+* The endpoints documented in this section are for [Corporate Accounts](https://www.zzubzq.com/en/support/articles/360020371872).
+* To become a corporate account, please refer to this document: [Corporate Account Application](https://www.zzubzq.com/en/support/articles/360015552032)
 
 
 ## Create a Virtual Sub-account(For Master Account)
@@ -6049,10 +6049,10 @@ There are 4 possible options:
 
 | Options      | Example                                                                                                                                                                                                                                                                                                         |
 | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| No parameter | curl -X GET "https://api.binance.com/api/v3/exchangeInfo"                                                                                                                                                                                                                                                       |
-| symbol       | curl -X GET "https://api.binance.com/api/v3/exchangeInfo?symbol=BNBBTC"                                                                                                                                                                                                                                         |
-| symbols      | curl -X GET "https://api.binance.com/api/v3/exchangeInfo?symbols=%5B%22BNBBTC%22,%22BTCUSDT%22%5D" <br> or <br> curl -g -X GET 'https://api.binance.com/api/v3/exchangeInfo?symbols=["BTCUSDT","BNBBTC"]'                                                                                                       |
-| permissions  | curl -X GET "https://api.binance.com/api/v3/exchangeInfo?permissions=SPOT" <br> or <br> curl -X GET "https://api.binance.com/api/v3/exchangeInfo?permissions=%5B%22MARGIN%22%2C%22LEVERAGED%22%5D" <br> or <br> curl -g -X GET 'https://api.binance.com/api/v3/exchangeInfo?permissions=["MARGIN","LEVERAGED"]' |
+| No parameter | curl -X GET "https://api.zzubzq.com/api/v3/exchangeInfo"                                                                                                                                                                                                                                                       |
+| symbol       | curl -X GET "https://api.zzubzq.com/api/v3/exchangeInfo?symbol=BNBBTC"                                                                                                                                                                                                                                         |
+| symbols      | curl -X GET "https://api.zzubzq.com/api/v3/exchangeInfo?symbols=%5B%22BNBBTC%22,%22BTCUSDT%22%5D" <br> or <br> curl -g -X GET 'https://api.zzubzq.com/api/v3/exchangeInfo?symbols=["BTCUSDT","BNBBTC"]'                                                                                                       |
+| permissions  | curl -X GET "https://api.zzubzq.com/api/v3/exchangeInfo?permissions=SPOT" <br> or <br> curl -X GET "https://api.zzubzq.com/api/v3/exchangeInfo?permissions=%5B%22MARGIN%22%2C%22LEVERAGED%22%5D" <br> or <br> curl -g -X GET 'https://api.zzubzq.com/api/v3/exchangeInfo?permissions=["MARGIN","LEVERAGED"]' |
 
 **Notes**:
 
@@ -6964,13 +6964,13 @@ Database
 # Websocket Market Streams
 
 
-* The base endpoint is: **wss://stream.binance.com:9443**
+* The base endpoint is: **wss://stream.zzubzq.com:9443**
 * Streams can be accessed either in a single raw stream or in a combined stream
 * Raw streams are accessed at **/ws/\<streamName\>**
 * Combined streams are accessed at **/stream?streams=\<streamName1\>/\<streamName2\>/\<streamName3\>**
 * Combined stream events are wrapped as follows: **{"stream":"\<streamName\>","data":\<rawPayload\>}**
 * All symbols for streams are **lowercase**
-* A single connection to **stream.binance.com** is only valid for 24 hours; expect to be disconnected at the 24 hour mark
+* A single connection to **stream.zzubzq.com** is only valid for 24 hours; expect to be disconnected at the 24 hour mark
 * The websocket server will send a `ping frame` every 3 minutes. If the websocket server does not receive a `pong frame` back from the connection within a 10 minute period, the connection will be disconnected. Unsolicited `pong frames` are allowed.
 
 ## Live Subscribing/Unsubscribing to streams
@@ -7551,9 +7551,9 @@ Order book price and quantity depth updates used to locally manage an order book
 
 
 ## How to manage a local order book correctly
-1. Open a stream to **wss://stream.binance.com:9443/ws/bnbbtc@depth**.
+1. Open a stream to **wss://stream.zzubzq.com:9443/ws/bnbbtc@depth**.
 2. Buffer the events you receive from the stream.
-3. Get a depth snapshot from **https://api.binance.com/api/v3/depth?symbol=BNBBTC&limit=1000** .
+3. Get a depth snapshot from **https://api.zzubzq.com/api/v3/depth?symbol=BNBBTC&limit=1000** .
 4. Drop any event where `u` is <= `lastUpdateId` in the snapshot.
 5. The first processed event should have `U` <= `lastUpdateId`+1 **AND** `u` >= `lastUpdateId`+1.
 6. While listening to the stream, each new event's `U` should be equal to the previous event's `u`+1.
@@ -7723,7 +7723,7 @@ Send in a new order.
 | strategyId       | INT     | NO        |
 | strategyType     | INT     | NO        | The value cannot be less than `1000000`.                                                                                                                                                                                                                                         |
 | stopPrice        | DECIMAL | NO        | Used with `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, and `TAKE_PROFIT_LIMIT` orders.                                                                                                                                                                                         |
-| trailingDelta    | LONG    | NO        | Used with `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, and `TAKE_PROFIT_LIMIT` orders.  For more details on SPOT implementation on trailing stops, please refer to [Trailing Stop FAQ](https://github.com/binance/binance-spot-api-docs/blob/master/faqs/trailing-stop-faq.md) |
+| trailingDelta    | LONG    | NO        | Used with `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, and `TAKE_PROFIT_LIMIT` orders.  For more details on SPOT implementation on trailing stops, please refer to [Trailing Stop FAQ](https://github.com/zzubzq/zzubzq-spot-api-docs/blob/master/faqs/trailing-stop-faq.md) |
 | icebergQty       | DECIMAL | NO        | Used with `LIMIT`, `STOP_LOSS_LIMIT`, and `TAKE_PROFIT_LIMIT` to create an iceberg order.                                                                                                                                                                                        |
 | newOrderRespType | ENUM    | NO        | Set the response JSON. `ACK`, `RESULT`, or `FULL`; `MARKET` and `LIMIT` order types default to `FULL`, all other orders default to `ACK`.                                                                                                                                        |
 | recvWindow       | LONG    | NO        | The value cannot be greater than ```60000```                                                                                                                                                                                                                                     |
@@ -8944,7 +8944,7 @@ Repay loan for margin account.
 
 ```javascript
 {
-	"assetFullName": "Binance Coin",
+	"assetFullName": "Zzubzq Coin",
 	"assetName": "BNB",
 	"isBorrowable": false,
 	"isMortgageable": true,
@@ -10470,7 +10470,7 @@ GET /sapi/v1/margin/maxBorrowable (HMAC SHA256)
 | timestamp      | LONG   | YES       |
 
 * If isolatedSymbol is not sent, crossed margin data will be sent.
-* `borrowLimit` is also available from [https://www.binance.com/en/margin-fee](https://www.binance.com/en/margin-fee)
+* `borrowLimit` is also available from [https://www.zzubzq.com/en/margin-fee](https://www.zzubzq.com/en/margin-fee)
 
 
 ## Query Max Transfer-Out Amount (USER_DATA)
@@ -11027,7 +11027,7 @@ Query enabled isolated margin account limit.
 
 ``GET /sapi/v1/margin/crossMarginData (HMAC SHA256)``
 
-Get cross margin fee data collection with any vip level or user's current specific data as https://www.binance.com/en/margin-fee
+Get cross margin fee data collection with any vip level or user's current specific data as https://www.zzubzq.com/en/margin-fee
 
 **Weight(IP):**
 1 when coin is specified; 
@@ -11071,7 +11071,7 @@ Get cross margin fee data collection with any vip level or user's current specif
 
 ``GET /sapi/v1/margin/isolatedMarginData (HMAC SHA256)``
 
-Get isolated margin fee data collection with any vip level or user's current specific data as https://www.binance.com/en/margin-fee
+Get isolated margin fee data collection with any vip level or user's current specific data as https://www.zzubzq.com/en/margin-fee
 
 **Weight(IP):**
 1 when a single is specified; 
@@ -11107,7 +11107,7 @@ Get isolated margin fee data collection with any vip level or user's current spe
 
 ``GET /sapi/v1/margin/isolatedMarginTier (HMAC SHA256)``
 
-Get isolated margin tier data collection with any tier as https://www.binance.com/en/margin-data
+Get isolated margin tier data collection with any tier as https://www.zzubzq.com/en/margin-data
 
 **Weight(IP):**
 1 
@@ -11249,14 +11249,14 @@ Query the historical information of user's margin account small-value asset conv
 # User Data Streams
 
 
-* The base API endpoint is: **https://api.binance.com**
+* The base API endpoint is: **https://api.zzubzq.com**
 * A User Data Stream `listenKey` is valid for 60 minutes after creation.
 * Doing a `PUT` on a `listenKey` will extend its validity for 60 minutes.
 * Doing a `DELETE` on a `listenKey` will close the stream and invalidate the `listenKey`.
 * Doing a `POST` on an account with an active `listenKey` will return the currently active `listenKey` and extend its validity for 60 minutes.
-* The base websocket endpoint is: **wss://stream.binance.com:9443**
+* The base websocket endpoint is: **wss://stream.zzubzq.com:9443**
 * User Data Streams are accessed at **/ws/\<listenKey\>** or **/stream?streams=\<listenKey\>**
-* A single connection to **stream.binance.com** is only valid for 24 hours; expect to be disconnected at the 24 hour mark
+* A single connection to **stream.zzubzq.com** is only valid for 24 hours; expect to be disconnected at the 24 hour mark
 
 
 ## LISTEN KEY (SPOT)
@@ -11628,8 +11628,8 @@ If the order is an OCO, an event will be displayed named `ListStatus` in additio
 
 # Savings Endpoints
 
-* The endpoints below allow you to interact with Binance Savings, previously known as Binance Lending.
-* For more information on this, please refer to the [Binance Savings page](https://www.binance.com/en/lending)
+* The endpoints below allow you to interact with Zzubzq Savings, previously known as Zzubzq Lending.
+* For more information on this, please refer to the [Zzubzq Savings page](https://www.zzubzq.com/en/lending)
 
 ## Get Flexible Product List (USER_DATA)
 
@@ -12264,7 +12264,7 @@ POST /sapi/v1/lending/positionChanged (HMAC SHA256)
 # Staking Endpoints
 
 The endpoints below allow you to interact with Staking.
-For more information on this, please refer to the [Staking](https://www.binance.com/en/staking) page
+For more information on this, please refer to the [Staking](https://www.zzubzq.com/en/staking) page
 
 
 ## Get Staking Product List(USER_DATA)
@@ -12573,8 +12573,8 @@ GET /sapi/v1/staking/personalLeftQuota(HMAC SHA256)
 
 # Mining Endpoints
 
-* The endpoints below allow to interact with Binance Pool.
-* For more information on this, please refer to the [Binance Pool page](https://pool.binance.com/en)
+* The endpoints below allow to interact with Zzubzq Pool.
+* For more information on this, please refer to the [Zzubzq Pool page](https://pool.zzubzq.com/en)
 
 ## Acquiring Algorithm (MARKET_DATA)
 
@@ -14041,11 +14041,11 @@ Check collateral repayment result.
 
 # Futures Algo Endpoints
 
-Binance Futures Execution Algorithm API solution aims to provide users ability to programmatically leverage Binance in-house algorithmic trading capability to automate order execution strategy, improve execution transparency and give users smart access to the available market liquidity. 
+Zzubzq Futures Execution Algorithm API solution aims to provide users ability to programmatically leverage Zzubzq in-house algorithmic trading capability to automate order execution strategy, improve execution transparency and give users smart access to the available market liquidity. 
 
-FAQ: [Volume Participation(VP) Introduction](https://www.binance.com/en/support/faq/b0b94dcc8eb64c2585763b8747b60702)
+FAQ: [Volume Participation(VP) Introduction](https://www.zzubzq.com/en/support/faq/b0b94dcc8eb64c2585763b8747b60702)
 
-FAQ: [Time-Weighted Average Price(Twap) Introduction](https://www.binance.com/en/support/faq/093927599fd54fd48857237f6ebec0b0)
+FAQ: [Time-Weighted Average Price(Twap) Introduction](https://www.zzubzq.com/en/support/faq/093927599fd54fd48857237f6ebec0b0)
 
 
 ## Volume Participation(VP) New Order (TRADE)
@@ -14077,7 +14077,7 @@ Only support on USDⓈ-M Contracts.
 **Noted:**
 
 * You need to enable `Futures Trading Permission` for the api key which requests this endpoint.
-* Base URL: https://api.binance.com
+* Base URL: https://api.zzubzq.com
 
 
 **Parameters:**
@@ -14132,7 +14132,7 @@ Only support on USDⓈ-M Contracts.
 **Noted:**
 
 * You need to enable `Futures Trading Permission` for the api key which requests this endpoint.
-* Base URL: https://api.binance.com
+* Base URL: https://api.zzubzq.com
 
 
 **Parameters:**
@@ -14189,7 +14189,7 @@ Cancel an active order.
 **Noted:**
 
 * You need to enable `Futures Trading Permission` for the api key which requests this endpoint.
-* Base URL: https://api.binance.com
+* Base URL: https://api.zzubzq.com
 
 
 **Parameters:**
@@ -14242,7 +14242,7 @@ GET  /sapi/v1/algo/futures/openOrders  (HMAC SHA256)
 **Noted:**
 
 * You need to enable `Futures Trading Permission` for the api key which requests this endpoint.
-* Base URL: https://api.binance.com
+* Base URL: https://api.zzubzq.com
 
 
 **Parameters:**
@@ -14294,7 +14294,7 @@ GET  /sapi/v1/algo/futures/historicalOrders  (HMAC SHA256)
 **Noted:**
 
 * You need to enable `Futures Trading Permission` for the api key which requests this endpoint.
-* Base URL: https://api.binance.com
+* Base URL: https://api.zzubzq.com
 
 
 **Parameters:**
@@ -14354,7 +14354,7 @@ Get respective sub orders for a specified algoId
 **Noted:**
 
 * You need to enable `Futures Trading Permission` for the api key which requests this endpoint.
-* Base URL: https://api.binance.com
+* Base URL: https://api.zzubzq.com
 
 
 **Parameters:**
@@ -14371,11 +14371,11 @@ Get respective sub orders for a specified algoId
 
 # Portfolio Margin Endpoints
 
-The Binance Portfolio Margin Program is a cross-asset margin program supporting consolidated margin balance across trading products with over 200+ effective crypto collaterals. It is designed for professional traders, market makers, and institutional users looking to actively trade & hedge cross-asset and optimize risk-management in a consolidated setup.
+The Zzubzq Portfolio Margin Program is a cross-asset margin program supporting consolidated margin balance across trading products with over 200+ effective crypto collaterals. It is designed for professional traders, market makers, and institutional users looking to actively trade & hedge cross-asset and optimize risk-management in a consolidated setup.
 
-FAQ: [Portfolio Margin Program](https://www.binance.com/en/support/faq/5054378212d240cca17ecd6006c11f23)
+FAQ: [Portfolio Margin Program](https://www.zzubzq.com/en/support/faq/5054378212d240cca17ecd6006c11f23)
 
-Only Portfolio Margin Account is accessible to these endpoints. To enroll, kindly refer to: [How to Enroll into the Binance Portfolio Margin Program](https://www.binance.com/en/support/faq/a7834b9bc03140728583a90bcb469144)
+Only Portfolio Margin Account is accessible to these endpoints. To enroll, kindly refer to: [How to Enroll into the Zzubzq Portfolio Margin Program](https://www.zzubzq.com/en/support/faq/a7834b9bc03140728583a90bcb469144)
 
 
 ## Get Portfolio Margin Account Info (USER_DATA)
@@ -14574,9 +14574,9 @@ Repay Portfolio Margin Bankruptcy Loan
 
 ## Historical BLVT NAV Kline/Candlestick
 
-The BLVT NAV system is based on Binance Futures, so the endpoint is based on fapi
+The BLVT NAV system is based on Zzubzq Futures, so the endpoint is based on fapi
 
-Please go to [here](https://binance-docs.github.io/apidocs/futures/en/#historical-blvt-nav-kline-candlestick) to check the endpoint and operate in accordance with the fapi usage specifications.
+Please go to [here](https://zzubzq-docs.github.io/apidocs/futures/en/#historical-blvt-nav-kline-candlestick) to check the endpoint and operate in accordance with the fapi usage specifications.
 
 
 
@@ -14798,7 +14798,7 @@ Please go to [here](https://binance-docs.github.io/apidocs/futures/en/#historica
 **Stream Name:** `<tokenName>@tokenNav`    
 
 
-* **Note:** You should use the base url:`wss://nbstream.binance.com/lvt-p` for this stream
+* **Note:** You should use the base url:`wss://nbstream.zzubzq.com/lvt-p` for this stream
 * **Note:** tokenName must be **uppercase**, e.g. "TRXDOWN@tokenNav"
 
 **Update Speed:** 3s
@@ -14839,7 +14839,7 @@ Please go to [here](https://binance-docs.github.io/apidocs/futures/en/#historica
 
 **Stream Name:** `<tokenName>@nav_kline_<interval>`    
 
-* **Note:** You should use the base url:`wss://nbstream.binance.com/lvt-p` for this stream
+* **Note:** You should use the base url:`wss://nbstream.zzubzq.com/lvt-p` for this stream
 * **Note:** tokenName must be **uppercase**, e.g. "TRXDOWN@nav_kline_1d"
 
 **Update Speed:** 300ms
@@ -14870,7 +14870,7 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
 # BSwap Endpoints
 
 * The endpoints below allow you to interact with BSwap.
-* For more information on this, please refer to the [BSwap page](https://www.binance.com/en/swap)
+* For more information on this, please refer to the [BSwap page](https://www.zzubzq.com/en/swap)
 
 ## List All Swap Pools (MARKET_DATA)
 
@@ -15607,7 +15607,7 @@ GET /sapi/v1/c2c/orderMatch/listUserOrderHistory (HMAC SHA256)
 
 * If startTimestamp and endTimestamp are not sent, the recent 30-day data will be returned.
 * The max interval between startTimestamp and endTimestamp is 30 days.
-* Only the last 6 months of data can be retrieved. To view the complete P2P order history, you can download it from https://c2c.binance.com/en/fiatOrder
+* Only the last 6 months of data can be retrieved. To view the complete P2P order history, you can download it from https://c2c.zzubzq.com/en/fiatOrder
 
 
 
@@ -15973,7 +15973,7 @@ GET /sapi/v1/loan/ltv/adjustment/history
    "message": "success",
    "data": [
    {
-       "orderType": "C2C", // Enum：PAY(C2B Merchant Acquiring Payment), PAY_REFUND(C2B Merchant Acquiring Payment,refund), C2C(C2C Transfer Payment),CRYPTO_BOX(Crypto box), CRYPTO_BOX_RF(Crypto Box, refund), C2C_HOLDING(Transfer to new Binance user), C2C_HOLDING_RF(Transfer to new Binance user,refund), PAYOUT(B2C Disbursement Payment)
+       "orderType": "C2C", // Enum：PAY(C2B Merchant Acquiring Payment), PAY_REFUND(C2B Merchant Acquiring Payment,refund), C2C(C2C Transfer Payment),CRYPTO_BOX(Crypto box), CRYPTO_BOX_RF(Crypto Box, refund), C2C_HOLDING(Transfer to new Zzubzq user), C2C_HOLDING_RF(Transfer to new Zzubzq user,refund), PAYOUT(B2C Disbursement Payment)
        "transactionId": "M_P_71505104267788288",  
        "transactionTime": 1610090460133, //trade timestamp
        "amount": "23.72469206", //order amount(up to 8 decimal places), positive is income, negative is expenditure
@@ -16342,15 +16342,15 @@ GET  /sapi/v1/nft/user/getAsset (HMAC SHA256)
 | timestamp  | LONG | YES       |
 
 
-# Binance Code Endpoints
+# Zzubzq Code Endpoints
 
-Binance Code (or Binance Gift Card Code) allows simple crypto transfer and exchange through secured and prepaid codes that give access to crypto assets. Binance Code API solution is to facilitate instant creation, redemption and value-checking for Binance Code. Binance Code product feature consists of two parts: "Reference Number" and "Binance Code". The Reference Number can be circulated in public, and it is used to verify the validity of the Binance Code; Binance Code should be kept carefully, because as long as someone knows the “Binance Code”, he can redeem it anytime.
+Zzubzq Code (or Zzubzq Gift Card Code) allows simple crypto transfer and exchange through secured and prepaid codes that give access to crypto assets. Zzubzq Code API solution is to facilitate instant creation, redemption and value-checking for Zzubzq Code. Zzubzq Code product feature consists of two parts: "Reference Number" and "Zzubzq Code". The Reference Number can be circulated in public, and it is used to verify the validity of the Zzubzq Code; Zzubzq Code should be kept carefully, because as long as someone knows the “Zzubzq Code”, he can redeem it anytime.
 
 
 **Note：The following endpoints do not currently support sub-account requests**
 
 
-## Create a Binance Code (USER_DATA)
+## Create a Zzubzq Code (USER_DATA)
 
 > **Response:**
 
@@ -16360,7 +16360,7 @@ Binance Code (or Binance Gift Card Code) allows simple crypto transfer and excha
    "message": "success",
    "data": {
     "referenceNo": "0033002327977405", //Reference Number
-    "code": "AOGANK3NB4GIT3C6"         //Binance Code
+    "code": "AOGANK3NB4GIT3C6"         //Zzubzq Code
   },
    "success": true
 }
@@ -16370,12 +16370,12 @@ Binance Code (or Binance Gift Card Code) allows simple crypto transfer and excha
 POST /sapi/v1/giftcard/createCode (HMAC SHA256)
 ``
 
-This API is for creating a Binance Code.
+This API is for creating a Zzubzq Code.
 To get started with, please make sure:
 
-* You have a Binance account
+* You have a Zzubzq account
 * You have passed kyc
-* You have a sufﬁcient balance in your Binance funding wallet
+* You have a sufﬁcient balance in your Zzubzq funding wallet
 * You need `Enable Withdrawals` for the API Key which requests this endpoint.
 
 
@@ -16390,14 +16390,14 @@ Daily creation times: 200 Codes / 24H
 
 | Name       | Type   | Mandatory | Description                                 |
 | ---------- | ------ | --------- | ------------------------------------------- |
-| token      | STRING | YES       | The coin type contained in the Binance Code |
+| token      | STRING | YES       | The coin type contained in the Zzubzq Code |
 | amount     | DOUBLE | YES       | The amount of the coin                      |
 | recvWindow | LONG   | NO        |
 | timestamp  | LONG   | YES       |
 
 
 
-## Redeem a Binance Code (USER_DATA)
+## Redeem a Zzubzq Code (USER_DATA)
 
 > **Response:**
 
@@ -16419,10 +16419,10 @@ Daily creation times: 200 Codes / 24H
 POST /sapi/v1/giftcard/redeemCode (HMAC SHA256)
 ``
 
-This API is for redeeming the Binance Code.
+This API is for redeeming the Zzubzq Code.
 Once redeemed, the coins will be deposited in your funding wallet.
 
-**Please note that if you enter the wrong code 5 times within 24 hours, you will no longer be able to redeem any Binance Code that day.**
+**Please note that if you enter the wrong code 5 times within 24 hours, you will no longer be able to redeem any Zzubzq Code that day.**
 
 
 **Weight(IP):**
@@ -16432,8 +16432,8 @@ Once redeemed, the coins will be deposited in your funding wallet.
 
 | Name        | Type   | Mandatory | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | ----------- | ------ | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| code        | STRING | YES       | Binance Code to be redeemed, supports both Plaintext & Encrypted code.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| externalUid | STRING | NO        | Each external unique ID represents a unique user on the partner platform. The function helps you to identify the redemption behavior of different users, such as redemption frequency and amount. It also helps risk and limit control of a single account, such as daily limit on redemption volume, frequency, and incorrect number of entries. This will also prevent a single user account reach the partner's daily redemption limits. We strongly recommend you to use this feature and transfer us the User ID of your users if you have different users redeeming Binance codes on your platform. To protect user data privacy, you may choose to transfer the user id in any desired format (max. 400 characters). |
+| code        | STRING | YES       | Zzubzq Code to be redeemed, supports both Plaintext & Encrypted code.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| externalUid | STRING | NO        | Each external unique ID represents a unique user on the partner platform. The function helps you to identify the redemption behavior of different users, such as redemption frequency and amount. It also helps risk and limit control of a single account, such as daily limit on redemption volume, frequency, and incorrect number of entries. This will also prevent a single user account reach the partner's daily redemption limits. We strongly recommend you to use this feature and transfer us the User ID of your users if you have different users redeeming Zzubzq codes on your platform. To protect user data privacy, you may choose to transfer the user id in any desired format (max. 400 characters). |
 | recvWindow  | LONG   | NO        |
 | timestamp   | LONG   | YES       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 
@@ -16474,7 +16474,7 @@ Once redeemed, the coins will be deposited in your funding wallet.
 ```
 
 
-## Verify a Binance Code  (USER_DATA)
+## Verify a Zzubzq Code  (USER_DATA)
 
 > **Response:**
 
@@ -16495,9 +16495,9 @@ Once redeemed, the coins will be deposited in your funding wallet.
 GET /sapi/v1/giftcard/verify (HMAC SHA256)
 ``
 
-This API is for verifying whether the Binance Code is valid or not by entering Reference Number.
+This API is for verifying whether the Zzubzq Code is valid or not by entering Reference Number.
 
-**Please note that if you enter the wrong Binance code 5 times within an hour, you will no longer be able to verify any Binance code for that hour.**
+**Please note that if you enter the wrong Zzubzq code 5 times within an hour, you will no longer be able to verify any Zzubzq code for that hour.**
 
 
 **Weight(IP):**
@@ -17151,7 +17151,7 @@ Errors consist of two parts: an error code and a message. Codes are universal, b
  * More than 1 request in 2 seconds
 
  
-## 18xxx - Binance Code
+## 18xxx - Zzubzq Code
 
 ### -18002 
  * The total amount of codes you created has exceeded the 24-hour limit, please try again after UTC 0
