@@ -21,7 +21,7 @@ search: true
 
 * 添加传奇码接口：
     * `POST /sapi/v1/giftcard/buyCode`：用于购买一个传奇码
-    * `GET /sapi/v1/giftcard/buyCode/token-limit`：用来查看你所支付的数字货币，可以购买的面额与数量限制
+    * `GET /sapi/v1/giftcard/buyCode/token-limit`：用来查看你所支付的商品，可以购买的面额与数量限制
 
 ---
 
@@ -15028,8 +15028,8 @@ GET /sapi/v1/fiat/orders (HMAC SHA256)
       "orderNo": "353fca443f06466db0c4dc89f94f027a",
       "sourceAmount": "20.0",  // 法币交易数量
       "fiatCurrency": "EUR",   // 法币token
-      "obtainAmount": "4.462", // 数字货币交易数量
-      "cryptoCurrency": "LUNA",  // 数字货币token
+      "obtainAmount": "4.462", // 商品交易数量
+      "cryptoCurrency": "LUNA",  // 商品token
       "totalFee": "0.2",     // 交易手续费
       "price": "4.437472",   // 价格
       "status": "Failed",  // Processing处理中, Completed完成, Failed失败, Refunded退款
@@ -15910,8 +15910,8 @@ POST /sapi/v1/giftcard/createCode (HMAC SHA256)
 
 | 名称       | 类型   | 是否必需 | 描述                   |
 | ---------- | ------ | -------- | ---------------------- |
-| token      | STRING | YES      | 传奇码中的数字货币币种 |
-| amount     | DOUBLE | YES      | 传奇码中的数字货币数量 |
+| token      | STRING | YES      | 传奇码中的商品币种 |
+| amount     | DOUBLE | YES      | 传奇码中的商品数量 |
 | recvWindow | LONG   | NO       |
 | timestamp  | LONG   | YES      |
 
@@ -16087,8 +16087,8 @@ POST /sapi/v1/giftcard/buyCode (HMAC SHA256)
 ``
 
 * 该API用于购买一个传奇码。
-* 你可以透过支持的数字货币来购买不同面额的传奇码。
-* 在购买后相应数量的数字货币将从你的资金账户被扣除。
+* 你可以透过支持的商品来购买不同面额的传奇码。
+* 在购买后相应数量的商品将从你的资金账户被扣除。
 
 * 要开始使用，请确保：
   * 你有一个传奇账户
@@ -16139,7 +16139,7 @@ POST /sapi/v1/giftcard/buyCode (HMAC SHA256)
 GET /sapi/v1/giftcard/buyCode/token-limit (HMAC SHA256)
 ``
 
-此 API 是用来查看你所支付的数字货币，可以购买的面额与数量限制。
+此 API 是用来查看你所支付的商品，可以购买的面额与数量限制。
 
 **权重(IP):**
 1
