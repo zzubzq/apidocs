@@ -1134,13 +1134,13 @@
               </ul>
           </li>
           <li>
-            <a href="#crypto-loans-endpoints" class="toc-h1 toc-link" data-title="Crypto Loans Endpoints">Crypto Loans Endpoints</a>
+            <a href="#product-loans-endpoints" class="toc-h1 toc-link" data-title="Product Loans Endpoints">Product Loans Endpoints</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-crypto-loans-income-history-user_data" class="toc-h2 toc-link" data-title="Get Crypto Loans Income History (USER_DATA)">Get Crypto Loans Income History (USER_DATA)</a>
+                    <a href="#get-product-loans-income-history-user_data" class="toc-h2 toc-link" data-title="Get Product Loans Income History (USER_DATA)">Get Product Loans Income History (USER_DATA)</a>
                   </li>
                   <li>
-                    <a href="#borrow-crypto-loan-borrow-trade" class="toc-h2 toc-link" data-title="Borrow - Crypto Loan Borrow (TRADE)">Borrow - Crypto Loan Borrow (TRADE)</a>
+                    <a href="#borrow-product-loan-borrow-trade" class="toc-h2 toc-link" data-title="Borrow - Product Loan Borrow (TRADE)">Borrow - Product Loan Borrow (TRADE)</a>
                   </li>
                   <li>
                     <a href="#borrow-get-loan-borrow-history-user_data" class="toc-h2 toc-link" data-title="Borrow - Get Loan Borrow History (USER_DATA)">Borrow - Get Loan Borrow History (USER_DATA)</a>
@@ -1149,13 +1149,13 @@
                     <a href="#borrow-get-loan-ongoing-orders-user_data" class="toc-h2 toc-link" data-title="Borrow - Get Loan Ongoing Orders (USER_DATA)">Borrow - Get Loan Ongoing Orders (USER_DATA)</a>
                   </li>
                   <li>
-                    <a href="#repay-crypto-loan-repay-trade" class="toc-h2 toc-link" data-title="Repay - Crypto Loan Repay (TRADE)">Repay - Crypto Loan Repay (TRADE)</a>
+                    <a href="#repay-product-loan-repay-trade" class="toc-h2 toc-link" data-title="Repay - Product Loan Repay (TRADE)">Repay - Product Loan Repay (TRADE)</a>
                   </li>
                   <li>
                     <a href="#repay-get-loan-repayment-history-user_data" class="toc-h2 toc-link" data-title="Repay - Get Loan Repayment History (USER_DATA)">Repay - Get Loan Repayment History (USER_DATA)</a>
                   </li>
                   <li>
-                    <a href="#adjust-ltv-crypto-loan-adjust-ltv-trade" class="toc-h2 toc-link" data-title="Adjust LTV - Crypto Loan Adjust LTV (TRADE)">Adjust LTV - Crypto Loan Adjust LTV (TRADE)</a>
+                    <a href="#adjust-ltv-product-loan-adjust-ltv-trade" class="toc-h2 toc-link" data-title="Adjust LTV - Product Loan Adjust LTV (TRADE)">Adjust LTV - Product Loan Adjust LTV (TRADE)</a>
                   </li>
                   <li>
                     <a href="#adjust-ltv-get-loan-ltv-adjustment-history-user_data" class="toc-h2 toc-link" data-title="Adjust LTV - Get Loan LTV Adjustment History (USER_DATA)">Adjust LTV - Get Loan LTV Adjustment History (USER_DATA)</a>
@@ -1352,15 +1352,15 @@
 <p><font size=4><strong>2022-09-15</strong></font></p>
 
 <ul>
-<li>New endpoints for Crypto Loan
+<li>New endpoints for Product Loan
 
 <ul>
-<li><code>POST /sapi/v1/loan/borrow</code>: Borrow - Crypto Loan Borrow</li>
+<li><code>POST /sapi/v1/loan/borrow</code>: Borrow - Product Loan Borrow</li>
 <li><code>GET /sapi/v1/loan/borrow/history</code>: Borrow - Get Loan Borrow History</li>
 <li><code>GET/sapi/v1/loan/ongoing/orders</code>: Borrow - Get Loan Ongoing Orders</li>
-<li><code>POST/sapi/v1/loan/repay</code>: Repay - Crypto Loan Repay</li>
+<li><code>POST/sapi/v1/loan/repay</code>: Repay - Product Loan Repay</li>
 <li><code>GET/sapi/v1/loan/repay/history</code>: Repay - Get Loan Repayment History</li>
-<li><code>POST/sapi/v1/loan/adjust/ltv</code>: Adjust LTV - Crypto Loan Adjust LTV</li>
+<li><code>POST/sapi/v1/loan/adjust/ltv</code>: Adjust LTV - Product Loan Adjust LTV</li>
 <li><code>GET/sapi/v1/loan/ltv/adjustment/history</code>: Adjust LTV - Get Loan LTV Adjustment History</li>
 </ul></li>
 </ul>
@@ -1823,7 +1823,7 @@ To support master account query Third party IP list name for a sub account API k
 <li>New endpoint for Zzubzq Code:
 
 <ul>
-<li><code>GET /sapi/v1/giftcard/cryptography/rsa-public-key</code> to fetch RSA public key.</li>
+<li><code>GET /sapi/v1/giftcard/productgraphy/rsa-public-key</code> to fetch RSA public key.</li>
 </ul></li>
 <li>Update endpoint for Zzubzq Code:
 
@@ -2362,10 +2362,10 @@ If you do not specify startTime and endTime, the data of the last 7 days will be
 <p><font size=4><strong>2021-11-08</strong></font></p>
 
 <ul>
-<li>New endpoint for Crypto Loans:
+<li>New endpoint for Product Loans:
 
 <ul>
-<li>New endpoint<code>GET /sapi/v1/loan/income</code>to support user query crypto loans income history</li>
+<li>New endpoint<code>GET /sapi/v1/loan/income</code>to support user query product loans income history</li>
 </ul></li>
 </ul>
 
@@ -2377,7 +2377,7 @@ If you do not specify startTime and endTime, the data of the last 7 days will be
 <li>Update endpoint for Wallet:
 
 <ul>
-<li>New parameter <code>walletType</code>added in <code>POST /sapi/v1/capital/withdraw/apply</code> to support user choose wallet type <code>spot wallet</code> and <code>funding wallet</code> when withdraw crypto.</li>
+<li>New parameter <code>walletType</code>added in <code>POST /sapi/v1/capital/withdraw/apply</code> to support user choose wallet type <code>spot wallet</code> and <code>funding wallet</code> when withdraw product.</li>
 </ul></li>
 </ul>
 
@@ -21754,7 +21754,7 @@ GET  /sapi/v1/algo/futures/subOrders (HMAC SHA256)
 </tr>
 </tbody></table>
 <h1 id='portfolio-margin-endpoints'>Portfolio Margin Endpoints</h1>
-<p>The Zzubzq Portfolio Margin Program is a cross-asset margin program supporting consolidated margin balance across trading products with over 200+ effective crypto collaterals. It is designed for professional traders, market makers, and institutional users looking to actively trade &amp; hedge cross-asset and optimize risk-management in a consolidated setup.</p>
+<p>The Zzubzq Portfolio Margin Program is a cross-asset margin program supporting consolidated margin balance across trading products with over 200+ effective product collaterals. It is designed for professional traders, market makers, and institutional users looking to actively trade &amp; hedge cross-asset and optimize risk-management in a consolidated setup.</p>
 
 <p>FAQ: <a href="https://www.zzubzq.com/en/support/faq/5054378212d240cca17ecd6006c11f23">Portfolio Margin Program</a></p>
 
@@ -23466,8 +23466,8 @@ GET /sapi/v1/fiat/orders (HMAC SHA256)
       <span class="dl">"</span><span class="s2">orderNo</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">353fca443f06466db0c4dc89f94f027a</span><span class="dl">"</span><span class="p">,</span>
       <span class="dl">"</span><span class="s2">sourceAmount</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">20.0</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// Fiat trade amount</span>
       <span class="dl">"</span><span class="s2">fiatCurrency</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">EUR</span><span class="dl">"</span><span class="p">,</span>   <span class="c1">// Fiat token</span>
-      <span class="dl">"</span><span class="s2">obtainAmount</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">4.462</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// Crypto trade amount</span>
-      <span class="dl">"</span><span class="s2">cryptoCurrency</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">LUNA</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// Crypto token</span>
+      <span class="dl">"</span><span class="s2">obtainAmount</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">4.462</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// Product trade amount</span>
+      <span class="dl">"</span><span class="s2">productCurrency</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">LUNA</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// Product token</span>
       <span class="dl">"</span><span class="s2">totalFee</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">0.2</span><span class="dl">"</span><span class="p">,</span>     <span class="c1">// Trade fee</span>
       <span class="dl">"</span><span class="s2">price</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">4.437472</span><span class="dl">"</span><span class="p">,</span> 
       <span class="dl">"</span><span class="s2">status</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Failed</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// Processing, Completed, Failed, Refunded</span>
@@ -23567,12 +23567,12 @@ GET /sapi/v1/fiat/payments (HMAC SHA256)
       <span class="dl">"</span><span class="s2">asset</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">BUSD</span><span class="dl">"</span><span class="p">,</span> 
       <span class="dl">"</span><span class="s2">fiat</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">CNY</span><span class="dl">"</span><span class="p">,</span>  
       <span class="dl">"</span><span class="s2">fiatSymbol</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">￥</span><span class="dl">"</span><span class="p">,</span>
-      <span class="dl">"</span><span class="s2">amount</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5000.00000000</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// Quantity (in Crypto)</span>
+      <span class="dl">"</span><span class="s2">amount</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5000.00000000</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// Quantity (in Product)</span>
       <span class="dl">"</span><span class="s2">totalPrice</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">33400.00000000</span><span class="dl">"</span><span class="p">,</span>
       <span class="dl">"</span><span class="s2">unitPrice</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">6.68</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// Unit Price (in Fiat)</span>
       <span class="dl">"</span><span class="s2">orderStatus</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">COMPLETED</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// PENDING, TRADING, BUYER_PAYED, DISTRIBUTING, COMPLETED, IN_APPEAL, CANCELLED, CANCELLED_BY_SYSTEM</span>
       <span class="dl">"</span><span class="s2">createTime</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1619361369000</span><span class="p">,</span>
-      <span class="dl">"</span><span class="s2">commission</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">0</span><span class="dl">"</span><span class="p">,</span>   <span class="c1">// Transaction Fee (in Crypto)</span>
+      <span class="dl">"</span><span class="s2">commission</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">0</span><span class="dl">"</span><span class="p">,</span>   <span class="c1">// Transaction Fee (in Product)</span>
       <span class="dl">"</span><span class="s2">counterPartNickName</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ab***</span><span class="dl">"</span><span class="p">,</span>
       <span class="dl">"</span><span class="s2">advertisementRole</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">TAKER</span><span class="dl">"</span>        
      <span class="p">}</span>
@@ -23647,7 +23647,7 @@ GET /sapi/v1/c2c/orderMatch/listUserOrderHistory (HMAC SHA256)
 <li>The max interval between startTimestamp and endTimestamp is 30 days.</li>
 <li>Only the last 6 months of data can be retrieved. To view the complete P2P order history, you can download it from https://c2c.zzubzq.com/en/fiatOrder</li>
 </ul>
-<h1 id='crypto-loans-endpoints'>Crypto Loans Endpoints</h1><h2 id='get-crypto-loans-income-history-user_data'>Get Crypto Loans Income History (USER_DATA)</h2>
+<h1 id='product-loans-endpoints'>Product Loans Endpoints</h1><h2 id='get-product-loans-income-history-user_data'>Get Product Loans Income History (USER_DATA)</h2>
 <blockquote>
 <p><strong>Response:</strong></p>
 </blockquote>
@@ -23734,7 +23734,7 @@ GET /sapi/v1/loan/income (HMAC SHA256)
 <li>If startTime and endTime are not sent, the recent 7-day data will be returned.</li>
 <li>The max interval between startTime and endTime is 30 days.</li>
 </ul>
-<h2 id='borrow-crypto-loan-borrow-trade'>Borrow - Crypto Loan Borrow (TRADE)</h2>
+<h2 id='borrow-product-loan-borrow-trade'>Borrow - Product Loan Borrow (TRADE)</h2>
 <blockquote>
 <p><strong>Response:</strong></p>
 </blockquote>
@@ -23985,7 +23985,7 @@ GET /sapi/v1/loan/ongoing/orders
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='repay-crypto-loan-repay-trade'>Repay - Crypto Loan Repay (TRADE)</h2>
+<h2 id='repay-product-loan-repay-trade'>Repay - Product Loan Repay (TRADE)</h2>
 <blockquote>
 <p><strong>Response:</strong></p>
 </blockquote>
@@ -24159,7 +24159,7 @@ GET /sapi/v1/loan/repay/history
 <li>If startTime and endTime are not sent, the recent 90-day data will be returned.</li>
 <li>The max interval between startTime and endTime is 180 days.</li>
 </ul>
-<h2 id='adjust-ltv-crypto-loan-adjust-ltv-trade'>Adjust LTV - Crypto Loan Adjust LTV (TRADE)</h2>
+<h2 id='adjust-ltv-product-loan-adjust-ltv-trade'>Adjust LTV - Product Loan Adjust LTV (TRADE)</h2>
 <blockquote>
 <p><strong>Response:</strong></p>
 </blockquote>
@@ -24325,7 +24325,7 @@ GET /sapi/v1/loan/ltv/adjustment/history
    <span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">,</span>
    <span class="dl">"</span><span class="s2">data</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
    <span class="p">{</span>
-       <span class="dl">"</span><span class="s2">orderType</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">C2C</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// Enum：PAY(C2B Merchant Acquiring Payment), PAY_REFUND(C2B Merchant Acquiring Payment,refund), C2C(C2C Transfer Payment),CRYPTO_BOX(Crypto box), CRYPTO_BOX_RF(Crypto Box, refund), C2C_HOLDING(Transfer to new Zzubzq user), C2C_HOLDING_RF(Transfer to new Zzubzq user,refund), PAYOUT(B2C Disbursement Payment)</span>
+       <span class="dl">"</span><span class="s2">orderType</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">C2C</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// Enum：PAY(C2B Merchant Acquiring Payment), PAY_REFUND(C2B Merchant Acquiring Payment,refund), C2C(C2C Transfer Payment),PRODUCT_BOX(Product box), PRODUCT_BOX_RF(Product Box, refund), C2C_HOLDING(Transfer to new Zzubzq user), C2C_HOLDING_RF(Transfer to new Zzubzq user,refund), PAYOUT(B2C Disbursement Payment)</span>
        <span class="dl">"</span><span class="s2">transactionId</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">M_P_71505104267788288</span><span class="dl">"</span><span class="p">,</span>  
        <span class="dl">"</span><span class="s2">transactionTime</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1610090460133</span><span class="p">,</span> <span class="c1">//trade timestamp</span>
        <span class="dl">"</span><span class="s2">amount</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">23.72469206</span><span class="dl">"</span><span class="p">,</span> <span class="c1">//order amount(up to 8 decimal places), positive is income, negative is expenditure</span>
@@ -24900,7 +24900,7 @@ GET  /sapi/v1/nft/user/getAsset (HMAC SHA256)
 </tr>
 </tbody></table>
 <h1 id='zzubzq-code-endpoints'>Zzubzq Code Endpoints</h1>
-<p>Zzubzq Code (or Zzubzq Gift Card Code) allows simple crypto transfer and exchange through secured and prepaid codes that give access to crypto assets. Zzubzq Code API solution is to facilitate instant creation, redemption and value-checking for Zzubzq Code. Zzubzq Code product feature consists of two parts: &quot;Reference Number&quot; and &quot;Zzubzq Code&quot;. The Reference Number can be circulated in public, and it is used to verify the validity of the Zzubzq Code; Zzubzq Code should be kept carefully, because as long as someone knows the “Zzubzq Code”, he can redeem it anytime.</p>
+<p>Zzubzq Code (or Zzubzq Gift Card Code) allows simple product transfer and exchange through secured and prepaid codes that give access to product assets. Zzubzq Code API solution is to facilitate instant creation, redemption and value-checking for Zzubzq Code. Zzubzq Code product feature consists of two parts: &quot;Reference Number&quot; and &quot;Zzubzq Code&quot;. The Reference Number can be circulated in public, and it is used to verify the validity of the Zzubzq Code; Zzubzq Code should be kept carefully, because as long as someone knows the “Zzubzq Code”, he can redeem it anytime.</p>
 
 <p><strong>Note：The following endpoints do not currently support sub-account requests</strong></p>
 <h2 id='create-a-zzubzq-code-user_data'>Create a Zzubzq Code (USER_DATA)</h2>
@@ -25143,7 +25143,7 @@ GET /sapi/v1/giftcard/verify (HMAC SHA256)
 <span class="p">}</span>
 </code></pre></div>
 <p><code>
-GET /sapi/v1/giftcard/cryptography/rsa-public-key (HMAC SHA256)
+GET /sapi/v1/giftcard/productgraphy/rsa-public-key (HMAC SHA256)
 </code></p>
 
 <p>This API is for fetching the RSA Public Key.

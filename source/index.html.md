@@ -63,13 +63,13 @@ Scheduled changes to the removal of `!bookTicker` around November 2022.
 
 <font size=4>**2022-09-15**</font>
 
-* New endpoints for Crypto Loan
-    * `POST /sapi/v1/loan/borrow`: Borrow - Crypto Loan Borrow
+* New endpoints for Product Loan
+    * `POST /sapi/v1/loan/borrow`: Borrow - Product Loan Borrow
     * `GET /sapi/v1/loan/borrow/history`: Borrow - Get Loan Borrow History
     * `GET/sapi/v1/loan/ongoing/orders`: Borrow - Get Loan Ongoing Orders
-    * `POST/sapi/v1/loan/repay`: Repay - Crypto Loan Repay
+    * `POST/sapi/v1/loan/repay`: Repay - Product Loan Repay
     * `GET/sapi/v1/loan/repay/history`: Repay - Get Loan Repayment History
-    * `POST/sapi/v1/loan/adjust/ltv`: Adjust LTV - Crypto Loan Adjust LTV
+    * `POST/sapi/v1/loan/adjust/ltv`: Adjust LTV - Product Loan Adjust LTV
     * `GET/sapi/v1/loan/ltv/adjustment/history`: Adjust LTV - Get Loan LTV Adjustment History
 
 ---
@@ -339,7 +339,7 @@ SPOT API
 <font size=4>**2022-05-05**</font>
 
 * New endpoint for Zzubzq Code:
-	* `GET /sapi/v1/giftcard/cryptography/rsa-public-key` to fetch RSA public key.
+	* `GET /sapi/v1/giftcard/productgraphy/rsa-public-key` to fetch RSA public key.
 * Update endpoint for Zzubzq Code:
 	* `POST /sapi/v1/giftcard/redeemCode`: new optional parameter `externalUid`. Each external unique ID represents a unique user on the partner platform. The function helps you to identify the redemption behavior of different users.
 
@@ -698,15 +698,15 @@ If you do not specify startTime and endTime, the data of the last 7 days will be
 
 <font size=4>**2021-11-08**</font>
 
-* New endpoint for Crypto Loans:
-	* New endpoint`GET /sapi/v1/loan/income`to support user query crypto loans income history
+* New endpoint for Product Loans:
+	* New endpoint`GET /sapi/v1/loan/income`to support user query product loans income history
 	
 ---
 
 <font size=4>**2021-11-05**</font>
 
 * Update endpoint for Wallet:
-	* New parameter `walletType `added in `POST /sapi/v1/capital/withdraw/apply` to support user choose wallet type `spot wallet` and `funding wallet` when withdraw crypto.
+	* New parameter `walletType `added in `POST /sapi/v1/capital/withdraw/apply` to support user choose wallet type `spot wallet` and `funding wallet` when withdraw product.
 	
 ---
 
@@ -14371,7 +14371,7 @@ Get respective sub orders for a specified algoId
 
 # Portfolio Margin Endpoints
 
-The Zzubzq Portfolio Margin Program is a cross-asset margin program supporting consolidated margin balance across trading products with over 200+ effective crypto collaterals. It is designed for professional traders, market makers, and institutional users looking to actively trade & hedge cross-asset and optimize risk-management in a consolidated setup.
+The Zzubzq Portfolio Margin Program is a cross-asset margin program supporting consolidated margin balance across trading products with over 200+ effective product collaterals. It is designed for professional traders, market makers, and institutional users looking to actively trade & hedge cross-asset and optimize risk-management in a consolidated setup.
 
 FAQ: [Portfolio Margin Program](https://www.zzubzq.com/en/support/faq/5054378212d240cca17ecd6006c11f23)
 
@@ -15509,8 +15509,8 @@ GET /sapi/v1/fiat/orders (HMAC SHA256)
       "orderNo": "353fca443f06466db0c4dc89f94f027a",
       "sourceAmount": "20.0",  // Fiat trade amount
       "fiatCurrency": "EUR",   // Fiat token
-      "obtainAmount": "4.462", // Crypto trade amount
-      "cryptoCurrency": "LUNA",  // Crypto token
+      "obtainAmount": "4.462", // Product trade amount
+      "productCurrency": "LUNA",  // Product token
       "totalFee": "0.2",     // Trade fee
       "price": "4.437472", 
       "status": "Failed",  // Processing, Completed, Failed, Refunded
@@ -15570,12 +15570,12 @@ GET /sapi/v1/fiat/payments (HMAC SHA256)
       "asset": "BUSD", 
       "fiat": "CNY",  
       "fiatSymbol": "￥",
-      "amount": "5000.00000000",  // Quantity (in Crypto)
+      "amount": "5000.00000000",  // Quantity (in Product)
       "totalPrice": "33400.00000000",
       "unitPrice": "6.68", // Unit Price (in Fiat)
       "orderStatus": "COMPLETED",  // PENDING, TRADING, BUYER_PAYED, DISTRIBUTING, COMPLETED, IN_APPEAL, CANCELLED, CANCELLED_BY_SYSTEM
       "createTime": 1619361369000,
-      "commission": "0",   // Transaction Fee (in Crypto)
+      "commission": "0",   // Transaction Fee (in Product)
       "counterPartNickName": "ab***",
       "advertisementRole": "TAKER"        
      }
@@ -15612,10 +15612,10 @@ GET /sapi/v1/c2c/orderMatch/listUserOrderHistory (HMAC SHA256)
 
 
 
-# Crypto Loans Endpoints
+# Product Loans Endpoints
 
 
-## Get Crypto Loans Income History (USER_DATA)
+## Get Product Loans Income History (USER_DATA)
 
 > **Response:**
 
@@ -15663,7 +15663,7 @@ GET /sapi/v1/loan/income (HMAC SHA256)
 * The max interval between startTime and endTime is 30 days.
 
 
-## Borrow - Crypto Loan Borrow (TRADE)
+## Borrow - Product Loan Borrow (TRADE)
 
 > **Response:**
 
@@ -15789,7 +15789,7 @@ GET /sapi/v1/loan/ongoing/orders
 | timestamp      | LONG   | YES       |
 
 
-## Repay - Crypto Loan Repay (TRADE)
+## Repay - Product Loan Repay (TRADE)
 
 > **Response:**
 
@@ -15880,7 +15880,7 @@ GET /sapi/v1/loan/repay/history
 * The max interval between startTime and endTime is 180 days.
 
 
-## Adjust LTV - Crypto Loan Adjust LTV (TRADE)
+## Adjust LTV - Product Loan Adjust LTV (TRADE)
 
 > **Response:**
 
@@ -15973,7 +15973,7 @@ GET /sapi/v1/loan/ltv/adjustment/history
    "message": "success",
    "data": [
    {
-       "orderType": "C2C", // Enum：PAY(C2B Merchant Acquiring Payment), PAY_REFUND(C2B Merchant Acquiring Payment,refund), C2C(C2C Transfer Payment),CRYPTO_BOX(Crypto box), CRYPTO_BOX_RF(Crypto Box, refund), C2C_HOLDING(Transfer to new Zzubzq user), C2C_HOLDING_RF(Transfer to new Zzubzq user,refund), PAYOUT(B2C Disbursement Payment)
+       "orderType": "C2C", // Enum：PAY(C2B Merchant Acquiring Payment), PAY_REFUND(C2B Merchant Acquiring Payment,refund), C2C(C2C Transfer Payment),PRODUCT_BOX(Product box), PRODUCT_BOX_RF(Product Box, refund), C2C_HOLDING(Transfer to new Zzubzq user), C2C_HOLDING_RF(Transfer to new Zzubzq user,refund), PAYOUT(B2C Disbursement Payment)
        "transactionId": "M_P_71505104267788288",  
        "transactionTime": 1610090460133, //trade timestamp
        "amount": "23.72469206", //order amount(up to 8 decimal places), positive is income, negative is expenditure
@@ -16344,7 +16344,7 @@ GET  /sapi/v1/nft/user/getAsset (HMAC SHA256)
 
 # Zzubzq Code Endpoints
 
-Zzubzq Code (or Zzubzq Gift Card Code) allows simple crypto transfer and exchange through secured and prepaid codes that give access to crypto assets. Zzubzq Code API solution is to facilitate instant creation, redemption and value-checking for Zzubzq Code. Zzubzq Code product feature consists of two parts: "Reference Number" and "Zzubzq Code". The Reference Number can be circulated in public, and it is used to verify the validity of the Zzubzq Code; Zzubzq Code should be kept carefully, because as long as someone knows the “Zzubzq Code”, he can redeem it anytime.
+Zzubzq Code (or Zzubzq Gift Card Code) allows simple product transfer and exchange through secured and prepaid codes that give access to product assets. Zzubzq Code API solution is to facilitate instant creation, redemption and value-checking for Zzubzq Code. Zzubzq Code product feature consists of two parts: "Reference Number" and "Zzubzq Code". The Reference Number can be circulated in public, and it is used to verify the validity of the Zzubzq Code; Zzubzq Code should be kept carefully, because as long as someone knows the “Zzubzq Code”, he can redeem it anytime.
 
 
 **Note：The following endpoints do not currently support sub-account requests**
@@ -16527,7 +16527,7 @@ This API is for verifying whether the Zzubzq Code is valid or not by entering Re
 ```
 
 ``
-GET /sapi/v1/giftcard/cryptography/rsa-public-key (HMAC SHA256)
+GET /sapi/v1/giftcard/productgraphy/rsa-public-key (HMAC SHA256)
 ``
 
 This API is for fetching the RSA Public Key.
