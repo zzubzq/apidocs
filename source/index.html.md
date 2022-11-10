@@ -19,8 +19,8 @@ search: true
 
 <font size=4>**2022-10-15**</font>
 
-* 添加币安码接口：
-    * `POST /sapi/v1/giftcard/buyCode`：用于购买一个币安码
+* 添加传奇码接口：
+    * `POST /sapi/v1/giftcard/buyCode`：用于购买一个传奇码
     * `GET /sapi/v1/giftcard/buyCode/token-limit`：用来查看你所支付的数字货币，可以购买的面额与数量限制
 
 ---
@@ -406,7 +406,7 @@ FAQ: [时间加权平均价格策略(Twap) 介绍](https://www.zzubzq.com/cn/sup
 * 新增统一账户接口:
 	* `GET /sapi/v1/portfolio/account` 以支持查询统一账户信息
 
-FAQ: [币安合约统一账户总览](https://www.zzubzq.com/cn/support/faq/5054378212d240cca17ecd6006c11f23)
+FAQ: [传奇合约统一账户总览](https://www.zzubzq.com/cn/support/faq/5054378212d240cca17ecd6006c11f23)
 
 目前仅对特定用户开放此功能，详情：[加入统一账户计划](https://www.zzubzq.com/cn/support/faq/a7834b9bc03140728583a90bcb469144)
 
@@ -415,7 +415,7 @@ FAQ: [币安合约统一账户总览](https://www.zzubzq.com/cn/support/faq/5054
 
 <font size=4>**2022-04-19**</font>
 
-* 更新币安宝接口:
+* 更新传奇宝接口:
 	* 新增返回参数`avgAnnualInterestRate `和`tierAnnualInterestRate` 于接口`GET /sapi/v1/lending/daily/product/list`和`GET /sapi/v1/lending/daily/token/position`以支持查询阶梯利率
 
 ---
@@ -595,24 +595,24 @@ font size=4>**2022-2-17**</font>
 
 * 自**1月 28, 2022 4:00 AM UTC**起，您需要使用开通`允许现货和杠杆交易`权限的API Key调用以下接口:
 	* `POST /sapi/v1/asset/dust` 小额资产转换
-	* `POST /sapi/v1/lending/daily/purchase` 申购币安宝活期产品
-	* `POST /sapi/v1/lending/daily/redeem` 赎回币安宝活期产品
-	* `POST /sapi/v1/lending/customizedFixed/purchase` 申购币安宝定期/活动产品
-	* `POST /sapi/v1/lending/positionChanged` 币安宝定期/活动持仓转活期持仓
-	* `POST /sapi/v1/bswap/liquidityAdd` 币安挖矿添加流动性
-	* `POST /sapi/v1/bswap/liquidityRemove` 币安挖矿移除流动性
-	* `POST /sapi/v1/bswap/swap` 币安挖矿交易
-	* `POST /sapi/v1/bswap/claimRewards` 币安挖矿领取奖励
+	* `POST /sapi/v1/lending/daily/purchase` 申购传奇宝活期产品
+	* `POST /sapi/v1/lending/daily/redeem` 赎回传奇宝活期产品
+	* `POST /sapi/v1/lending/customizedFixed/purchase` 申购传奇宝定期/活动产品
+	* `POST /sapi/v1/lending/positionChanged` 传奇宝定期/活动持仓转活期持仓
+	* `POST /sapi/v1/bswap/liquidityAdd` 传奇挖矿添加流动性
+	* `POST /sapi/v1/bswap/liquidityRemove` 传奇挖矿移除流动性
+	* `POST /sapi/v1/bswap/swap` 传奇挖矿交易
+	* `POST /sapi/v1/bswap/claimRewards` 传奇挖矿领取奖励
 	
 ---
 
 
 <font size=4>**2022-1-21**</font>
 
-* 新增币安码接口:
-	* `POST /sapi/v1/giftcard/createCode` 以支持创建币安码
-	* `POST /sapi/v1/giftcard/redeemCode` 以支持兑现币安码
-	* `GET /sapi/v1/giftcard/verify` 以支持验证币安码
+* 新增传奇码接口:
+	* `POST /sapi/v1/giftcard/createCode` 以支持创建传奇码
+	* `POST /sapi/v1/giftcard/redeemCode` 以支持兑现传奇码
+	* `GET /sapi/v1/giftcard/verify` 以支持验证传奇码
 	
 ---
 
@@ -623,7 +623,7 @@ font size=4>**2022-2-17**</font>
 * 新增矿池接口:
 	* `GET /sapi/v1/mining/payment/uid` 以获取矿池账户收益列表
 
-* 新增币安挖矿接口:
+* 新增传奇挖矿接口:
 	* `GET /sapi/v1/bswap/unclaimedRewards` 以查询未领取的奖励数量
 	* `POST /sapi/v1/bswap/claimRewards` 以领取奖励
 	* `GET /sapi/v1/bswap/claimedHistory` 以获取已领取奖励记录
@@ -788,7 +788,7 @@ font size=4>**2022-2-17**</font>
 
 * 钱包接口更新:
 	* 新增划转类型 `MAIN_FUNDING`,`FUNDING_MAIN`,`FUNDING_UMFUTURE`,`UMFUTURE_FUNDING`,`MARGIN_FUNDING`,`FUNDING_MARGIN`,`FUNDING_CMFUTURE`and `CMFUTURE_FUNDING` 于用户万向划转接口 `POST /sapi/v1/asset/transfer` 和 `GET /sapi/v1/asset/transfer` 以支持资金账户和现货账户，杠杆全仓账户，U本位合约账户，币本位合约账户之间相互划转
-	* 由于C2C账户，币安支付、币安卡等业务合并至资金账户，用户万向划转接口`POST /sapi/v1/asset/transfer` 和 `GET /sapi/v1/asset/transfer` 的以下划转类型`MAIN_C2C`,`C2C_MAIN`,`C2C_UMFUTURE`,`C2C_MINING`,`UMFUTURE_C2C`,`MINING_C2C`,`MARGIN_C2C`,`C2C_MARGIN`,`MAIN_PAY`和`PAY_MAIN` 将于**11月 04, 2021 08:00 AM UTC** 停止使用
+	* 由于C2C账户，传奇支付、传奇卡等业务合并至资金账户，用户万向划转接口`POST /sapi/v1/asset/transfer` 和 `GET /sapi/v1/asset/transfer` 的以下划转类型`MAIN_C2C`,`C2C_MAIN`,`C2C_UMFUTURE`,`C2C_MINING`,`UMFUTURE_C2C`,`MINING_C2C`,`MARGIN_C2C`,`C2C_MARGIN`,`MAIN_PAY`和`PAY_MAIN` 将于**11月 04, 2021 08:00 AM UTC** 停止使用
 
 ---
 
@@ -808,7 +808,7 @@ font size=4>**2022-2-17**</font>
 
 <font size=4>**2021-09-18**</font>
 
-* 新增币安挖矿接口:
+* 新增传奇挖矿接口:
 	* 新增接口 `GET /sapi/v1/bswap/poolConfigure` 以支持查询币对池的配置信息
 	* 新增接口 `GET /sapi/v1/bswap/addLiquidityPreview` 以支持查询添加流动性的试算
 	* 新增接口 `GET /sapi/v1/bswap/removeLiquidityPreview` 以查询移除流动性的试算
@@ -901,7 +901,7 @@ font size=4>**2022-2-17**</font>
 
 <font size=4>**2021-08-05**</font>
 
-* 币安宝接口更新:
+* 传奇宝接口更新:
 	* `GET /sapi/v1/lending/union/purchaseRecord` 
 	* `GET /sapi/v1/lending/union/redemptionRecord`
 	* `GET /sapi/v1/lending/union/interestHistory`
@@ -957,7 +957,7 @@ font size=4>**2022-2-17**</font>
 
 <font size=4>**2021-06-17**</font>
 
-* 币安宝接口更新:
+* 传奇宝接口更新:
 	* `GET /sapi/v1/lending/daily/product/list` 增加新参数 `current` 和 `size`
 	
 ---
@@ -1316,10 +1316,10 @@ USER DATA STREAM
 
 <font size=4>**2020-09-28**</font>
 
-* 新增币安宝接口:
+* 新增传奇宝接口:
 	* `POST /sapi/v1/lending/positionChanged` 以支持定期/活动持仓转成活期持仓。
 	
-* 以下币安宝接口，lendingType里参数 `ACTIVITY` 替换 `REGULAR`以代表币安宝活动产品：
+* 以下传奇宝接口，lendingType里参数 `ACTIVITY` 替换 `REGULAR`以代表传奇宝活动产品：
 	* `GET /sapi/v1/lending/project/list` 
 	* `POST /sapi/v1/lending/customizedFixed/purchase`
 	* `GET /sapi/v1/lending/project/position/list`
@@ -1333,7 +1333,7 @@ USER DATA STREAM
 
 <font size=4>**2020-09-23**</font>
 
-* 新增币安挖矿接口:
+* 新增传奇挖矿接口:
 	* 接口 `GET /sapi/v1/bswap/pools` 以从某个资金池移除流动性。
 	* 接口 `GET /sapi/v1/bswap/liquidity` 以获取流动资金池具体信息。
 	* 接口 `POST /sapi/v1/bswap/liquidityAdd` 以添加流动性。
@@ -1557,10 +1557,10 @@ WEB SOCKET 连接限制
 
 <font size=4>**2020-04-16**</font>
 
-* 币安宝接口``GET /sapi/v1/lending/daily/token/position``返回内容新增字段：
+* 传奇宝接口``GET /sapi/v1/lending/daily/token/position``返回内容新增字段：
 	* `todayPurchasedAmount` 表示用户今日申购的活期产品数量
 
-* 新增以下币安宝接口用以支持灵活定期产品:
+* 新增以下传奇宝接口用以支持灵活定期产品:
 	* ``GET /sapi/v1/lending/project/list``
 	* ``POST /sapi/v1/lending/customizedFixed/purchase``
 	* ``GET /sapi/v1/lending/project/position/list`` 
@@ -1622,7 +1622,7 @@ WEB SOCKET 连接限制
 ---
 <font size=4>**2019-12-25**</font>
 
-* 新增币安宝接口：
+* 新增传奇宝接口：
 	* ``GET /sapi/v1/lending/daily/product/list``
 	* ``GET /sapi/v1/lending/daily/userLeftQuota``
 	* ``POST /sapi/v1/lending/daily/purchase ``
@@ -2066,7 +2066,7 @@ POST /sapi/v1/account/enableFastWithdrawSwitch (HMAC SHA256)
 
 ### 现货账户
 
-新注册的币安账号都会有一个现货(`SPOT`)账号。
+新注册的传奇账号都会有一个现货(`SPOT`)账号。
 
 ### 杠杆账户
 
@@ -2119,12 +2119,12 @@ POST /sapi/v1/account/enableFastWithdrawSwitch (HMAC SHA256)
 
 ## 联系我们
 
-* [币安API电报群](https://t.me/Zzubzq_api_Chinese)
+* [传奇API电报群](https://t.me/Zzubzq_api_Chinese)
     * 咨询关于API或者Websockets性能方面的问题.
     * 咨询文档中没有提及的API问题.
-* [币安开发者社区](https://dev.zzubzq.vision/)
+* [传奇开发者社区](https://dev.zzubzq.vision/)
     * 咨询关于API/Websockets代码实现，或者任何API/Websockets的问题.
-* [币安客服](https://www.zzubzq.com/cn/support-center)
+* [传奇客服](https://www.zzubzq.com/cn/support-center)
     * 咨询关于账户，钱包，2FA等.
 
 
@@ -2293,7 +2293,7 @@ POST /sapi/v1/account/enableFastWithdrawSwitch (HMAC SHA256)
   }
 ```
 
-**关于交易时效性** 互联网状况并不完全稳定可靠,因此你的程序本地到币安服务器的时延会有抖动。这是我们设置`recvWindow`的目的所在，如果你从事高频交易，对交易时效性有较高的要求，可以灵活设置`recvWindow`以达到你的要求。
+**关于交易时效性** 互联网状况并不完全稳定可靠,因此你的程序本地到传奇服务器的时延会有抖动。这是我们设置`recvWindow`的目的所在，如果你从事高频交易，对交易时效性有较高的要求，可以灵活设置`recvWindow`以达到你的要求。
 
 <aside class="notice">
 推荐使用5秒以下的 recvWindow! 最多不能超过 60秒!
@@ -3228,7 +3228,7 @@ POST /sapi/v1/account/enableFastWithdrawSwitch (HMAC SHA256)
 | timestamp  | LONG | YES      |
  
 * 此请求会开启您账户的站内快速划转。您需要为api-key开通"trade"权限才能发送此请求。
-* 开启以后, 如果收款方为币安账户地址，转账费用为0, 速度快, 不需要提交上链请求。
+* 开启以后, 如果收款方为传奇账户地址，转账费用为0, 速度快, 不需要提交上链请求。
 
 
 
@@ -3351,7 +3351,7 @@ GET /sapi/v1/capital/deposit/hisrec (HMAC SHA256)
   		"amount": "8.91000000",   // 提现转出金额
   		"applyTime": "2019-10-12 11:12:02",  // UTC 时间
   		"coin": "USDT",
-  		"id": "b6ae22b3aa844210a7041aee7589627c",  // 该笔提现在币安的id
+  		"id": "b6ae22b3aa844210a7041aee7589627c",  // 该笔提现在传奇的id
   		"withdrawOrderId": "WITHDRAWtest123", // 自定义ID, 如果没有则不返回该字段
   		"network": "ETH",
   		"transferType": 0 // 1: 站内转账, 0: 站外转账    
@@ -11560,9 +11560,9 @@ DELETE  /sapi/v1/userDataStream
 
 
 
-# 币安宝接口
+# 传奇宝接口
 
-* 这些接口用于币安宝产品。更多细节, 请参考[币安宝](https://www.zzubzq.com/cn/lending)页面。
+* 这些接口用于传奇宝产品。更多细节, 请参考[传奇宝](https://www.zzubzq.com/cn/lending)页面。
 
 ## 获取活期产品列表 (USER_DATA)
 
@@ -11936,7 +11936,7 @@ GET /sapi/v1/lending/project/position/list (HMAC SHA256)
 
 
 
-## 币安宝账户信息 (USER_DATA)
+## 传奇宝账户信息 (USER_DATA)
 
 > **响应:**
 
@@ -12204,7 +12204,7 @@ POST /sapi/v1/lending/positionChanged (HMAC SHA256)
 
 # Staking 接口
 
-以下接口适用于币安Staking产品。更多细节, 请参考币安[Staking](https://www.zzubzq.com/zh-CN/staking)页面
+以下接口适用于传奇Staking产品。更多细节, 请参考传奇[Staking](https://www.zzubzq.com/zh-CN/staking)页面
 
 
 ## 查询Staking产品列表(USER_DATA)
@@ -12513,7 +12513,7 @@ GET /sapi/v1/staking/personalLeftQuota(HMAC SHA256)
 
 # 矿池接口
 
-* 这些接口作用于币安矿池。更多细节, 参考[币安矿池](https://pool.zzubzq.com/cn)页面。
+* 这些接口作用于传奇矿池。更多细节, 参考[传奇矿池](https://pool.zzubzq.com/cn)页面。
 
 ## 获取算法(MARKET_DATA)
 
@@ -13559,7 +13559,7 @@ None
 
 # 合约策略交易接口
 
-币安合约算法交易API服务，旨在为用户提供一整套的算法交易解决方案，包括：自动执行订单，提高执行透明度和提供智能接口直达市场。 
+传奇合约算法交易API服务，旨在为用户提供一整套的算法交易解决方案，包括：自动执行订单，提高执行透明度和提供智能接口直达市场。 
 
 FAQ: [成交量份额参与算法(VP) 介绍](https://www.zzubzq.com/cn/support/faq/b0b94dcc8eb64c2585763b8747b60702)
 
@@ -13891,10 +13891,10 @@ GET  /sapi/v1/algo/futures/subOrders (HMAC SHA256)
 
 # 统一账户接口
 
-为了给币安合约用户提供更加优质的服务及提高用户的资金利用率，币安将推出统一账户计划。该计划将以合约钱包、现货杠杆钱包的总资产作为保证金来计算。
-关于统一帐户：币安统一帐户计划是一项跨资产保证金计划，支持超过 200 种有效的加密资产。 U本位合约、币本位合约以及杠杆钱包中支持的加密资产和头寸将作为有效的联合抵押品，以确定统一账户的权益、保证金余额和维持保证金要求。
+为了给传奇合约用户提供更加优质的服务及提高用户的资金利用率，传奇将推出统一账户计划。该计划将以合约钱包、现货杠杆钱包的总资产作为保证金来计算。
+关于统一帐户：传奇统一帐户计划是一项跨资产保证金计划，支持超过 200 种有效的加密资产。 U本位合约、币本位合约以及杠杆钱包中支持的加密资产和头寸将作为有效的联合抵押品，以确定统一账户的权益、保证金余额和维持保证金要求。
 
-FAQ: [币安合约统一账户总览](https://www.zzubzq.com/cn/support/faq/5054378212d240cca17ecd6006c11f23)
+FAQ: [传奇合约统一账户总览](https://www.zzubzq.com/cn/support/faq/5054378212d240cca17ecd6006c11f23)
 
 仅对特定用户开放此功能，详情：[加入统一账户计划](https://www.zzubzq.com/cn/support/faq/a7834b9bc03140728583a90bcb469144)
 
@@ -14386,9 +14386,9 @@ m -> 分钟; h -> 小时; d -> 天; w -> 周; M -> 月
 
 
 
-# 币安挖矿接口
+# 传奇挖矿接口
 
-* 这些接口用于币安挖矿产品。更多细节, 请参考[币安挖矿](https://www.zzubzq.com/cn/swap/liquidity)页面。
+* 这些接口用于传奇挖矿产品。更多细节, 请参考[传奇挖矿](https://www.zzubzq.com/cn/swap/liquidity)页面。
 
 ## 获取所有流动资金池 (MARKET_DATA)
 
@@ -14427,7 +14427,7 @@ m -> 分钟; h -> 小时; d -> 天; w -> 周; M -> 月
 GET /sapi/v1/bswap/pools
 ``
 
-获取币安挖矿产品中所有资金池
+获取传奇挖矿产品中所有资金池
 
 **权重(IP):**
 1
@@ -15492,7 +15492,7 @@ GET /sapi/v1/loan/ltv/adjustment/history
    "message": "success",
    "data": [
    {
-       "orderType": "C2C", // 交易类型 枚举值：PAY（C端用户在商户侧消费）, PAY_REFUND（C端用户商户侧消费，退款）, C2C（C端用户间的转账）,CRYPTO_BOX（红包交易）, CRYPTO_BOX_RF（红包交易，退款）, C2C_HOLDING（C端用户转账给非币安用户）, C2C_HOLDING_RF（C端用户转账给非币安用户，退款）, PAYOUT（商户给其用户付款）
+       "orderType": "C2C", // 交易类型 枚举值：PAY（C端用户在商户侧消费）, PAY_REFUND（C端用户商户侧消费，退款）, C2C（C端用户间的转账）,CRYPTO_BOX（红包交易）, CRYPTO_BOX_RF（红包交易，退款）, C2C_HOLDING（C端用户转账给非传奇用户）, C2C_HOLDING_RF（C端用户转账给非传奇用户，退款）, PAYOUT（商户给其用户付款）
        "transactionId": "M_P_71505104267788288", //流水编号 
        "transactionTime": 1610090460133, //交易时间戳 
        "amount": "23.72469206", //订单金额 最多8位小数 正为收入，负为支出
@@ -15863,14 +15863,14 @@ GET  /sapi/v1/nft/user/getAsset (HMAC SHA256)
 
 
 
-# 币安码接口
+# 传奇码接口
 
-币安码为一串预先充值的密码，每串密码承载加密货币的价值。通过币安码解决方案可进行简易，快速，安全的加密资产的交易流通。 币安码API 旨在促进币安码的即时创建、兑现和价值验证。币安码由两部分组成：参考号和币安码。参考号可公开流通，可用于验证币安码的有效性；币安码应妥善保管，因为只要有人拥有该码，就可以随时兑现。
+传奇码为一串预先充值的密码，每串密码承载加密货币的价值。通过传奇码解决方案可进行简易，快速，安全的加密资产的交易流通。 传奇码API 旨在促进传奇码的即时创建、兑现和价值验证。传奇码由两部分组成：参考号和传奇码。参考号可公开流通，可用于验证传奇码的有效性；传奇码应妥善保管，因为只要有人拥有该码，就可以随时兑现。
 
 **请注意，以下接口暂不支持子账户使用**
 
 
-## 创建币安码 (USER_DATA)
+## 创建传奇码 (USER_DATA)
 
 > **响应:**
 
@@ -15880,7 +15880,7 @@ GET  /sapi/v1/nft/user/getAsset (HMAC SHA256)
    "message": "success",
    "data": {
     "referenceNo": "0033002327977405", //参考号
-    "code": "AOGANK3NB4GIT3C6"         //币安码
+    "code": "AOGANK3NB4GIT3C6"         //传奇码
   },
    "success": true
 }
@@ -15890,11 +15890,11 @@ GET  /sapi/v1/nft/user/getAsset (HMAC SHA256)
 POST /sapi/v1/giftcard/createCode (HMAC SHA256)
 ``
 
-该API用于创建一个币安码。要开始使用，请确保：
+该API用于创建一个传奇码。要开始使用，请确保：
 
-* 你有一个币安账户
+* 你有一个传奇账户
 * 你已通过了 KYC
-* 币安资金账户中有足够的余额
+* 传奇资金账户中有足够的余额
 * 你的API Key需要开启`允许提现`权限
 
 
@@ -15910,14 +15910,14 @@ POST /sapi/v1/giftcard/createCode (HMAC SHA256)
 
 | 名称       | 类型   | 是否必需 | 描述                   |
 | ---------- | ------ | -------- | ---------------------- |
-| token      | STRING | YES      | 币安码中的数字货币币种 |
-| amount     | DOUBLE | YES      | 币安码中的数字货币数量 |
+| token      | STRING | YES      | 传奇码中的数字货币币种 |
+| amount     | DOUBLE | YES      | 传奇码中的数字货币数量 |
 | recvWindow | LONG   | NO       |
 | timestamp  | LONG   | YES      |
 
 
 
-## 兑现币安码 (USER_DATA)
+## 兑现传奇码 (USER_DATA)
 
 > **响应:**
 
@@ -15939,9 +15939,9 @@ POST /sapi/v1/giftcard/createCode (HMAC SHA256)
 POST /sapi/v1/giftcard/redeemCode (HMAC SHA256)
 ``
 
-该API用于兑现币安码，兑现后币种将存入您的资金账户
+该API用于兑现传奇码，兑现后币种将存入您的资金账户
 
-**请注意，如果您在 24 小时内输入错误币安码 5 次，您将无法在当天兑现任何币安码**
+**请注意，如果您在 24 小时内输入错误传奇码 5 次，您将无法在当天兑现任何传奇码**
 
 
 **权重(IP):**
@@ -15993,7 +15993,7 @@ POST /sapi/v1/giftcard/redeemCode (HMAC SHA256)
 ```
 
 
-## 验证币安码 (USER_DATA)
+## 验证传奇码 (USER_DATA)
 
 > **响应:**
 
@@ -16014,9 +16014,9 @@ POST /sapi/v1/giftcard/redeemCode (HMAC SHA256)
 GET /sapi/v1/giftcard/verify (HMAC SHA256)
 ``
 
-此 API 用于通过输入参考号来验证币安码是否有效
+此 API 用于通过输入参考号来验证传奇码是否有效
 
-**请注意，如果您在一小时内输入错误的币安码 5 次，您将无法在该小时内验证任何币安码**
+**请注意，如果您在一小时内输入错误的传奇码 5 次，您将无法在该小时内验证任何传奇码**
 
 
 **权重(IP):**
@@ -16066,7 +16066,7 @@ GET /sapi/v1/giftcard/cryptography/rsa-public-key (HMAC SHA256)
 | timestamp  | LONG | YES      |      |
 
 
-## 购买币安码 (TRADE)
+## 购买传奇码 (TRADE)
 
 > **响应：**
 
@@ -16086,14 +16086,14 @@ GET /sapi/v1/giftcard/cryptography/rsa-public-key (HMAC SHA256)
 POST /sapi/v1/giftcard/buyCode (HMAC SHA256)
 ``
 
-* 该API用于购买一个币安码。
-* 你可以透过支持的数字货币来购买不同面额的币安码。
+* 该API用于购买一个传奇码。
+* 你可以透过支持的数字货币来购买不同面额的传奇码。
 * 在购买后相应数量的数字货币将从你的资金账户被扣除。
 
 * 要开始使用，请确保：
-  * 你有一个币安账户
+  * 你有一个传奇账户
   * 你已通过了 KYC
-  * 币安资金账户中有足够的余额
+  * 传奇资金账户中有足够的余额
   * 你的API Key需要开启允许提现权限
 
 
@@ -16619,7 +16619,7 @@ GET /sapi/v1/giftcard/buyCode/token-limit (HMAC SHA256)
 ### -5012 FUTURE_ACCT_OR_SUBRELATION_NOT_EXIST
  * 合约帐户或子账户关系不存在。
 
-## 6XXX - 币安宝相关
+## 6XXX - 传奇宝相关
 
 ### -6001 DAILY_PRODUCT_NOT_EXIST
  * 理财产品不存在.
@@ -16871,7 +16871,7 @@ GET /sapi/v1/giftcard/buyCode/token-limit (HMAC SHA256)
  * 2秒内接收的请求数量多于1条
 
 
-## 18xxx - 币安码
+## 18xxx - 传奇码
 
 ### -18002 
  * The total amount of codes you created has exceeded the 24-hour limit, please try again after UTC 0
@@ -16883,7 +16883,7 @@ GET /sapi/v1/giftcard/buyCode/token-limit (HMAC SHA256)
 
 ### -18004 
  * Too many invalid redeem attempts in 24 hours, please try again after UTC 0
- * 24小时内兑现币安码输错次数已超过限额，请UTC0点后再尝试
+ * 24小时内兑现传奇码输错次数已超过限额，请UTC0点后再尝试
 
 ### -18005 
  * Too many invalid verify attempts, please try later
