@@ -1258,7 +1258,7 @@
 
 <ul>
 <li><code>POST /sapi/v1/giftcard/buyCode</code>：用于购买一个传奇码</li>
-<li><code>GET /sapi/v1/giftcard/buyCode/token-limit</code>：用来查看你所支付的数字货币，可以购买的面额与数量限制</li>
+<li><code>GET /sapi/v1/giftcard/buyCode/token-limit</code>：用来查看你所支付的商品，可以购买的面额与数量限制</li>
 </ul></li>
 </ul>
 
@@ -22687,8 +22687,8 @@ GET /sapi/v1/fiat/orders (HMAC SHA256)
       <span class="dl">"</span><span class="s2">orderNo</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">353fca443f06466db0c4dc89f94f027a</span><span class="dl">"</span><span class="p">,</span>
       <span class="dl">"</span><span class="s2">sourceAmount</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">20.0</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// 法币交易数量</span>
       <span class="dl">"</span><span class="s2">fiatCurrency</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">EUR</span><span class="dl">"</span><span class="p">,</span>   <span class="c1">// 法币token</span>
-      <span class="dl">"</span><span class="s2">obtainAmount</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">4.462</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// 数字货币交易数量</span>
-      <span class="dl">"</span><span class="s2">cryptoCurrency</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">LUNA</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// 数字货币token</span>
+      <span class="dl">"</span><span class="s2">obtainAmount</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">4.462</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// 商品交易数量</span>
+      <span class="dl">"</span><span class="s2">cryptoCurrency</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">LUNA</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// 商品token</span>
       <span class="dl">"</span><span class="s2">totalFee</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">0.2</span><span class="dl">"</span><span class="p">,</span>     <span class="c1">// 交易手续费</span>
       <span class="dl">"</span><span class="s2">price</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">4.437472</span><span class="dl">"</span><span class="p">,</span>   <span class="c1">// 价格</span>
       <span class="dl">"</span><span class="s2">status</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Failed</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// Processing处理中, Completed完成, Failed失败, Refunded退款</span>
@@ -24172,13 +24172,13 @@ POST /sapi/v1/giftcard/createCode (HMAC SHA256)
 <td>token</td>
 <td>STRING</td>
 <td>YES</td>
-<td>传奇码中的数字货币币种</td>
+<td>传奇码中的商品币种</td>
 </tr>
 <tr>
 <td>amount</td>
 <td>DOUBLE</td>
 <td>YES</td>
-<td>传奇码中的数字货币数量</td>
+<td>传奇码中的商品数量</td>
 </tr>
 <tr>
 <td>recvWindow</td>
@@ -24418,8 +24418,8 @@ POST /sapi/v1/giftcard/buyCode (HMAC SHA256)
 
 <ul>
 <li>该API用于购买一个传奇码。</li>
-<li>你可以透过支持的数字货币来购买不同面额的传奇码。</li>
-<li><p>在购买后相应数量的数字货币将从你的资金账户被扣除。</p></li>
+<li>你可以透过支持的商品来购买不同面额的传奇码。</li>
+<li><p>在购买后相应数量的商品将从你的资金账户被扣除。</p></li>
 <li><p>要开始使用，请确保：</p>
 
 <ul>
@@ -24500,7 +24500,7 @@ POST /sapi/v1/giftcard/buyCode (HMAC SHA256)
 GET /sapi/v1/giftcard/buyCode/token-limit (HMAC SHA256)
 </code></p>
 
-<p>此 API 是用来查看你所支付的数字货币，可以购买的面额与数量限制。</p>
+<p>此 API 是用来查看你所支付的商品，可以购买的面额与数量限制。</p>
 
 <p><strong>权重(IP):</strong>
 1</p>
