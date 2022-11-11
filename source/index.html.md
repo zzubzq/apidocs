@@ -19,7 +19,7 @@ search: true
 
 <font size=4>**2022-09-30**</font>
 
-Scheduled changes to the removal of `!bookTicker` around November 2022.
+Scheduled changes to the removal of `!bookTicker` around November 2022.  
 
 * The All Book Tickers stream (`!bookTicker`) is set to be removed in **November 2022**
 * More details of the actual removal date will be announced at a later time.
