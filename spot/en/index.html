@@ -279,7 +279,16 @@
                     <a href="#limits" class="toc-h2 toc-link" data-title="LIMITS">LIMITS</a>
                   </li>
                   <li>
+                    <a href="#endpoint-security-type" class="toc-h2 toc-link" data-title="Endpoint security type">Endpoint security type</a>
+                  </li>
+                  <li>
+                    <a href="#trade-and-user_data-endpoints-are-signed-endpoints" class="toc-h2 toc-link" data-title="* TRADE and USER_DATA endpoints are SIGNED endpoints.">* <code>TRADE</code> and <code>USER_DATA</code> endpoints are <code>SIGNED</code> endpoints.</a>
+                  </li>
+                  <li>
                     <a href="#signed-trade-user_data-and-margin-endpoint-security" class="toc-h2 toc-link" data-title="SIGNED (TRADE, USER_DATA, AND MARGIN) Endpoint security">SIGNED (TRADE, USER_DATA, AND MARGIN) Endpoint security</a>
+                  </li>
+                  <li>
+                    <a href="#public-api-definitions" class="toc-h2 toc-link" data-title="Public API Definitions">Public API Definitions</a>
                   </li>
               </ul>
           </li>
@@ -288,6 +297,27 @@
               <ul class="toc-list-h2">
                   <li>
                     <a href="#get-c2c-trade-history-user_data" class="toc-h2 toc-link" data-title="Get C2C Trade History (USER_DATA)">Get C2C Trade History (USER_DATA)</a>
+                  </li>
+                  <li>
+                    <a href="#c2c-none" class="toc-h2 toc-link" data-title="获取 C2C 当前用户支持发布的广告类别   (NONE)">获取 C2C 当前用户支持发布的广告类别   (NONE)</a>
+                  </li>
+                  <li>
+                    <a href="#c2c-none-2" class="toc-h2 toc-link" data-title="获取 C2C 广告详情 (NONE)">获取 C2C 广告详情 (NONE)</a>
+                  </li>
+                  <li>
+                    <a href="#c2c-none-3" class="toc-h2 toc-link" data-title="获取 C2C 广告报价 (NONE)">获取 C2C 广告报价 (NONE)</a>
+                  </li>
+                  <li>
+                    <a href="#c2c-user_data" class="toc-h2 toc-link" data-title="获取 C2C 用户广告列表 (USER_DATA)">获取 C2C 用户广告列表 (USER_DATA)</a>
+                  </li>
+                  <li>
+                    <a href="#c2c-trading" class="toc-h2 toc-link" data-title="获取 C2C 发布广告 (TRADING)">获取 C2C 发布广告 (TRADING)</a>
+                  </li>
+                  <li>
+                    <a href="#c2c-none-4" class="toc-h2 toc-link" data-title="获取 C2C 搜索广告 (NONE)">获取 C2C 搜索广告 (NONE)</a>
+                  </li>
+                  <li>
+                    <a href="#c2c-trading-2" class="toc-h2 toc-link" data-title="获取 C2C 更新广告状态 (TRADING)">获取 C2C 更新广告状态 (TRADING)</a>
                   </li>
               </ul>
           </li>
@@ -417,7 +447,43 @@ It is important to <strong>NOT</strong> treat this as a failure operation; the e
 </ul>
 
 <hr>
-<h2 id='signed-trade-user_data-and-margin-endpoint-security'>SIGNED (TRADE, USER_DATA, AND MARGIN) Endpoint security</h2>
+<h2 id='endpoint-security-type'>Endpoint security type</h2>
+<ul>
+<li>Each endpoint has a security type that determines how you will
+interact with it. This is stated next to the NAME of the endpoint.
+
+<ul>
+<li>If no security type is stated, assume the security type is NONE.</li>
+</ul></li>
+<li>API-keys are passed into the Rest API via the <code>X-MBX-APIKEY</code>
+header.</li>
+<li>API-keys and secret-keys <strong>are case sensitive</strong>.</li>
+<li>API-keys can be configured to only access certain types of secure endpoints.
+For example, one API-key could be used for TRADE only, while another API-key
+can access everything except for TRADE routes.</li>
+<li>By default, API-keys can access all secure routes.</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>Security Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>NONE</td>
+<td>Endpoint can be accessed freely.</td>
+</tr>
+<tr>
+<td>TRADE</td>
+<td>Endpoint requires sending a valid API-Key and signature.</td>
+</tr>
+<tr>
+<td>USER_DATA</td>
+<td>Endpoint requires sending a valid API-Key and signature.</td>
+</tr>
+</tbody></table>
+<h2 id='trade-and-user_data-endpoints-are-signed-endpoints'>* <code>TRADE</code> and <code>USER_DATA</code> endpoints are <code>SIGNED</code> endpoints.</h2><h2 id='signed-trade-user_data-and-margin-endpoint-security'>SIGNED (TRADE, USER_DATA, AND MARGIN) Endpoint security</h2>
 <ul>
 <li><code>SIGNED</code> endpoints require an additional parameter, <code>signature</code>, to be
 sent in the  <code>query string</code> or <code>request body</code>.</li>
@@ -459,6 +525,189 @@ It is recommended to use a small recvWindow of 5000 or less! The max cannot go b
 </aside>
 
 <hr>
+<h3 id='signed-endpoint-examples-for-post-sapi-v1-c2c-ads-getdetailbyno'>SIGNED Endpoint Examples for POST /sapi/v1/c2c/ads/getDetailByNo</h3>
+<p>Here is a step-by-step example of how to send a vaild signed payload from the
+Linux command line using <code>echo</code>, <code>openssl</code>, and <code>curl</code>.</p>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>apiKey</td>
+<td>dbefbc809e3e83c283a984c3a1459732ea7db1360ca80c5c2c8867408d28cc83</td>
+</tr>
+<tr>
+<td>secretKey</td>
+<td>2b5eb11e18796d12d88f13dc27dbbd02c2cc51ff7059765ed9821957d82bb4d9</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>adsNo</td>
+<td>10191633467710386176</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>1591702613943</td>
+</tr>
+</tbody></table>
+<h4 id='example-1-as-a-request-body'>Example 1: As a request body</h4>
+<blockquote>
+<p><strong>Example 1</strong></p>
+
+<p><strong>HMAC SHA256 signature:</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>    <span class="nv">$ </span><span class="nb">echo</span> <span class="nt">-n</span> <span class="s2">"adsNo=10191633467710386176&amp;timestamp=1591702613943"</span> | openssl dgst <span class="nt">-sha256</span> <span class="nt">-hmac</span> <span class="s2">"2b5eb11e18796d12d88f13dc27dbbd02c2cc51ff7059765ed9821957d82bb4d9"</span>
+    <span class="o">(</span>stdin<span class="o">)=</span>  3c661234138461fcc7a7d8746c6558c9842d4e10870d2ecbedf7777cad694af9
+</code></pre></div>
+<blockquote>
+<p><strong>curl command:</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>    <span class="o">(</span>HMAC SHA256<span class="o">)</span>
+    <span class="nv">$ </span>curl <span class="nt">-H</span> <span class="s2">"X-MBX-APIKEY: dbefbc809e3e83c283a984c3a1459732ea7db1360ca80c5c2c8867408d28cc83"</span> <span class="nt">-X</span> POST <span class="s1">'https://api.pexpay.com/sapi/v1/c2c/ads/getDetailByNo'</span> <span class="nt">-d</span> <span class="s1">'sadsNo=10191633467710386176&amp;timestamp=1591702613943&amp;signature=3c661234138461fcc7a7d8746c6558c9842d4e10870d2ecbedf7777cad694af9'</span>
+
+</code></pre></div><h4 id='2-example-2-as-a-query-string'>示例 2: Example 2: As a query string</h4>
+<blockquote>
+<p><strong>Example 2</strong></p>
+
+<p><strong>HMAC SHA256 signature:</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>    <span class="nv">$ </span><span class="nb">echo</span> <span class="nt">-n</span> <span class="s2">"adsNo=10191633467710386176&amp;timestamp=1591702613943"</span> | openssl dgst <span class="nt">-sha256</span> <span class="nt">-hmac</span> <span class="s2">"2b5eb11e18796d12d88f13dc27dbbd02c2cc51ff7059765ed9821957d82bb4d9"</span>
+    <span class="o">(</span>stdin<span class="o">)=</span> 3c661234138461fcc7a7d8746c6558c9842d4e10870d2ecbedf7777cad694af9
+
+</code></pre></div>
+<blockquote>
+<p><strong>curl command:</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>    <span class="o">(</span>HMAC SHA256<span class="o">)</span>
+   <span class="nv">$ </span>curl <span class="nt">-H</span> <span class="s2">"X-MBX-APIKEY: dbefbc809e3e83c283a984c3a1459732ea7db1360ca80c5c2c8867408d28cc83"</span> <span class="nt">-X</span> POST <span class="s1">'https://api.pexpay.com/sapi/v1/c2c/ads/getDetailByNo?adsNo=10191633467710386176&amp;timestamp=1591702613943&amp;signature=3c661234138461fcc7a7d8746c6558c9842d4e10870d2ecbedf7777cad694af9'</span>
+
+</code></pre></div>
+<hr>
+<h2 id='public-api-definitions'>Public API Definitions</h2><h3 id='terminology'>Terminology</h3>
+<p>These terms will be used throughout the documentation, so it is recommended especially for new users to read to help their understanding of the API.</p>
+
+<ul>
+<li><code>ad</code> the advertisement published by maker</li>
+<li><code>order</code> the order placed by taker</li>
+</ul>
+<h3 id='enum-definitions'>ENUM definitions</h3>
+<p><strong>order status (c2c order related):</strong></p>
+
+<table><thead>
+<tr>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>1</code></td>
+<td>pending payment</td>
+</tr>
+<tr>
+<td><code>2</code></td>
+<td>Paid</td>
+</tr>
+<tr>
+<td><code>3</code></td>
+<td>Waiting for release(system abnormal)</td>
+</tr>
+<tr>
+<td><code>4</code></td>
+<td>Confirmed, Order complete</td>
+</tr>
+<tr>
+<td><code>5</code></td>
+<td>Appealing</td>
+</tr>
+<tr>
+<td><code>6</code></td>
+<td>Canceled</td>
+</tr>
+<tr>
+<td><code>7</code></td>
+<td>Timeout</td>
+</tr>
+</tbody></table>
+
+<p><strong>reason code for canceling orders (c2c order related):</strong></p>
+
+<table><thead>
+<tr>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>1</code></td>
+<td>I do not want to trade anymore</td>
+</tr>
+<tr>
+<td><code>2</code></td>
+<td>I do not meet the requirements of the advertiser&#39;s trading terms and condition</td>
+</tr>
+<tr>
+<td><code>3</code></td>
+<td>Seller is asking for extra fee</td>
+</tr>
+<tr>
+<td><code>4</code></td>
+<td>Problem with seller&#39;s payment method result in unsuccessful payments</td>
+</tr>
+<tr>
+<td><code>5</code></td>
+<td>Other reasons</td>
+</tr>
+</tbody></table>
+
+<p><strong>ad status (c2c ad related):</strong></p>
+
+<table><thead>
+<tr>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>1</code></td>
+<td>active</td>
+</tr>
+<tr>
+<td><code>3</code></td>
+<td>inactive</td>
+</tr>
+<tr>
+<td><code>4</code></td>
+<td>closed</td>
+</tr>
+</tbody></table>
+
+<p><strong>ad priceType (c2c ad related):</strong></p>
+
+<table><thead>
+<tr>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>1</code></td>
+<td>fixed price</td>
+</tr>
+<tr>
+<td><code>2</code></td>
+<td>floating price</td>
+</tr>
+</tbody></table>
 <h1 id='c2c-endpoints'>C2C Endpoints</h1><h2 id='get-c2c-trade-history-user_data'>Get C2C Trade History (USER_DATA)</h2>
 <blockquote>
 <p><strong>Response:</strong></p>
@@ -551,6 +800,738 @@ GET /sapi/v1/c2c/orderMatch/listUserOrderHistory (HMAC SHA256)
 <li>The max interval between startTimestamp and endTimestamp is 30 days.</li>
 <li>Only the last 6 months of data can be retrieved. To view the complete P2P order history, you can download it from https://c2c.pexpay.com/en/fiatOrder</li>
 </ul>
+<h2 id='c2c-none'>获取 C2C 当前用户支持发布的广告类别   (NONE)</h2>
+<blockquote>
+<p><strong>响应:</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+   <span class="dl">"</span><span class="s2">code</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">000000</span><span class="dl">"</span><span class="p">,</span>
+   <span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">,</span>
+   <span class="dl">"</span><span class="s2">data</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+   <span class="p">{</span>
+      <span class="dl">"</span><span class="s2">orderNumber</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">20219644646554779648</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">advNo</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">11218246497340923904</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">tradeType</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">SELL</span><span class="dl">"</span><span class="p">,</span>  
+      <span class="dl">"</span><span class="s2">asset</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">BUSD</span><span class="dl">"</span><span class="p">,</span> 
+      <span class="dl">"</span><span class="s2">fiat</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">CNY</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">fiatSymbol</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">￥</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">amount</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5000.00000000</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// Quantity (in Crypto)</span>
+      <span class="dl">"</span><span class="s2">totalPrice</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">33400.00000000</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">unitPrice</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">6.68</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// Unit Price (in Fiat)</span>
+      <span class="dl">"</span><span class="s2">orderStatus</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">COMPLETED</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// PENDING, TRADING, BUYER_PAYED, DISTRIBUTING, COMPLETED, IN_APPEAL, CANCELLED, CANCELLED_BY_SYSTEM</span>
+      <span class="dl">"</span><span class="s2">createTime</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1619361369000</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">commission</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">0</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// Transaction Fee (in Crypto)</span>
+      <span class="dl">"</span><span class="s2">counterPartNickName</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">阿涛❤***</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">advertisementRole</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">TAKER</span><span class="dl">"</span>        
+     <span class="p">}</span>
+   <span class="p">],</span>
+   <span class="dl">"</span><span class="s2">total</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+   <span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>
+GET /sapi/v1/c2c/ads/getAvailableAdsCategory
+</code></p>
+
+<p><strong>参数:</strong>
+* 不需要额外参数</p>
+<h2 id='c2c-none-2'>获取 C2C 广告详情 (NONE)</h2>
+<blockquote>
+<p><strong>响应:</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+   <span class="dl">"</span><span class="s2">code</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">000000</span><span class="dl">"</span><span class="p">,</span>
+   <span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">,</span>
+   <span class="dl">"</span><span class="s2">data</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+   <span class="p">{</span>
+      <span class="dl">"</span><span class="s2">orderNumber</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">20219644646554779648</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">advNo</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">11218246497340923904</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">tradeType</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">SELL</span><span class="dl">"</span><span class="p">,</span>  
+      <span class="dl">"</span><span class="s2">asset</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">BUSD</span><span class="dl">"</span><span class="p">,</span> 
+      <span class="dl">"</span><span class="s2">fiat</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">CNY</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">fiatSymbol</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">￥</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">amount</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5000.00000000</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// Quantity (in Crypto)</span>
+      <span class="dl">"</span><span class="s2">totalPrice</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">33400.00000000</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">unitPrice</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">6.68</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// Unit Price (in Fiat)</span>
+      <span class="dl">"</span><span class="s2">orderStatus</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">COMPLETED</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// PENDING, TRADING, BUYER_PAYED, DISTRIBUTING, COMPLETED, IN_APPEAL, CANCELLED, CANCELLED_BY_SYSTEM</span>
+      <span class="dl">"</span><span class="s2">createTime</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1619361369000</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">commission</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">0</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// Transaction Fee (in Crypto)</span>
+      <span class="dl">"</span><span class="s2">counterPartNickName</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">阿涛❤***</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">advertisementRole</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">TAKER</span><span class="dl">"</span>        
+     <span class="p">}</span>
+   <span class="p">],</span>
+   <span class="dl">"</span><span class="s2">total</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+   <span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>
+POST /sapi/v1/c2c/ads/getDetailByNo 
+</code></p>
+
+<p><strong>参数:</strong></p>
+
+<table><thead>
+<tr>
+<th>名称</th>
+<th>传参形式</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>adsNo</td>
+<td>query string</td>
+<td>String</td>
+<td>YES</td>
+<td>广告编号</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p><strong>请求示例:</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+   <span class="dl">"</span><span class="s2">code</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">000000</span><span class="dl">"</span><span class="p">,</span>
+   <span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">,</span>
+   <span class="dl">"</span><span class="s2">data</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+   <span class="p">{</span>
+      <span class="dl">"</span><span class="s2">orderNumber</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">20219644646554779648</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">advNo</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">11218246497340923904</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">tradeType</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">SELL</span><span class="dl">"</span><span class="p">,</span>  
+      <span class="dl">"</span><span class="s2">asset</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">BUSD</span><span class="dl">"</span><span class="p">,</span> 
+      <span class="dl">"</span><span class="s2">fiat</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">CNY</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">fiatSymbol</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">￥</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">amount</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5000.00000000</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// Quantity (in Crypto)</span>
+      <span class="dl">"</span><span class="s2">totalPrice</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">33400.00000000</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">unitPrice</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">6.68</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// Unit Price (in Fiat)</span>
+      <span class="dl">"</span><span class="s2">orderStatus</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">COMPLETED</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// PENDING, TRADING, BUYER_PAYED, DISTRIBUTING, COMPLETED, IN_APPEAL, CANCELLED, CANCELLED_BY_SYSTEM</span>
+      <span class="dl">"</span><span class="s2">createTime</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1619361369000</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">commission</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">0</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// Transaction Fee (in Crypto)</span>
+      <span class="dl">"</span><span class="s2">counterPartNickName</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">阿涛❤***</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">advertisementRole</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">TAKER</span><span class="dl">"</span>        
+     <span class="p">}</span>
+   <span class="p">],</span>
+   <span class="dl">"</span><span class="s2">total</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+   <span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div><h2 id='c2c-none-3'>获取 C2C 广告报价 (NONE)</h2>
+<blockquote>
+<p><strong>响应:</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+   <span class="dl">"</span><span class="s2">code</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">000000</span><span class="dl">"</span><span class="p">,</span>
+   <span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">,</span>
+   <span class="dl">"</span><span class="s2">data</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+   <span class="p">{</span>
+      <span class="dl">"</span><span class="s2">orderNumber</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">20219644646554779648</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">advNo</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">11218246497340923904</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">tradeType</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">SELL</span><span class="dl">"</span><span class="p">,</span>  
+      <span class="dl">"</span><span class="s2">asset</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">BUSD</span><span class="dl">"</span><span class="p">,</span> 
+      <span class="dl">"</span><span class="s2">fiat</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">CNY</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">fiatSymbol</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">￥</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">amount</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5000.00000000</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// Quantity (in Crypto)</span>
+      <span class="dl">"</span><span class="s2">totalPrice</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">33400.00000000</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">unitPrice</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">6.68</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// Unit Price (in Fiat)</span>
+      <span class="dl">"</span><span class="s2">orderStatus</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">COMPLETED</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// PENDING, TRADING, BUYER_PAYED, DISTRIBUTING, COMPLETED, IN_APPEAL, CANCELLED, CANCELLED_BY_SYSTEM</span>
+      <span class="dl">"</span><span class="s2">createTime</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1619361369000</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">commission</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">0</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// Transaction Fee (in Crypto)</span>
+      <span class="dl">"</span><span class="s2">counterPartNickName</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">阿涛❤***</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">advertisementRole</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">TAKER</span><span class="dl">"</span>        
+     <span class="p">}</span>
+   <span class="p">],</span>
+   <span class="dl">"</span><span class="s2">total</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+   <span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>
+POST /sapi/v1/c2c/ads/getReferencePrice
+</code></p>
+
+<p><strong>参数:</strong></p>
+
+<table><thead>
+<tr>
+<th>名称</th>
+<th>传参形式</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>assets</td>
+<td>body</td>
+<td>List String</td>
+<td>YES</td>
+<td>数字货币种类</td>
+</tr>
+<tr>
+<td>fiatCurrency</td>
+<td>body</td>
+<td>String</td>
+<td>YES</td>
+<td>法币</td>
+</tr>
+<tr>
+<td>payType</td>
+<td>body</td>
+<td>String</td>
+<td>YES</td>
+<td>支付方式类型，比如 BANK，WECHAT</td>
+</tr>
+<tr>
+<td>tradeType</td>
+<td>body</td>
+<td>List String</td>
+<td>YES</td>
+<td>交易类型，BUY, SELL</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p><strong>请求示例:</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+   <span class="dl">"</span><span class="s2">code</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">000000</span><span class="dl">"</span><span class="p">,</span>
+   <span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">,</span>
+   <span class="dl">"</span><span class="s2">data</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+   <span class="p">{</span>
+      <span class="dl">"</span><span class="s2">orderNumber</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">20219644646554779648</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">advNo</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">11218246497340923904</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">tradeType</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">SELL</span><span class="dl">"</span><span class="p">,</span>  
+      <span class="dl">"</span><span class="s2">asset</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">BUSD</span><span class="dl">"</span><span class="p">,</span> 
+      <span class="dl">"</span><span class="s2">fiat</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">CNY</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">fiatSymbol</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">￥</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">amount</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5000.00000000</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// Quantity (in Crypto)</span>
+      <span class="dl">"</span><span class="s2">totalPrice</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">33400.00000000</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">unitPrice</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">6.68</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// Unit Price (in Fiat)</span>
+      <span class="dl">"</span><span class="s2">orderStatus</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">COMPLETED</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// PENDING, TRADING, BUYER_PAYED, DISTRIBUTING, COMPLETED, IN_APPEAL, CANCELLED, CANCELLED_BY_SYSTEM</span>
+      <span class="dl">"</span><span class="s2">createTime</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1619361369000</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">commission</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">0</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// Transaction Fee (in Crypto)</span>
+      <span class="dl">"</span><span class="s2">counterPartNickName</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">阿涛❤***</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">advertisementRole</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">TAKER</span><span class="dl">"</span>        
+     <span class="p">}</span>
+   <span class="p">],</span>
+   <span class="dl">"</span><span class="s2">total</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+   <span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div><h2 id='c2c-user_data'>获取 C2C 用户广告列表 (USER_DATA)</h2>
+<blockquote>
+<p><strong>响应:</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+   <span class="dl">"</span><span class="s2">code</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">000000</span><span class="dl">"</span><span class="p">,</span>
+   <span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">,</span>
+   <span class="dl">"</span><span class="s2">data</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+   <span class="p">{</span>
+      <span class="dl">"</span><span class="s2">orderNumber</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">20219644646554779648</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">advNo</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">11218246497340923904</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">tradeType</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">SELL</span><span class="dl">"</span><span class="p">,</span>  
+      <span class="dl">"</span><span class="s2">asset</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">BUSD</span><span class="dl">"</span><span class="p">,</span> 
+      <span class="dl">"</span><span class="s2">fiat</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">CNY</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">fiatSymbol</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">￥</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">amount</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5000.00000000</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// Quantity (in Crypto)</span>
+      <span class="dl">"</span><span class="s2">totalPrice</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">33400.00000000</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">unitPrice</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">6.68</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// Unit Price (in Fiat)</span>
+      <span class="dl">"</span><span class="s2">orderStatus</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">COMPLETED</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// PENDING, TRADING, BUYER_PAYED, DISTRIBUTING, COMPLETED, IN_APPEAL, CANCELLED, CANCELLED_BY_SYSTEM</span>
+      <span class="dl">"</span><span class="s2">createTime</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1619361369000</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">commission</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">0</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// Transaction Fee (in Crypto)</span>
+      <span class="dl">"</span><span class="s2">counterPartNickName</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">阿涛❤***</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">advertisementRole</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">TAKER</span><span class="dl">"</span>        
+     <span class="p">}</span>
+   <span class="p">],</span>
+   <span class="dl">"</span><span class="s2">total</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+   <span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>
+POST /sapi/v1/c2c/ads/listWithPagination
+</code></p>
+
+<p><strong>参数:</strong></p>
+
+<table><thead>
+<tr>
+<th>名称</th>
+<th>传参形式</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>advNo</td>
+<td>body</td>
+<td>String</td>
+<td>YES</td>
+<td>数字货币种类</td>
+</tr>
+<tr>
+<td>advStatus</td>
+<td>body</td>
+<td>String</td>
+<td>YES</td>
+<td>广告状态 1在线 3下线 4关闭</td>
+</tr>
+<tr>
+<td>asset</td>
+<td>body</td>
+<td>String</td>
+<td>YES</td>
+<td>数字货币类型，如BTC</td>
+</tr>
+<tr>
+<td>startDate</td>
+<td>body</td>
+<td>String</td>
+<td>YES</td>
+<td>广告创建开始时间</td>
+</tr>
+<tr>
+<td>endDate</td>
+<td>body</td>
+<td>String</td>
+<td>YES</td>
+<td>广告创建结束时间</td>
+</tr>
+<tr>
+<td>fiatUnit</td>
+<td>body</td>
+<td>String</td>
+<td>YES</td>
+<td>法币类型</td>
+</tr>
+<tr>
+<td>page</td>
+<td>body</td>
+<td>String</td>
+<td>YES</td>
+<td>页数</td>
+</tr>
+<tr>
+<td>rows</td>
+<td>body</td>
+<td>String</td>
+<td>YES</td>
+<td>每页条目数</td>
+</tr>
+<tr>
+<td>tradeType</td>
+<td>body</td>
+<td>List String</td>
+<td>YES</td>
+<td>交易类型，BUY, SELL</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p><strong>请求示例:</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+   <span class="dl">"</span><span class="s2">code</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">000000</span><span class="dl">"</span><span class="p">,</span>
+   <span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">,</span>
+   <span class="dl">"</span><span class="s2">data</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+   <span class="p">{</span>
+      <span class="dl">"</span><span class="s2">orderNumber</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">20219644646554779648</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">advNo</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">11218246497340923904</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">tradeType</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">SELL</span><span class="dl">"</span><span class="p">,</span>  
+      <span class="dl">"</span><span class="s2">asset</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">BUSD</span><span class="dl">"</span><span class="p">,</span> 
+      <span class="dl">"</span><span class="s2">fiat</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">CNY</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">fiatSymbol</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">￥</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">amount</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5000.00000000</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// Quantity (in Crypto)</span>
+      <span class="dl">"</span><span class="s2">totalPrice</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">33400.00000000</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">unitPrice</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">6.68</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// Unit Price (in Fiat)</span>
+      <span class="dl">"</span><span class="s2">orderStatus</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">COMPLETED</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// PENDING, TRADING, BUYER_PAYED, DISTRIBUTING, COMPLETED, IN_APPEAL, CANCELLED, CANCELLED_BY_SYSTEM</span>
+      <span class="dl">"</span><span class="s2">createTime</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1619361369000</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">commission</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">0</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// Transaction Fee (in Crypto)</span>
+      <span class="dl">"</span><span class="s2">counterPartNickName</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">阿涛❤***</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">advertisementRole</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">TAKER</span><span class="dl">"</span>        
+     <span class="p">}</span>
+   <span class="p">],</span>
+   <span class="dl">"</span><span class="s2">total</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+   <span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div><h2 id='c2c-trading'>获取 C2C 发布广告 (TRADING)</h2>
+<blockquote>
+<p><strong>响应:</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+   <span class="dl">"</span><span class="s2">code</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">000000</span><span class="dl">"</span><span class="p">,</span>
+   <span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">,</span>
+   <span class="dl">"</span><span class="s2">data</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+   <span class="p">{</span>
+      <span class="dl">"</span><span class="s2">orderNumber</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">20219644646554779648</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">advNo</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">11218246497340923904</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">tradeType</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">SELL</span><span class="dl">"</span><span class="p">,</span>  
+      <span class="dl">"</span><span class="s2">asset</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">BUSD</span><span class="dl">"</span><span class="p">,</span> 
+      <span class="dl">"</span><span class="s2">fiat</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">CNY</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">fiatSymbol</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">￥</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">amount</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5000.00000000</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// Quantity (in Crypto)</span>
+      <span class="dl">"</span><span class="s2">totalPrice</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">33400.00000000</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">unitPrice</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">6.68</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// Unit Price (in Fiat)</span>
+      <span class="dl">"</span><span class="s2">orderStatus</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">COMPLETED</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// PENDING, TRADING, BUYER_PAYED, DISTRIBUTING, COMPLETED, IN_APPEAL, CANCELLED, CANCELLED_BY_SYSTEM</span>
+      <span class="dl">"</span><span class="s2">createTime</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1619361369000</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">commission</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">0</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// Transaction Fee (in Crypto)</span>
+      <span class="dl">"</span><span class="s2">counterPartNickName</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">阿涛❤***</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">advertisementRole</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">TAKER</span><span class="dl">"</span>        
+     <span class="p">}</span>
+   <span class="p">],</span>
+   <span class="dl">"</span><span class="s2">total</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+   <span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>
+POST /sapi/v1/c2c/ads/post
+</code></p>
+
+<p><strong>参数:</strong></p>
+
+<table><thead>
+<tr>
+<th>名称</th>
+<th>传参形式</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>advNo</td>
+<td>body</td>
+<td>String</td>
+<td>YES</td>
+<td>数字货币种类</td>
+</tr>
+<tr>
+<td>advStatus</td>
+<td>body</td>
+<td>String</td>
+<td>YES</td>
+<td>广告状态 1在线 3下线 4关闭</td>
+</tr>
+<tr>
+<td>asset</td>
+<td>body</td>
+<td>String</td>
+<td>YES</td>
+<td>数字货币类型，如BTC</td>
+</tr>
+<tr>
+<td>startDate</td>
+<td>body</td>
+<td>String</td>
+<td>YES</td>
+<td>广告创建开始时间</td>
+</tr>
+<tr>
+<td>endDate</td>
+<td>body</td>
+<td>String</td>
+<td>YES</td>
+<td>广告创建结束时间</td>
+</tr>
+<tr>
+<td>fiatUnit</td>
+<td>body</td>
+<td>String</td>
+<td>YES</td>
+<td>法币类型</td>
+</tr>
+<tr>
+<td>page</td>
+<td>body</td>
+<td>String</td>
+<td>YES</td>
+<td>页数</td>
+</tr>
+<tr>
+<td>rows</td>
+<td>body</td>
+<td>String</td>
+<td>YES</td>
+<td>每页条目数</td>
+</tr>
+<tr>
+<td>tradeType</td>
+<td>body</td>
+<td>List String</td>
+<td>YES</td>
+<td>交易类型，BUY, SELL</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p><strong>请求示例:</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+   <span class="dl">"</span><span class="s2">code</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">000000</span><span class="dl">"</span><span class="p">,</span>
+   <span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">,</span>
+   <span class="dl">"</span><span class="s2">data</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+   <span class="p">{</span>
+      <span class="dl">"</span><span class="s2">orderNumber</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">20219644646554779648</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">advNo</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">11218246497340923904</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">tradeType</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">SELL</span><span class="dl">"</span><span class="p">,</span>  
+      <span class="dl">"</span><span class="s2">asset</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">BUSD</span><span class="dl">"</span><span class="p">,</span> 
+      <span class="dl">"</span><span class="s2">fiat</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">CNY</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">fiatSymbol</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">￥</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">amount</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5000.00000000</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// Quantity (in Crypto)</span>
+      <span class="dl">"</span><span class="s2">totalPrice</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">33400.00000000</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">unitPrice</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">6.68</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// Unit Price (in Fiat)</span>
+      <span class="dl">"</span><span class="s2">orderStatus</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">COMPLETED</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// PENDING, TRADING, BUYER_PAYED, DISTRIBUTING, COMPLETED, IN_APPEAL, CANCELLED, CANCELLED_BY_SYSTEM</span>
+      <span class="dl">"</span><span class="s2">createTime</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1619361369000</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">commission</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">0</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// Transaction Fee (in Crypto)</span>
+      <span class="dl">"</span><span class="s2">counterPartNickName</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">阿涛❤***</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">advertisementRole</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">TAKER</span><span class="dl">"</span>        
+     <span class="p">}</span>
+   <span class="p">],</span>
+   <span class="dl">"</span><span class="s2">total</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+   <span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div><h2 id='c2c-none-4'>获取 C2C 搜索广告 (NONE)</h2>
+<blockquote>
+<p><strong>响应:</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+   <span class="dl">"</span><span class="s2">code</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">000000</span><span class="dl">"</span><span class="p">,</span>
+   <span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">,</span>
+   <span class="dl">"</span><span class="s2">data</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+   <span class="p">{</span>
+      <span class="dl">"</span><span class="s2">orderNumber</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">20219644646554779648</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">advNo</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">11218246497340923904</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">tradeType</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">SELL</span><span class="dl">"</span><span class="p">,</span>  
+      <span class="dl">"</span><span class="s2">asset</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">BUSD</span><span class="dl">"</span><span class="p">,</span> 
+      <span class="dl">"</span><span class="s2">fiat</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">CNY</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">fiatSymbol</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">￥</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">amount</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5000.00000000</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// Quantity (in Crypto)</span>
+      <span class="dl">"</span><span class="s2">totalPrice</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">33400.00000000</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">unitPrice</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">6.68</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// Unit Price (in Fiat)</span>
+      <span class="dl">"</span><span class="s2">orderStatus</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">COMPLETED</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// PENDING, TRADING, BUYER_PAYED, DISTRIBUTING, COMPLETED, IN_APPEAL, CANCELLED, CANCELLED_BY_SYSTEM</span>
+      <span class="dl">"</span><span class="s2">createTime</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1619361369000</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">commission</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">0</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// Transaction Fee (in Crypto)</span>
+      <span class="dl">"</span><span class="s2">counterPartNickName</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">阿涛❤***</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">advertisementRole</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">TAKER</span><span class="dl">"</span>        
+     <span class="p">}</span>
+   <span class="p">],</span>
+   <span class="dl">"</span><span class="s2">total</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+   <span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>
+POST /sapi/v1/c2c/ads/search
+</code></p>
+
+<p><strong>参数:</strong></p>
+
+<table><thead>
+<tr>
+<th>名称</th>
+<th>传参形式</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>advNo</td>
+<td>body</td>
+<td>String</td>
+<td>YES</td>
+<td>数字货币种类</td>
+</tr>
+<tr>
+<td>advStatus</td>
+<td>body</td>
+<td>String</td>
+<td>YES</td>
+<td>广告状态 1在线 3下线 4关闭</td>
+</tr>
+<tr>
+<td>asset</td>
+<td>body</td>
+<td>String</td>
+<td>YES</td>
+<td>数字货币类型，如BTC</td>
+</tr>
+<tr>
+<td>startDate</td>
+<td>body</td>
+<td>String</td>
+<td>YES</td>
+<td>广告创建开始时间</td>
+</tr>
+<tr>
+<td>endDate</td>
+<td>body</td>
+<td>String</td>
+<td>YES</td>
+<td>广告创建结束时间</td>
+</tr>
+<tr>
+<td>fiatUnit</td>
+<td>body</td>
+<td>String</td>
+<td>YES</td>
+<td>法币类型</td>
+</tr>
+<tr>
+<td>page</td>
+<td>body</td>
+<td>String</td>
+<td>YES</td>
+<td>页数</td>
+</tr>
+<tr>
+<td>rows</td>
+<td>body</td>
+<td>String</td>
+<td>YES</td>
+<td>每页条目数</td>
+</tr>
+<tr>
+<td>tradeType</td>
+<td>body</td>
+<td>List String</td>
+<td>YES</td>
+<td>交易类型，BUY, SELL</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p><strong>请求示例:</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+   <span class="dl">"</span><span class="s2">code</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">000000</span><span class="dl">"</span><span class="p">,</span>
+   <span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">,</span>
+   <span class="dl">"</span><span class="s2">data</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+   <span class="p">{</span>
+      <span class="dl">"</span><span class="s2">orderNumber</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">20219644646554779648</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">advNo</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">11218246497340923904</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">tradeType</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">SELL</span><span class="dl">"</span><span class="p">,</span>  
+      <span class="dl">"</span><span class="s2">asset</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">BUSD</span><span class="dl">"</span><span class="p">,</span> 
+      <span class="dl">"</span><span class="s2">fiat</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">CNY</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">fiatSymbol</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">￥</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">amount</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5000.00000000</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// Quantity (in Crypto)</span>
+      <span class="dl">"</span><span class="s2">totalPrice</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">33400.00000000</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">unitPrice</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">6.68</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// Unit Price (in Fiat)</span>
+      <span class="dl">"</span><span class="s2">orderStatus</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">COMPLETED</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// PENDING, TRADING, BUYER_PAYED, DISTRIBUTING, COMPLETED, IN_APPEAL, CANCELLED, CANCELLED_BY_SYSTEM</span>
+      <span class="dl">"</span><span class="s2">createTime</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1619361369000</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">commission</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">0</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// Transaction Fee (in Crypto)</span>
+      <span class="dl">"</span><span class="s2">counterPartNickName</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">阿涛❤***</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">advertisementRole</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">TAKER</span><span class="dl">"</span>        
+     <span class="p">}</span>
+   <span class="p">],</span>
+   <span class="dl">"</span><span class="s2">total</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+   <span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div><h2 id='c2c-trading-2'>获取 C2C 更新广告状态 (TRADING)</h2>
+<blockquote>
+<p><strong>响应:</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+   <span class="dl">"</span><span class="s2">code</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">000000</span><span class="dl">"</span><span class="p">,</span>
+   <span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">,</span>
+   <span class="dl">"</span><span class="s2">data</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+   <span class="p">{</span>
+      <span class="dl">"</span><span class="s2">orderNumber</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">20219644646554779648</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">advNo</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">11218246497340923904</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">tradeType</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">SELL</span><span class="dl">"</span><span class="p">,</span>  
+      <span class="dl">"</span><span class="s2">asset</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">BUSD</span><span class="dl">"</span><span class="p">,</span> 
+      <span class="dl">"</span><span class="s2">fiat</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">CNY</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">fiatSymbol</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">￥</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">amount</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5000.00000000</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// Quantity (in Crypto)</span>
+      <span class="dl">"</span><span class="s2">totalPrice</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">33400.00000000</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">unitPrice</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">6.68</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// Unit Price (in Fiat)</span>
+      <span class="dl">"</span><span class="s2">orderStatus</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">COMPLETED</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// PENDING, TRADING, BUYER_PAYED, DISTRIBUTING, COMPLETED, IN_APPEAL, CANCELLED, CANCELLED_BY_SYSTEM</span>
+      <span class="dl">"</span><span class="s2">createTime</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1619361369000</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">commission</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">0</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// Transaction Fee (in Crypto)</span>
+      <span class="dl">"</span><span class="s2">counterPartNickName</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">阿涛❤***</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">advertisementRole</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">TAKER</span><span class="dl">"</span>        
+     <span class="p">}</span>
+   <span class="p">],</span>
+   <span class="dl">"</span><span class="s2">total</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+   <span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>
+POST /sapi/v1/c2c/ads/update
+</code></p>
+
+<p><strong>参数:</strong></p>
+
+<table><thead>
+<tr>
+<th>名称</th>
+<th>传参形式</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>advNo</td>
+<td>body</td>
+<td>String</td>
+<td>YES</td>
+<td>数字货币种类</td>
+</tr>
+<tr>
+<td>advStatus</td>
+<td>body</td>
+<td>String</td>
+<td>YES</td>
+<td>广告状态 1在线 3下线 4关闭</td>
+</tr>
+<tr>
+<td>asset</td>
+<td>body</td>
+<td>String</td>
+<td>YES</td>
+<td>数字货币类型，如BTC</td>
+</tr>
+<tr>
+<td>startDate</td>
+<td>body</td>
+<td>String</td>
+<td>YES</td>
+<td>广告创建开始时间</td>
+</tr>
+<tr>
+<td>endDate</td>
+<td>body</td>
+<td>String</td>
+<td>YES</td>
+<td>广告创建结束时间</td>
+</tr>
+<tr>
+<td>fiatUnit</td>
+<td>body</td>
+<td>String</td>
+<td>YES</td>
+<td>法币类型</td>
+</tr>
+<tr>
+<td>page</td>
+<td>body</td>
+<td>String</td>
+<td>YES</td>
+<td>页数</td>
+</tr>
+<tr>
+<td>rows</td>
+<td>body</td>
+<td>String</td>
+<td>YES</td>
+<td>每页条目数</td>
+</tr>
+<tr>
+<td>tradeType</td>
+<td>body</td>
+<td>List String</td>
+<td>YES</td>
+<td>交易类型，BUY, SELL</td>
+</tr>
+</tbody></table>
 <h1 id='error-codes'>Error Codes</h1>
 <blockquote>
 <p>The error JSON payload:</p>
