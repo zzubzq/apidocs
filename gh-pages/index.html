@@ -224,17 +224,17 @@
         <div class="nav_box">
           <span class="nav_cell" style="display: none">
             <a href="javascript:;" class="nav_first">v1<i class="icon_nav"></i></a>
-            //<ul class="nav_ul">
+            <!-- //<ul class="nav_ul">
             //  <li>
             //    <a href="/apidocs/spot/en/" id="v1_url">v1</a>
             //  </li>
             //  <li>
             //    <a href="/apidocs/spot/en/" id="v2_url">v2</a>
-            //  </li>
+            //  </li> -->
             </ul>
           </span>
           <span class="nav_cell nav_tab">
-            <a href="/apidocs/spot/en/" id="btn_spot">现货/杠杆/币安宝</a>
+            <a href="/apidocs/spot/en/" id="btn_spot">c2c</a>
           </span>
           <!-- <span class="nav_cell nav_tab">
             <a href="/apidocs/futures/en/" id="btn_dm">U本位合约</a>
@@ -636,63 +636,63 @@ GET /sapi/v1/c2c/orderMatch/listUserOrderHistory (HMAC SHA256)
       const LG = document.getElementById('LG');
       const lang_btn = document.getElementById('lang_box');
       const btn_spot = document.getElementById('btn_spot');
-      const btn_dm = document.getElementById('btn_dm');
-      const btn_fp = document.getElementById('btn_fp');
-      const btn_tn = document.getElementById('btn_tn');
+      // const btn_dm = document.getElementById('btn_dm');
+      // const btn_fp = document.getElementById('btn_fp');
+      // const btn_tn = document.getElementById('btn_tn');
       const v1_url = document.getElementById('v1_url');
       //const v2_url = document.getElementById('v2_url');
       const url = GetUrlRelativePath();
       if(url.indexOf('cn') != -1){
         // for the Chinese Language env.
         lang_btn.innerHTML = 'English';
-        btn_spot.innerHTML = '现货/杠杆/币安宝/矿池';
-        btn_dm.innerHTML = 'U本位合约';
-        btn_fp.innerHTML = '币本位合约';
-        btn_tn.innerHTML = '欧式期权';
+        btn_spot.innerHTML = 'c2c';
+        // btn_dm.innerHTML = 'U本位合约';
+        // btn_fp.innerHTML = '币本位合约';
+        // btn_tn.innerHTML = '欧式期权';
         LG.href = "https://www.pexpay.com/cn/";
         lang_btn.href = url.replace('cn/', 'en/');
         btn_spot.href = btn_spot.href.replace('en/', 'cn/');
-        btn_dm.href = btn_dm.href.replace('en/', 'cn/');
-        btn_fp.href = btn_fp.href.replace('en/', 'cn/');
-        btn_tn.href = btn_tn.href.replace('en/', 'cn/');
+        // btn_dm.href = btn_dm.href.replace('en/', 'cn/');
+        // btn_fp.href = btn_fp.href.replace('en/', 'cn/');
+        // btn_tn.href = btn_tn.href.replace('en/', 'cn/');
         //v1_url.href = '/docs/spot/v1/cn/';
         //v2_url.href = '/docs/spot/v2/cn/';
       }else{
         // for the English Language env.
         lang_btn.innerHTML = '简体中文';
-        btn_spot.innerHTML = 'Spot/Margin/Savings/Mining';
-        btn_dm.innerHTML = 'USDⓈ-M Futures';
-        btn_fp.innerHTML = 'COIN-M  Futures';
-        btn_tn.innerHTML = 'European Options';
+        btn_spot.innerHTML = 'c2c';
+        // btn_dm.innerHTML = 'USDⓈ-M Futures';
+        // btn_fp.innerHTML = 'COIN-M  Futures';
+        // btn_tn.innerHTML = 'European Options';
         LG.href = "https://www.pexpay.com/en/";
         lang_btn.href = url.replace('en/', 'cn/');
         btn_spot.href = btn_spot.href.replace('cn/', 'en/');
-        btn_dm.href = btn_dm.href.replace('cn/', 'en/');
-        btn_fp.href = btn_fp.href.replace('cn/', 'en/');
-        btn_tn.href = btn_tn.href.replace('cn/', 'en/');
+        // btn_dm.href = btn_dm.href.replace('cn/', 'en/');
+        // btn_fp.href = btn_fp.href.replace('cn/', 'en/');
+        // btn_tn.href = btn_tn.href.replace('cn/', 'en/');
         //v1_url.href = '/docs/spot/v1/en/';
         //v2_url.href = '/docs/spot/v2/en/';
       }
       if(location.href.indexOf('apidocs/futures') > 0){
         btn_spot.className = '';
-        btn_dm.className = 'current';
-        btn_fp.className = '';
-        btn_tn.className = '';
+        // btn_dm.className = 'current';
+        // btn_fp.className = '';
+        // btn_tn.className = '';
       } else if(location.href.indexOf('apidocs/spot') > 0){
         btn_spot.className = 'current';
-        btn_dm.className = '';
-        btn_fp.className = '';
-        btn_tn.className = '';
+        // btn_dm.className = '';
+        // btn_fp.className = '';
+        // btn_tn.className = '';
       } else if(location.href.indexOf('apidocs/voptions') > 0){
         btn_spot.className = '';
-        btn_dm.className = '';
-        btn_fp.className = '';
-        btn_tn.className = 'current';
+        // btn_dm.className = '';
+        // btn_fp.className = '';
+        // btn_tn.className = 'current';
       } else{
         btn_spot.className = '';
-        btn_dm.className = '';
-        btn_fp.className = 'current';
-        btn_tn.className = '';
+        // btn_dm.className = '';
+        // btn_fp.className = 'current';
+        // btn_tn.className = '';
       }
       // language botton
       lang_btn.style.display = 'block';
