@@ -220,17 +220,17 @@
     </a>
     <header>
       <div class="flex_box">
-        <a href="https://www.pexpay.co/" class="LG" id="LG"><img src="images/logo.svg" class="logo" alt="" /></a>
+        <a href="https://www.pexpay.com/" class="LG" id="LG"><img src="images/logo.svg" class="logo" alt="" /></a>
         <div class="nav_box">
           <span class="nav_cell" style="display: none">
             <a href="javascript:;" class="nav_first">v1<i class="icon_nav"></i></a>
-            //<ul class="nav_ul">
+            <!-- //<ul class="nav_ul">
             //  <li>
             //    <a href="/apidocs/spot/en/" id="v1_url">v1</a>
             //  </li>
             //  <li>
             //    <a href="/apidocs/spot/en/" id="v2_url">v2</a>
-            //  </li>
+            //  </li> -->
             </ul>
           </span>
           <span class="nav_cell nav_tab">
@@ -256,105 +256,110 @@
         <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
           <li>
-            <a href="#185368440e" class="toc-h1 toc-link" data-title="更新日志">更新日志</a>
+            <a href="#change-log" class="toc-h1 toc-link" data-title="Change Log">Change Log</a>
           </li>
           <li>
-            <a href="#45fa4e00db" class="toc-h1 toc-link" data-title="介绍">介绍</a>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#api-key" class="toc-h2 toc-link" data-title="API Key 设置">API Key 设置</a>
+                    <a href="#api-key-setup" class="toc-h2 toc-link" data-title="API Key Setup">API Key Setup</a>
                   </li>
                   <li>
-                    <a href="#152d3db758" class="toc-h2 toc-link" data-title="联系我们">联系我们</a>
+                    <a href="#contact-us" class="toc-h2 toc-link" data-title="Contact Us">Contact Us</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#b122f813d5" class="toc-h1 toc-link" data-title="基本信息">基本信息</a>
+            <a href="#general-info" class="toc-h1 toc-link" data-title="General Info">General Info</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#api" class="toc-h2 toc-link" data-title="API 基本信息">API 基本信息</a>
+                    <a href="#general-api-information" class="toc-h2 toc-link" data-title="General API Information">General API Information</a>
                   </li>
                   <li>
-                    <a href="#12907e94be" class="toc-h2 toc-link" data-title="访问限制">访问限制</a>
+                    <a href="#limits" class="toc-h2 toc-link" data-title="LIMITS">LIMITS</a>
                   </li>
                   <li>
-                    <a href="#signed-trade-user_data-and-margin-endpoint-security" class="toc-h2 toc-link" data-title="SIGNED (TRADE、USER_DATA AND MARGIN) Endpoint security">SIGNED (TRADE、USER_DATA AND MARGIN) Endpoint security</a>
+                    <a href="#signed-trade-user_data-and-margin-endpoint-security" class="toc-h2 toc-link" data-title="SIGNED (TRADE, USER_DATA, AND MARGIN) Endpoint security">SIGNED (TRADE, USER_DATA, AND MARGIN) Endpoint security</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#c2c" class="toc-h1 toc-link" data-title="C2C 接口">C2C 接口</a>
+            <a href="#c2c-endpoints" class="toc-h1 toc-link" data-title="C2C Endpoints">C2C Endpoints</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#c2c-user_data" class="toc-h2 toc-link" data-title="获取 C2C 交易历史记录 (USER_DATA)">获取 C2C 交易历史记录 (USER_DATA)</a>
+                    <a href="#get-c2c-trade-history-user_data" class="toc-h2 toc-link" data-title="Get C2C Trade History (USER_DATA)">Get C2C Trade History (USER_DATA)</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#cf68bca02a" class="toc-h1 toc-link" data-title="错误代码">错误代码</a>
+            <a href="#error-codes" class="toc-h1 toc-link" data-title="Error Codes">Error Codes</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#10xx" class="toc-h2 toc-link" data-title="10xx -常规服务器或网络问题">10xx -常规服务器或网络问题</a>
+                    <a href="#10xx-general-server-or-network-issues" class="toc-h2 toc-link" data-title="10xx - General Server or Network issues">10xx - General Server or Network issues</a>
                   </li>
               </ul>
           </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href='https://www.pexpay.co/cn/'>Pexpay Exchange</a></li>
+            <li><a href='https://www.pexpay.com/'>Pexpay Exchange</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='185368440e'>更新日志</h1>
-<p><font size=4><strong>2018-01-14</strong></font></p>
+        <h1 id='change-log'>Change Log</h1>
+<p><font size=4><strong>2022-11-07</strong></font></p>
 
 <ul>
-<li>GET/api/v1/aggTrades权重更改为2</li>
-<li>GET/api/v1/klines权重更改为2</li>
-<li>GET/api/v3/订单权重更改为2</li>
-<li>GET/api/v3/ allOrders权重更改为20</li>
-<li>GET/api/v3/帐户权重更改为20</li>
-<li>GET/api/v3/ myTrades权重更改为20</li>
-<li>GET/api/v3/ historicalTrades权重更改为20</li>
+<li>GET /api/v1/aggTrades </li>
+<li>GET /api/v1/klines </li>
+<li>GET /api/v3/order </li>
+<li>GET /api/v3/allOrders </li>
+<li>GET /api/v3/account </li>
+<li>GET /api/v3/myTrades </li>
+<li>GET /api/v3/historicalTrades </li>
 </ul>
-<h1 id='45fa4e00db'>介绍</h1><h2 id='api-key'>API Key 设置</h2>
+<h1 id='introduction'>Introduction</h1><h2 id='api-key-setup'>API Key Setup</h2>
 <ul>
-<li>很多接口需要API Key才可以访问. 请参考<a href="https://www.pexpayzh.top/zh-CN/support/faq/360002502072">这个页面</a>来设置API Key.</li>
-<li>设置API Key的同时，为了安全，建议设置IP访问白名单.</li>
-<li><strong>永远不要把你的API key/secret告诉给任何人</strong></li>
+<li>Some endpoints will require an API Key. Please refer to <a href="https://www.pexpayzh.top/en/support/faq/360002502072">this page</a> regarding API key creation.</li>
+<li>Once API key is created, it is recommended to set IP restrictions on the key for security reasons.</li>
+<li><strong>Never share your API key/secret key to ANYONE.</strong></li>
 </ul>
 
 <aside class="warning">
-如果不小心泄露了API key，请立刻删除此Key, 并可以另外生产新的Key.
+If the API keys were accidentally shared, please delete them immediately and create a new key.
 </aside>
-<h2 id='152d3db758'>联系我们</h2>
+<h2 id='contact-us'>Contact Us</h2>
 <ul>
-<li><a href="https://support.pexpay.com/hc/en-us/requests/new?ticket_form_id=11868568981785">请在这里提交您的请求或问题</a></li>
+<li><a href="https://support.pexpay.com/hc/en-us/requests/new?ticket_form_id=11868568981785">submit your requests or issues in here</a></li>
 </ul>
-<h1 id='b122f813d5'>基本信息</h1><h2 id='api'>API 基本信息</h2>
+
+<hr>
+<h1 id='general-info'>General Info</h1><h2 id='general-api-information'>General API Information</h2>
 <ul>
-<li>接口可能需要用户的 API Key，如何创建API-KEY请参考<a href="https://www.pexpay.com/cn/support/articles/360002502072">这里</a></li>
-<li>本篇列出接口的baseurl: <strong>https://api.pexpay.com</strong></li>
-<li>所有接口的响应都是 JSON 格式。</li>
-<li>所有时间、时间戳均为UNIX时间，单位为<strong>毫秒</strong>。</li>
+<li>The base endpoint is: <strong>https://api.pexpay.com</strong></li>
+<li>All endpoints return either a JSON object or array.</li>
+<li>All time and timestamp related fields are in <strong>milliseconds</strong>.</li>
 </ul>
-<h3 id='http'>HTTP 返回代码</h3>
+<h3 id='http-return-codes'>HTTP Return Codes</h3>
 <ul>
-<li>HTTP <code>4XX</code> 错误码用于指示错误的请求内容、行为、格式。问题在于请求者。</li>
-<li>HTTP <code>403</code> 错误码表示违反WAF限制(Web应用程序防火墙)。</li>
-<li>HTTP <code>429</code> 错误码表示警告访问频次超限，即将被封IP。</li>
-<li>HTTP <code>418</code> 表示收到429后继续访问，于是被封了。</li>
-<li>HTTP <code>5XX</code> 错误码用于指示Pexpay服务侧的问题。<br></li>
+<li>HTTP <code>4XX</code> return codes are used for malformed requests;
+the issue is on the sender&#39;s side.</li>
+<li>HTTP <code>403</code> return code is used when the WAF Limit (Web Application Firewall) has been violated.</li>
+<li>HTTP <code>429</code> return code is used when breaking a request rate limit.</li>
+<li>HTTP <code>418</code> return code is used when an IP has been auto-banned for continuing to send requests after receiving <code>429</code> codes.</li>
+<li>HTTP <code>5XX</code> return codes are used for internal errors; the issue is on
+Pexpay&#39;s side.
+It is important to <strong>NOT</strong> treat this as a failure operation; the execution status is
+<strong>UNKNOWN</strong> and could have been a success.</li>
 </ul>
-<h3 id='e8b5c91ed1'>接口错误代码</h3>
+<h3 id='error-codes-and-messages'>Error Codes and Messages</h3>
 <ul>
-<li>每个接口都有可能抛出异常; </li>
+<li>If there is an error, the API will return an error with a message of the reason.</li>
 </ul>
 
 <blockquote>
-<p>SAPI 的错误代码返回形式如下:</p>
+<p>The error payload is as follows:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
   <span class="dl">"</span><span class="s2">code</span><span class="dl">"</span><span class="p">:</span> <span class="nx">$</span><span class="p">{</span><span class="nx">error</span> <span class="nx">code</span><span class="p">},</span>
@@ -362,20 +367,24 @@
 <span class="p">}</span>
 </code></pre></div>
 <ul>
-<li>具体的错误码及其解释在 <a href="#cf68bca02a">错误代码</a>.</li>
+<li>Specific error codes and messages defined in <a href="#error-codes">Error Codes</a>.</li>
 </ul>
-<h3 id='2be91f451e'>接口的基本信息</h3>
+<h3 id='general-information-on-endpoints'>General Information on Endpoints</h3>
 <ul>
-<li><code>GET</code> 方法的接口, 参数必须在 <code>query string</code>中发送。</li>
-<li><code>POST</code>, <code>PUT</code>, 和 <code>DELETE</code> 方法的接口,参数可以在内容形式为<code>application/x-www-form-urlencoded</code>的 <code>query string</code> 中发送，也可以在 <code>request body</code> 中发送。 如果你喜欢，也可以混合这两种方式发送参数。</li>
-<li>对参数的顺序不做要求。</li>
-<li>但如果同一个参数名在query string和request body中都有，query string中的会被优先采用。</li>
+<li>For <code>GET</code> endpoints, parameters must be sent as a <code>query string</code>.</li>
+<li>For <code>POST</code>, <code>PUT</code>, and <code>DELETE</code> endpoints, the parameters may be sent as a
+<code>query string</code> or in the <code>request body</code> with content type
+<code>application/x-www-form-urlencoded</code>. You may mix parameters between both the
+<code>query string</code> and <code>request body</code> if you wish to do so.</li>
+<li>Parameters may be sent in any order.</li>
+<li>If a parameter sent in both the <code>query string</code> and <code>request body</code>, the
+<code>query string</code> parameter will be used.</li>
 </ul>
 
 <hr>
-<h2 id='12907e94be'>访问限制</h2><h3 id='a19828b706'>访问限制基本信息</h3>
+<h2 id='limits'>LIMITS</h2><h3 id='general-info-on-limits'>General Info on Limits</h3>
 <ul>
-<li><p>以下 是<code>intervalLetter</code> 作为头部值:</p>
+<li>The following <code>intervalLetter</code> values for headers:
 
 <ul>
 <li>SECOND =&gt; S</li>
@@ -383,56 +392,52 @@
 <li>HOUR =&gt; H</li>
 <li>DAY =&gt; D</li>
 </ul></li>
-<li><p>在 <code>/api/v3/exchangeInfo</code> <code>rateLimits</code> 数组中包含与交易的有关RAW_REQUESTS，REQUEST_WEIGHT和ORDERS速率限制相关的对象。这些在 <code>限制种类 (rateLimitType)</code> 下的 <code>枚举定义</code> 部分中进一步定义。</p></li>
-<li><p>违反任何一个速率限制时，将返回429。</p></li>
+<li><code>intervalNum</code> describes the amount of the interval. For example, <code>intervalNum</code> 5 with <code>intervalLetter</code> M means &quot;Every 5 minutes&quot;.</li>
+<li>A 429 will be returned when either rate limit is violated.</li>
 </ul>
-<h3 id='ip'>IP 访问限制</h3>
+<h3 id='ip-limits'>IP Limits</h3>
 <ul>
-<li>每个请求将包含一个<code>X-MBX-USED-WEIGHT-(intervalNum)(intervalLetter)</code>的头，其中包含当前IP所有请求的已使用权重。</li>
-<li>每一个接口均有一个相应的权重(weight)，有的接口根据参数不同可能拥有不同的权重。越消耗资源的接口权重就会越大。</li>
-<li>收到429时，您有责任停止发送请求，不得滥用API。</li>
-<li><strong>收到429后仍然继续违反访问限制，会被封禁IP，并收到418错误码</strong></li>
-<li>频繁违反限制，封禁时间会逐渐延长，<strong>从最短2分钟到最长3天</strong>。</li>
-<li><code>Retry-After</code>的头会与带有418或429的响应发送，并且会给出<strong>以秒为单位</strong>的等待时长(如果是429)以防止禁令，或者如果是418，直到禁令结束。</li>
-<li><strong>访问限制是基于IP的，而不是API Key</strong></li>
+<li>Every request will contain <code>X-MBX-USED-WEIGHT-(intervalNum)(intervalLetter)</code> in the response headers which has the current used weight for the IP for all request rate limiters defined.</li>
+<li>Each route has a <code>weight</code> which determines for the number of requests each endpoint counts for. Heavier endpoints and endpoints that do operations on multiple symbols will have a heavier <code>weight</code>.</li>
+<li>When a 429 is received, it&#39;s your obligation as an API to back off and not spam the API.</li>
+<li><strong>Repeatedly violating rate limits and/or failing to back off after receiving 429s will result in an automated IP ban (HTTP status 418).</strong></li>
+<li>IP bans are tracked and <strong>scale in duration</strong> for repeat offenders, <strong>from 2 minutes to 3 days</strong>.</li>
+<li>A <code>Retry-After</code> header is sent with a 418 or 429 responses and will give the <strong>number of seconds</strong> required to wait, in the case of a 429, to prevent a ban, or, in the case of a 418, until the ban is over.</li>
+<li><strong>The limits on the API are based on the IPs, not the API keys.</strong></li>
 </ul>
-<h3 id='b0ee61b8c8'>下单频率限制</h3>
-<ul>
-<li>每个成功的下单回报将包含一个<code>X-MBX-ORDER-COUNT-(intervalNum)(intervalLetter)</code>的头，其中包含当前账户已用的下单限制数量。</li>
-<li>当下单数超过限制时，会收到带有429但不含<code>Retry-After</code>头的响应。请检查 <code>GET api/v3/exchangeInfo</code> 的下单频率限制 (rateLimitType = ORDERS) 并等待封禁时间结束。</li>
-<li>被拒绝或不成功的下单并不保证回报中包含以上头内容。</li>
-<li><strong>下单频率限制是基于每个账户计数的。</strong></li>
-<li>用户可以通过接口 <code>GET api/v3/rateLimit/order</code> 来查询当前的下单量.</li>
-</ul>
-<h3 id='sapi'>/sapi/ 接口限频说明</h3>
-<ul>
-<li> <code>/sapi/*</code>的接口相关：
+<h3 id='sapi-limit-introduction'>/sapi/ Limit Introduction</h3>
+<p>The <code>/sapi/*</code> endpoints adopt either of two access limiting rules, IP limits or UID (account) limits.</p>
 
 <ul>
-<li>按IP和按UID(account)两种模式分别统计, 两者互相独立。</li>
-<li> 以<code>/sapi/*</code>开头的接口采用<strong>单接口限频模式</strong>。按IP统计的权重单接口权重总额为每分钟12000；按照UID统计的单接口权重总额是每分钟180000。</li>
-<li> 每个接口会标明是按照IP或者按照UID统计, 以及相应请求一次的权重值。</li>
-<li> 按照IP统计的接口, 请求返回头里面会包含<code>X-SAPI-USED-IP-WEIGHT-1M=&lt;value&gt;</code>, 包含当前IP所有请求已使用权重。</li>
-<li> 按照UID统计的接口, 请求返回头里面会包含<code>X-SAPI-USED-UID-WEIGHT-1M=&lt;value&gt;</code>, 包含当前账户所有已用的UID权重。</li>
-</ul></li>
+<li>Endpoints are marked according to IP or UID limit and their corresponding weight value.</li>
+<li>Each endpoint with IP limits has an independent 12000 per minute limit.</li>
+<li>Each endpoint with UID limits has an independent 180000 per minute limit.</li>
+<li>Responses from endpoints with IP limits contain the header <code>X-SAPI-USED-IP-WEIGHT-1M</code>, defining the weight used by the current IP.</li>
+<li>Responses from endpoints with UID limits contain the header <code>X-SAPI-USED-UID-WEIGHT-1M</code>, defining the weight used by the current UID.</li>
 </ul>
 
 <hr>
-<h2 id='signed-trade-user_data-and-margin-endpoint-security'>SIGNED (TRADE、USER_DATA AND MARGIN) Endpoint security</h2>
+<h2 id='signed-trade-user_data-and-margin-endpoint-security'>SIGNED (TRADE, USER_DATA, AND MARGIN) Endpoint security</h2>
 <ul>
-<li>调用<code>SIGNED</code> 接口时，除了接口本身所需的参数外，还需要在<code>query string</code> 或 <code>request body</code>中传递 <code>signature</code>, 即签名参数。</li>
-<li>签名使用<code>HMAC SHA256</code>算法. API-KEY所对应的API-Secret作为 <code>HMAC SHA256</code> 的密钥，其他所有参数作为<code>HMAC SHA256</code>的操作对象，得到的输出即为签名。</li>
-<li><code>签名</code> <strong>大小写不敏感</strong>.</li>
-<li>&quot;totalParams&quot;定义为与&quot;request body&quot;串联的&quot;query string&quot;。</li>
+<li><code>SIGNED</code> endpoints require an additional parameter, <code>signature</code>, to be
+sent in the  <code>query string</code> or <code>request body</code>.</li>
+<li>Endpoints use <code>HMAC SHA256</code> signatures. The <code>HMAC SHA256 signature</code> is a keyed <code>HMAC SHA256</code> operation.
+Use your <code>secretKey</code> as the key and <code>totalParams</code> as the value for the HMAC operation.</li>
+<li>The <code>signature</code> is <strong>not case sensitive</strong>.</li>
+<li><code>totalParams</code> is defined as the <code>query string</code> concatenated with the
+<code>request body</code>.</li>
 </ul>
-<h3 id='a3d140c825'>时间同步安全</h3>
+<h3 id='timing-security'>Timing security</h3>
 <ul>
-<li>签名接口均需要传递 <code>timestamp</code>参数，其值应当是请求发送时刻的unix时间戳(毫秒)。</li>
-<li>服务器收到请求时会判断请求中的时间戳，如果是5000毫秒之前发出的，则请求会被认为无效。这个时间空窗值可以通过发送可选参数 <code>recvWindow</code>来定义。</li>
+<li>A <code>SIGNED</code> endpoint also requires a parameter, <code>timestamp</code>, to be sent which
+should be the millisecond timestamp of when the request was created and sent.</li>
+<li>An additional parameter, <code>recvWindow</code>, may be sent to specify the number of
+milliseconds after <code>timestamp</code> the request is valid for. If <code>recvWindow</code>
+is not sent, <strong>it defaults to 5000</strong>.</li>
 </ul>
 
 <blockquote>
-<p>逻辑伪代码如下:</p>
+<p>The logic is as follows:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code>  <span class="k">if</span> <span class="p">(</span><span class="nx">timestamp</span> <span class="o">&lt;</span> <span class="p">(</span><span class="nx">serverTime</span> <span class="o">+</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">serverTime</span> <span class="o">-</span> <span class="nx">timestamp</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="nx">recvWindow</span><span class="p">)</span>
   <span class="p">{</span>
@@ -443,14 +448,20 @@
     <span class="c1">// reject request</span>
   <span class="p">}</span>
 </code></pre></div>
-<p><strong>关于交易时效性</strong> 互联网状况并不完全稳定可靠,因此你的程序本地到传奇服务器的时延会有抖动。这是我们设置<code>recvWindow</code>的目的所在，如果你从事高频交易，对交易时效性有较高的要求，可以灵活设置<code>recvWindow</code>以达到你的要求。</p>
+<p><strong>Serious trading is about timing.</strong> Networks can be unstable and unreliable,
+which can lead to requests taking varying amounts of time to reach the
+servers. With <code>recvWindow</code>, you can specify that the request must be
+processed within a certain number of milliseconds or be rejected by the
+server.</p>
 
 <aside class="notice">
-推荐使用5秒以下的 recvWindow! 最多不能超过 60秒!
+It is recommended to use a small recvWindow of 5000 or less! The max cannot go beyond 60,000!
 </aside>
-<h1 id='c2c'>C2C 接口</h1><h2 id='c2c-user_data'>获取 C2C 交易历史记录 (USER_DATA)</h2>
+
+<hr>
+<h1 id='c2c-endpoints'>C2C Endpoints</h1><h2 id='get-c2c-trade-history-user_data'>Get C2C Trade History (USER_DATA)</h2>
 <blockquote>
-<p><strong>响应:</strong></p>
+<p><strong>Response:</strong></p>
 </blockquote>
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
    <span class="dl">"</span><span class="s2">code</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">000000</span><span class="dl">"</span><span class="p">,</span>
@@ -461,15 +472,15 @@
       <span class="dl">"</span><span class="s2">advNo</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">11218246497340923904</span><span class="dl">"</span><span class="p">,</span>
       <span class="dl">"</span><span class="s2">tradeType</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">SELL</span><span class="dl">"</span><span class="p">,</span>  
       <span class="dl">"</span><span class="s2">asset</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">BUSD</span><span class="dl">"</span><span class="p">,</span> 
-      <span class="dl">"</span><span class="s2">fiat</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">CNY</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">fiat</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">CNY</span><span class="dl">"</span><span class="p">,</span>  
       <span class="dl">"</span><span class="s2">fiatSymbol</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">￥</span><span class="dl">"</span><span class="p">,</span>
-      <span class="dl">"</span><span class="s2">amount</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5000.00000000</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// Quantity (in Crypto)</span>
+      <span class="dl">"</span><span class="s2">amount</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5000.00000000</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// Quantity (in Product)</span>
       <span class="dl">"</span><span class="s2">totalPrice</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">33400.00000000</span><span class="dl">"</span><span class="p">,</span>
       <span class="dl">"</span><span class="s2">unitPrice</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">6.68</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// Unit Price (in Fiat)</span>
       <span class="dl">"</span><span class="s2">orderStatus</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">COMPLETED</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// PENDING, TRADING, BUYER_PAYED, DISTRIBUTING, COMPLETED, IN_APPEAL, CANCELLED, CANCELLED_BY_SYSTEM</span>
       <span class="dl">"</span><span class="s2">createTime</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1619361369000</span><span class="p">,</span>
-      <span class="dl">"</span><span class="s2">commission</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">0</span><span class="dl">"</span><span class="p">,</span>  <span class="c1">// Transaction Fee (in Crypto)</span>
-      <span class="dl">"</span><span class="s2">counterPartNickName</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">阿涛❤***</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">commission</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">0</span><span class="dl">"</span><span class="p">,</span>   <span class="c1">// Transaction Fee (in Product)</span>
+      <span class="dl">"</span><span class="s2">counterPartNickName</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ab***</span><span class="dl">"</span><span class="p">,</span>
       <span class="dl">"</span><span class="s2">advertisementRole</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">TAKER</span><span class="dl">"</span>        
      <span class="p">}</span>
    <span class="p">],</span>
@@ -481,24 +492,21 @@
 GET /sapi/v1/c2c/orderMatch/listUserOrderHistory (HMAC SHA256)
 </code></p>
 
-<p><strong>权重(IP):</strong>
-1</p>
-
-<p><strong>参数:</strong></p>
+<p><strong>Parameters:</strong></p>
 
 <table><thead>
 <tr>
-<th>名称</th>
-<th>类型</th>
-<th>是否必需</th>
-<th>描述</th>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>tradeType</td>
 <td>STRING</td>
 <td>YES</td>
-<td>BUY, SEll</td>
+<td>BUY, SELL</td>
 </tr>
 <tr>
 <td>startTimestamp</td>
@@ -539,85 +547,85 @@ GET /sapi/v1/c2c/orderMatch/listUserOrderHistory (HMAC SHA256)
 </tbody></table>
 
 <ul>
-<li>若startTimestamp和endTimestamp均未发送,只返回最近30天数据。</li>
-<li>startTimestamp和endTimestamp的最大时间间隔为30天。</li>
-<li>只能查询最近 6 个月的数据。如果需要产看全部C2C订单，你可以前往 https://c2c.pexpay.com/zh-CN/fiatOrder</li>
+<li>If startTimestamp and endTimestamp are not sent, the recent 30-day data will be returned.</li>
+<li>The max interval between startTimestamp and endTimestamp is 30 days.</li>
+<li>Only the last 6 months of data can be retrieved. To view the complete P2P order history, you can download it from https://c2c.pexpay.com/en/fiatOrder</li>
 </ul>
-<h1 id='cf68bca02a'>错误代码</h1>
+<h1 id='error-codes'>Error Codes</h1>
 <blockquote>
-<p>错误JSON格式:</p>
+<p>The error JSON payload:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
   <span class="dl">"</span><span class="s2">code</span><span class="dl">"</span><span class="p">:</span> <span class="nx">$</span><span class="p">{</span><span class="nx">error</span> <span class="nx">code</span><span class="p">},</span>
   <span class="dl">"</span><span class="s2">msg</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">error message.</span><span class="dl">"</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>错误由两部分组成：错误代码和消息。 代码是通用的，但是消息可能会有所不同。 </p>
-<h2 id='10xx'>10xx -常规服务器或网络问题</h2><h3 id='1000-unknown'>-1000 UNKNOWN</h3>
+<p>Errors consist of two parts: an error code and a message. Codes are universal, but messages can vary. </p>
+<h2 id='10xx-general-server-or-network-issues'>10xx - General Server or Network issues</h2><h3 id='1000-unknown'>-1000 UNKNOWN</h3>
 <ul>
-<li>处理请求时发生未知错误。</li>
-<li>处理请求时发生未知错误。[%s]</li>
+<li>An unknown error occurred while processing the request.</li>
+<li>An unknown error occurred while processing the request.[%s]</li>
 </ul>
 <h3 id='1001-disconnected'>-1001 DISCONNECTED</h3>
 <ul>
-<li>内部错误; 无法处理您的请求。 请再试一次.</li>
+<li>Internal error; unable to process your request. Please try again.</li>
 </ul>
 <h3 id='1002-unauthorized'>-1002 UNAUTHORIZED</h3>
 <ul>
-<li>您无权执行此请求。</li>
+<li>You are not authorized to execute this request.</li>
 </ul>
 <h3 id='1003-too_many_requests'>-1003 TOO_MANY_REQUESTS</h3>
 <ul>
-<li>排队的请求过多。</li>
-<li>请求权重过多； 请使用websocket获取实时更新。</li>
-<li>请求权重过多； 当前限制为每分钟％s请求权重。 请使用websocket进行实时更新，以避免轮询API。</li>
-<li>请求权重过多； IP被禁止，直到％s。 请使用websocket进行实时更新，以免被禁。</li>
+<li>Too many requests queued.</li>
+<li>Too much request weight used; please use the websocket for live updates to avoid polling the API.</li>
+<li>Too much request weight used; current limit is %s request weight per %s %s. Please use the websocket for live updates to avoid polling the API.</li>
+<li>Way too much request weight used; IP banned until %s. Please use the websocket for live updates to avoid bans.</li>
 </ul>
 <h3 id='1004-server_busy'>-1004 SERVER_BUSY</h3>
 <ul>
-<li>服务器正忙，请稍候再试。</li>
+<li>Server is busy, please wait and try again</li>
 </ul>
 <h3 id='1006-unexpected_resp'>-1006 UNEXPECTED_RESP</h3>
 <ul>
-<li>从消息总线收到意外的响应。 执行状态未知。</li>
+<li>An unexpected response was received from the message bus. Execution status unknown.</li>
 </ul>
 <h3 id='1007-timeout'>-1007 TIMEOUT</h3>
 <ul>
-<li>等待后端服务器响应超时。 发送状态未知； 执行状态未知。</li>
+<li>Timeout waiting for response from backend server. Send status unknown; execution status unknown.</li>
 </ul>
 <h3 id='1008-server_busy'>-1008 SERVER_BUSY</h3>
 <ul>
-<li>现货交易服务器当前因其他请求而过载。 请在几分钟后重试。</li>
+<li>Spot server is currently overloaded with other requests. Please try again in a few minutes. </li>
 </ul>
 <h3 id='1014-unknown_order_composition'>-1014 UNKNOWN_ORDER_COMPOSITION</h3>
 <ul>
-<li>不支持的订单组合。</li>
+<li>Unsupported order combination.</li>
 </ul>
 <h3 id='1015-too_many_orders'>-1015 TOO_MANY_ORDERS</h3>
 <ul>
-<li>新订单太多。</li>
-<li>新订单太多； 当前限制为每％s ％s个订单。</li>
+<li>Too many new orders.</li>
+<li>Too many new orders; current limit is %s orders per %s.</li>
 </ul>
 <h3 id='1016-service_shutting_down'>-1016 SERVICE_SHUTTING_DOWN</h3>
 <ul>
-<li>该服务不可用。</li>
+<li>This service is no longer available.</li>
 </ul>
 <h3 id='1020-unsupported_operation'>-1020 UNSUPPORTED_OPERATION</h3>
 <ul>
-<li>不支持此操作。</li>
+<li>This operation is not supported.</li>
 </ul>
 <h3 id='1021-invalid_timestamp'>-1021 INVALID_TIMESTAMP</h3>
 <ul>
-<li>此请求的时间戳在recvWindow之外。</li>
-<li>此请求的时间戳比服务器时间提前1000毫秒。</li>
+<li>Timestamp for this request is outside of the recvWindow.</li>
+<li>Timestamp for this request was 1000ms ahead of the server&#39;s time.</li>
 </ul>
 <h3 id='1022-invalid_signature'>-1022 INVALID_SIGNATURE</h3>
 <ul>
-<li>此请求的签名无效。</li>
+<li>Signature for this request is not valid.</li>
 </ul>
 <h3 id='1099-not-found-authenticated-or-authorized'>-1099 Not found, authenticated, or authorized</h3>
 <ul>
-<li>替换错误代码-1999</li>
+<li>This replaces error code -1999</li>
 </ul>
 
       </div>
@@ -628,63 +636,63 @@ GET /sapi/v1/c2c/orderMatch/listUserOrderHistory (HMAC SHA256)
       const LG = document.getElementById('LG');
       const lang_btn = document.getElementById('lang_box');
       const btn_spot = document.getElementById('btn_spot');
-      const btn_dm = document.getElementById('btn_dm');
-      const btn_fp = document.getElementById('btn_fp');
-      const btn_tn = document.getElementById('btn_tn');
+      // const btn_dm = document.getElementById('btn_dm');
+      // const btn_fp = document.getElementById('btn_fp');
+      // const btn_tn = document.getElementById('btn_tn');
       const v1_url = document.getElementById('v1_url');
       //const v2_url = document.getElementById('v2_url');
       const url = GetUrlRelativePath();
       if(url.indexOf('cn') != -1){
         // for the Chinese Language env.
         lang_btn.innerHTML = 'English';
-        btn_spot.innerHTML = '现货/杠杆/币安宝/矿池';
-        btn_dm.innerHTML = 'U本位合约';
-        btn_fp.innerHTML = '币本位合约';
-        btn_tn.innerHTML = '欧式期权';
+        btn_spot.innerHTML = 'c2c';
+        // btn_dm.innerHTML = 'U本位合约';
+        // btn_fp.innerHTML = '币本位合约';
+        // btn_tn.innerHTML = '欧式期权';
         LG.href = "https://www.pexpay.com/cn/";
         lang_btn.href = url.replace('cn/', 'en/');
         btn_spot.href = btn_spot.href.replace('en/', 'cn/');
-        btn_dm.href = btn_dm.href.replace('en/', 'cn/');
-        btn_fp.href = btn_fp.href.replace('en/', 'cn/');
-        btn_tn.href = btn_tn.href.replace('en/', 'cn/');
+        // btn_dm.href = btn_dm.href.replace('en/', 'cn/');
+        // btn_fp.href = btn_fp.href.replace('en/', 'cn/');
+        // btn_tn.href = btn_tn.href.replace('en/', 'cn/');
         //v1_url.href = '/docs/spot/v1/cn/';
         //v2_url.href = '/docs/spot/v2/cn/';
       }else{
         // for the English Language env.
         lang_btn.innerHTML = '简体中文';
         btn_spot.innerHTML = 'c2c';
-        btn_dm.innerHTML = 'USDⓈ-M Futures';
-        btn_fp.innerHTML = 'COIN-M  Futures';
-        btn_tn.innerHTML = 'European Options';
+        // btn_dm.innerHTML = 'USDⓈ-M Futures';
+        // btn_fp.innerHTML = 'COIN-M  Futures';
+        // btn_tn.innerHTML = 'European Options';
         LG.href = "https://www.pexpay.com/en/";
         lang_btn.href = url.replace('en/', 'cn/');
         btn_spot.href = btn_spot.href.replace('cn/', 'en/');
-        btn_dm.href = btn_dm.href.replace('cn/', 'en/');
-        btn_fp.href = btn_fp.href.replace('cn/', 'en/');
-        btn_tn.href = btn_tn.href.replace('cn/', 'en/');
+        // btn_dm.href = btn_dm.href.replace('cn/', 'en/');
+        // btn_fp.href = btn_fp.href.replace('cn/', 'en/');
+        // btn_tn.href = btn_tn.href.replace('cn/', 'en/');
         //v1_url.href = '/docs/spot/v1/en/';
         //v2_url.href = '/docs/spot/v2/en/';
       }
       if(location.href.indexOf('apidocs/futures') > 0){
         btn_spot.className = '';
-        btn_dm.className = 'current';
-        btn_fp.className = '';
-        btn_tn.className = '';
+        // btn_dm.className = 'current';
+        // btn_fp.className = '';
+        // btn_tn.className = '';
       } else if(location.href.indexOf('apidocs/spot') > 0){
         btn_spot.className = 'current';
-        btn_dm.className = '';
-        btn_fp.className = '';
-        btn_tn.className = '';
+        // btn_dm.className = '';
+        // btn_fp.className = '';
+        // btn_tn.className = '';
       } else if(location.href.indexOf('apidocs/voptions') > 0){
         btn_spot.className = '';
-        btn_dm.className = '';
-        btn_fp.className = '';
-        btn_tn.className = 'current';
+        // btn_dm.className = '';
+        // btn_fp.className = '';
+        // btn_tn.className = 'current';
       } else{
         btn_spot.className = '';
-        btn_dm.className = '';
-        btn_fp.className = 'current';
-        btn_tn.className = '';
+        // btn_dm.className = '';
+        // btn_fp.className = 'current';
+        // btn_tn.className = '';
       }
       // language botton
       lang_btn.style.display = 'block';
