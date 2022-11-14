@@ -51,7 +51,7 @@ under the License.
     </a>
     <header>
       <div class="flex_box">
-        <a href="https://www.binance.com/" class="LG" id="LG"><%= image_tag "logo.svg", class: 'logo' %></a>
+        <a href="https://www.pexpay.co/" class="LG" id="LG"><%= image_tag "logo.svg", class: 'logo' %></a>
         <div class="nav_box">
           <span class="nav_cell" style="display: none">
             <a href="javascript:;" class="nav_first">v1<i class="icon_nav"></i></a>
@@ -67,7 +67,7 @@ under the License.
           <span class="nav_cell nav_tab">
             <a href="/apidocs/spot/en/" id="btn_spot">现货/杠杆/币安宝</a>
           </span>
-          <span class="nav_cell nav_tab">
+          <!-- <span class="nav_cell nav_tab">
             <a href="/apidocs/futures/en/" id="btn_dm">U本位合约</a>
           </span>
           <span class="nav_cell nav_tab">
@@ -75,7 +75,7 @@ under the License.
           </span>
           <span class="nav_cell nav_tab">
             <a href="/apidocs/voptions/en/" id="btn_tn">欧式期权</a>
-          </span>
+          </span> -->
         </div>
       </div>
       <a href="/apidocs/spot/cn/" class="lang" id="lang_box">简体中文</a>
@@ -158,7 +158,7 @@ under the License.
         btn_dm.innerHTML = 'U本位合约';
         btn_fp.innerHTML = '币本位合约';
         btn_tn.innerHTML = '欧式期权';
-        LG.href = "https://www.binance.com/cn/";
+        LG.href = "https://www.pexpay.com/cn/";
         lang_btn.href = url.replace('cn/', 'en/');
         btn_spot.href = btn_spot.href.replace('en/', 'cn/');
         btn_dm.href = btn_dm.href.replace('en/', 'cn/');
@@ -173,7 +173,7 @@ under the License.
         btn_dm.innerHTML = 'USDⓈ-M Futures';
         btn_fp.innerHTML = 'COIN-M  Futures';
         btn_tn.innerHTML = 'European Options';
-        LG.href = "https://www.binance.com/en/";
+        LG.href = "https://www.pexpay.com/en/";
         lang_btn.href = url.replace('en/', 'cn/');
         btn_spot.href = btn_spot.href.replace('cn/', 'en/');
         btn_dm.href = btn_dm.href.replace('cn/', 'en/');
