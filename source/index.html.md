@@ -125,6 +125,25 @@ search: true
 	*  按照UID统计的接口, 请求返回头里面会包含`X-SAPI-USED-UID-WEIGHT-1M=<value>`, 包含当前账户所有已用的UID权重。
 
 ---
+## 接口鉴权类型
+* 每个接口都有自己的鉴权类型，鉴权类型决定了访问时应当进行何种鉴权。
+* 鉴权类型会在本文档中各个接口名称旁声明，如果没有特殊声明即默认为 `NONE`。
+* 如果需要 API-keys，应当在HTTP头中以 `X-MBX-APIKEY`字段传递。
+* API-keys 与 secret-keys **是大小写敏感的**。
+* API-keys可以被配置为只拥有访问一些接口的权限。
+ 例如, 一个 API-key 仅可用于发送交易指令, 而另一个 API-key 则可访问除交易指令外的所有路径。
+* 默认 API-keys 可访问所有鉴权路径.
+
+| 鉴权类型    | 描述                      |
+| ----------- | ------------------------- |
+| NONE        | 不需要鉴权的接口          |
+| TRADE       | 需要有效的 API-Key 和签名 |
+| USER_DATA   | 需要有效的 API-Key 和签名 |
+
+
+* `TRADE` 和 `USER_DATA` 接口是 签名(SIGNED)接口.
+
+---
 ## SIGNED (TRADE、USER_DATA AND MARGIN) Endpoint security
 * 调用`SIGNED` 接口时，除了接口本身所需的参数外，还需要在`query string` 或 `request body`中传递 `signature`, 即签名参数。
 * 签名使用`HMAC SHA256`算法. API-KEY所对应的API-Secret作为 `HMAC SHA256` 的密钥，其他所有参数作为`HMAC SHA256`的操作对象，得到的输出即为签名。
@@ -153,6 +172,115 @@ search: true
 <aside class="notice">
 推荐使用5秒以下的 recvWindow! 最多不能超过 60秒!
 </aside>
+
+### POST /sapi/v1/c2c/ads/getDetailByNo 的示例
+以下是在linux bash环境下使用 echo openssl 和curl工具实现的一个调用接口下单的示例 apikey、secret仅供示范
+
+| Key       | Value                                                            |
+| --------- | ---------------------------------------------------------------- |
+| apiKey    | dbefbc809e3e83c283a984c3a1459732ea7db1360ca80c5c2c8867408d28cc83 |
+| secretKey | 2b5eb11e18796d12d88f13dc27dbbd02c2cc51ff7059765ed9821957d82bb4d9 |
+
+
+| 参数        | 取值          |
+| ----------- | ------------- |
+| adsNo       | 10191633467710386176        |
+| timestamp        | 1591702613943           |
+
+
+
+#### 示例 1: 所有参数通过 request body 发送
+
+> **Example 1**
+
+> **HMAC SHA256 signature:**
+
+```shell
+    $ echo -n "adsNo=10191633467710386176&timestamp=1591702613943" | openssl dgst -sha256 -hmac "2b5eb11e18796d12d88f13dc27dbbd02c2cc51ff7059765ed9821957d82bb4d9"
+    (stdin)=  3c661234138461fcc7a7d8746c6558c9842d4e10870d2ecbedf7777cad694af9
+```
+
+
+> **curl command:**
+
+```shell
+    (HMAC SHA256)
+    $ curl -H "X-MBX-APIKEY: dbefbc809e3e83c283a984c3a1459732ea7db1360ca80c5c2c8867408d28cc83" -X POST 'https://api.pexpay.com/sapi/v1/c2c/ads/getDetailByNo' -d 'sadsNo=10191633467710386176&timestamp=1591702613943&signature=3c661234138461fcc7a7d8746c6558c9842d4e10870d2ecbedf7777cad694af9'
+    
+```
+
+
+#### 示例 2: 所有参数通过 query string 发送
+
+> **Example 2**
+
+> **HMAC SHA256 signature:**
+
+```shell
+    $ echo -n "adsNo=10191633467710386176&timestamp=1591702613943" | openssl dgst -sha256 -hmac "2b5eb11e18796d12d88f13dc27dbbd02c2cc51ff7059765ed9821957d82bb4d9"
+    (stdin)= 3c661234138461fcc7a7d8746c6558c9842d4e10870d2ecbedf7777cad694af9
+    
+```
+> **curl command:**
+
+```shell
+    (HMAC SHA256)
+   $ curl -H "X-MBX-APIKEY: dbefbc809e3e83c283a984c3a1459732ea7db1360ca80c5c2c8867408d28cc83" -X POST 'https://api.pexpay.com/sapi/v1/c2c/ads/getDetailByNo?adsNo=10191633467710386176&timestamp=1591702613943&signature=3c661234138461fcc7a7d8746c6558c9842d4e10870d2ecbedf7777cad694af9'
+    
+```
+
+---
+
+## 公开 API 参数
+### 术语
+
+这里的术语适用于全部文档，建议特别是新手熟读，也便于理解。
+
+* `ad` 广告，由p2p系统的maker(流动性提供者)发布
+* `order` 订单，taker向特定广告下单，生成订单
+
+### 枚举定义
+**订单状态 (c2c order 相关):**
+
+| 状态              | 描述                                                                                                                                |
+| ------------------| ----------------------------------------------------------------------------------------------------------------------------------- |
+| `1`               | 订单待支付
+| `2`               | 订单已支付                                                                                                                          |
+| `3`               | 订单放行中                                                                                                                          |
+| `4`               | 订单已放行，资产已成功放行给买家，订单完成                                                                                               |
+| `5`               | 订单申诉中，交易双方的某一方发起申诉                                                                                                    |
+| `6`               | 订单被取消                                                                                                                           |
+| `7`               | 订单超时未支付，被系统取消                                                                                                             |
+
+**订单取消原因 (c2c order 相关):**
+
+
+| 状态              | 描述                                                                                                                                |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `1`               | 我不想交易了                                                                                                                           |
+| `2`               | 我不符合广告方要求                                                                                                                      |
+| `3`               | 卖家索取额外费用                                                                                                                        |
+| `4`               | 无法支付                                                                                                                               | 
+| `5`               | 其它                                                                                                                                  |
+
+**广告状态 (c2c ad 相关):**
+
+| 状态               | 描述                                                                                                                                |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `1`               | 在线                                                                                                                              |
+| `3`               | 下线                                                                                                                              |
+| `4`               | 关闭                                                                                                                              |
+
+
+
+**广告价格类型 (c2c ad 相关):**
+
+| 状态               | 描述                                                                                                                                |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `1`               | 固定价格                                                                                                                              |
+| `2`               | 浮动价格，随市场价格变动                                                                                                                |
+
+
 
 # C2C 接口
 
@@ -193,8 +321,6 @@ GET /sapi/v1/c2c/orderMatch/listUserOrderHistory (HMAC SHA256)
 ``
 
 
-**权重(IP):**
-1
 
 **参数:**
 
@@ -213,6 +339,528 @@ GET /sapi/v1/c2c/orderMatch/listUserOrderHistory (HMAC SHA256)
 * 只能查询最近 6 个月的数据。如果需要产看全部C2C订单，你可以前往 https://c2c.pexpay.com/zh-CN/fiatOrder
 
 
+## 获取 C2C 当前用户支持发布的广告类别   (NONE)
+
+> **响应:**
+
+```javascript
+{
+   "code": "000000",
+   "message": "success",
+   "data": [
+   {
+      "orderNumber":"20219644646554779648",
+      "advNo": "11218246497340923904",
+      "tradeType": "SELL",  
+      "asset": "BUSD", 
+      "fiat": "CNY",
+      "fiatSymbol": "￥",
+      "amount": "5000.00000000",  // Quantity (in Crypto)
+      "totalPrice": "33400.00000000",
+      "unitPrice": "6.68", // Unit Price (in Fiat)
+      "orderStatus": "COMPLETED",  // PENDING, TRADING, BUYER_PAYED, DISTRIBUTING, COMPLETED, IN_APPEAL, CANCELLED, CANCELLED_BY_SYSTEM
+      "createTime": 1619361369000,
+      "commission": "0",  // Transaction Fee (in Crypto)
+      "counterPartNickName": "阿涛❤***",
+      "advertisementRole": "TAKER"        
+     }
+   ],
+   "total": 1,
+   "success": true
+}
+```
+
+``
+GET /sapi/v1/c2c/ads/getAvailableAdsCategory
+``
+
+**参数:**
+* 不需要额外参数
+
+
+## 获取 C2C 广告详情 (NONE)
+
+> **响应:**
+
+```javascript
+{
+   "code": "000000",
+   "message": "success",
+   "data": [
+   {
+      "orderNumber":"20219644646554779648",
+      "advNo": "11218246497340923904",
+      "tradeType": "SELL",  
+      "asset": "BUSD", 
+      "fiat": "CNY",
+      "fiatSymbol": "￥",
+      "amount": "5000.00000000",  // Quantity (in Crypto)
+      "totalPrice": "33400.00000000",
+      "unitPrice": "6.68", // Unit Price (in Fiat)
+      "orderStatus": "COMPLETED",  // PENDING, TRADING, BUYER_PAYED, DISTRIBUTING, COMPLETED, IN_APPEAL, CANCELLED, CANCELLED_BY_SYSTEM
+      "createTime": 1619361369000,
+      "commission": "0",  // Transaction Fee (in Crypto)
+      "counterPartNickName": "阿涛❤***",
+      "advertisementRole": "TAKER"        
+     }
+   ],
+   "total": 1,
+   "success": true
+}
+```
+
+``
+POST /sapi/v1/c2c/ads/getDetailByNo 
+``
+
+
+
+**参数:**
+
+| 名称           |      传参形式| 类型   | 是否必需 | 描述                 |
+| --------------|-------------| ------ | -------- | -------------------- |
+| adsNo         |query string | String   | YES      | 广告编号            |
+
+
+> **请求示例:**
+
+```javascript
+{
+   "code": "000000",
+   "message": "success",
+   "data": [
+   {
+      "orderNumber":"20219644646554779648",
+      "advNo": "11218246497340923904",
+      "tradeType": "SELL",  
+      "asset": "BUSD", 
+      "fiat": "CNY",
+      "fiatSymbol": "￥",
+      "amount": "5000.00000000",  // Quantity (in Crypto)
+      "totalPrice": "33400.00000000",
+      "unitPrice": "6.68", // Unit Price (in Fiat)
+      "orderStatus": "COMPLETED",  // PENDING, TRADING, BUYER_PAYED, DISTRIBUTING, COMPLETED, IN_APPEAL, CANCELLED, CANCELLED_BY_SYSTEM
+      "createTime": 1619361369000,
+      "commission": "0",  // Transaction Fee (in Crypto)
+      "counterPartNickName": "阿涛❤***",
+      "advertisementRole": "TAKER"        
+     }
+   ],
+   "total": 1,
+   "success": true
+}
+```
+
+
+## 获取 C2C 广告报价 (NONE)
+
+> **响应:**
+
+```javascript
+{
+   "code": "000000",
+   "message": "success",
+   "data": [
+   {
+      "orderNumber":"20219644646554779648",
+      "advNo": "11218246497340923904",
+      "tradeType": "SELL",  
+      "asset": "BUSD", 
+      "fiat": "CNY",
+      "fiatSymbol": "￥",
+      "amount": "5000.00000000",  // Quantity (in Crypto)
+      "totalPrice": "33400.00000000",
+      "unitPrice": "6.68", // Unit Price (in Fiat)
+      "orderStatus": "COMPLETED",  // PENDING, TRADING, BUYER_PAYED, DISTRIBUTING, COMPLETED, IN_APPEAL, CANCELLED, CANCELLED_BY_SYSTEM
+      "createTime": 1619361369000,
+      "commission": "0",  // Transaction Fee (in Crypto)
+      "counterPartNickName": "阿涛❤***",
+      "advertisementRole": "TAKER"        
+     }
+   ],
+   "total": 1,
+   "success": true
+}
+```
+
+``
+POST /sapi/v1/c2c/ads/getReferencePrice
+``
+
+
+
+**参数:**
+
+| 名称           |      传参形式| 类型   | 是否必需 | 描述                 |
+| --------------|-------------| ------ | -------- | -------------------- |
+| assets         |body | List String   | YES      | 数字货币种类            |
+| fiatCurrency   |body | String   | YES      | 法币            |
+| payType        |body | String   | YES      | 支付方式类型，比如 BANK，WECHAT       |
+| tradeType      |body | List String   | YES      | 交易类型，BUY, SELL            |
+
+
+
+> **请求示例:**
+
+```javascript
+{
+   "code": "000000",
+   "message": "success",
+   "data": [
+   {
+      "orderNumber":"20219644646554779648",
+      "advNo": "11218246497340923904",
+      "tradeType": "SELL",  
+      "asset": "BUSD", 
+      "fiat": "CNY",
+      "fiatSymbol": "￥",
+      "amount": "5000.00000000",  // Quantity (in Crypto)
+      "totalPrice": "33400.00000000",
+      "unitPrice": "6.68", // Unit Price (in Fiat)
+      "orderStatus": "COMPLETED",  // PENDING, TRADING, BUYER_PAYED, DISTRIBUTING, COMPLETED, IN_APPEAL, CANCELLED, CANCELLED_BY_SYSTEM
+      "createTime": 1619361369000,
+      "commission": "0",  // Transaction Fee (in Crypto)
+      "counterPartNickName": "阿涛❤***",
+      "advertisementRole": "TAKER"        
+     }
+   ],
+   "total": 1,
+   "success": true
+}
+```
+
+
+## 获取 C2C 用户广告列表 (USER_DATA)
+
+> **响应:**
+
+```javascript
+{
+   "code": "000000",
+   "message": "success",
+   "data": [
+   {
+      "orderNumber":"20219644646554779648",
+      "advNo": "11218246497340923904",
+      "tradeType": "SELL",  
+      "asset": "BUSD", 
+      "fiat": "CNY",
+      "fiatSymbol": "￥",
+      "amount": "5000.00000000",  // Quantity (in Crypto)
+      "totalPrice": "33400.00000000",
+      "unitPrice": "6.68", // Unit Price (in Fiat)
+      "orderStatus": "COMPLETED",  // PENDING, TRADING, BUYER_PAYED, DISTRIBUTING, COMPLETED, IN_APPEAL, CANCELLED, CANCELLED_BY_SYSTEM
+      "createTime": 1619361369000,
+      "commission": "0",  // Transaction Fee (in Crypto)
+      "counterPartNickName": "阿涛❤***",
+      "advertisementRole": "TAKER"        
+     }
+   ],
+   "total": 1,
+   "success": true
+}
+```
+
+``
+POST /sapi/v1/c2c/ads/listWithPagination
+``
+
+
+
+**参数:**
+
+| 名称           |      传参形式| 类型   | 是否必需 | 描述                 |
+| --------------|-------------  | ------ | -------- | -------------------- |
+| advNo         |body           |  String           | YES      | 数字货币种类                   |
+| advStatus     |body           | String            | YES      | 广告状态 1在线 3下线 4关闭        |
+| asset         |body           | String            | YES      | 数字货币类型，如BTC  |
+| startDate     |body           | String            | YES      | 广告创建开始时间            |
+| endDate       |body           | String            | YES      | 广告创建结束时间            |
+| fiatUnit      |body           | String            | YES      | 法币类型            |
+| page          |body           | String            | YES      | 页数            |
+| rows          |body           | String            | YES      | 每页条目数            |
+| tradeType     |body           | List String       | YES      | 交易类型，BUY, SELL            |
+
+
+
+> **请求示例:**
+
+```javascript
+{
+   "code": "000000",
+   "message": "success",
+   "data": [
+   {
+      "orderNumber":"20219644646554779648",
+      "advNo": "11218246497340923904",
+      "tradeType": "SELL",  
+      "asset": "BUSD", 
+      "fiat": "CNY",
+      "fiatSymbol": "￥",
+      "amount": "5000.00000000",  // Quantity (in Crypto)
+      "totalPrice": "33400.00000000",
+      "unitPrice": "6.68", // Unit Price (in Fiat)
+      "orderStatus": "COMPLETED",  // PENDING, TRADING, BUYER_PAYED, DISTRIBUTING, COMPLETED, IN_APPEAL, CANCELLED, CANCELLED_BY_SYSTEM
+      "createTime": 1619361369000,
+      "commission": "0",  // Transaction Fee (in Crypto)
+      "counterPartNickName": "阿涛❤***",
+      "advertisementRole": "TAKER"        
+     }
+   ],
+   "total": 1,
+   "success": true
+}
+```
+
+## 获取 C2C 发布广告 (TRADING)
+
+> **响应:**
+
+```javascript
+{
+   "code": "000000",
+   "message": "success",
+   "data": [
+   {
+      "orderNumber":"20219644646554779648",
+      "advNo": "11218246497340923904",
+      "tradeType": "SELL",  
+      "asset": "BUSD", 
+      "fiat": "CNY",
+      "fiatSymbol": "￥",
+      "amount": "5000.00000000",  // Quantity (in Crypto)
+      "totalPrice": "33400.00000000",
+      "unitPrice": "6.68", // Unit Price (in Fiat)
+      "orderStatus": "COMPLETED",  // PENDING, TRADING, BUYER_PAYED, DISTRIBUTING, COMPLETED, IN_APPEAL, CANCELLED, CANCELLED_BY_SYSTEM
+      "createTime": 1619361369000,
+      "commission": "0",  // Transaction Fee (in Crypto)
+      "counterPartNickName": "阿涛❤***",
+      "advertisementRole": "TAKER"        
+     }
+   ],
+   "total": 1,
+   "success": true
+}
+```
+
+``
+POST /sapi/v1/c2c/ads/post
+``
+
+
+**参数:**
+
+| 名称           |      传参形式| 类型   | 是否必需 | 描述                 |
+| --------------|-------------  | ------ | -------- | -------------------- |
+| advNo         |body           |  String           | YES      | 数字货币种类                   |
+| advStatus     |body           | String            | YES      | 广告状态 1在线 3下线 4关闭        |
+| asset         |body           | String            | YES      | 数字货币类型，如BTC  |
+| startDate     |body           | String            | YES      | 广告创建开始时间            |
+| endDate       |body           | String            | YES      | 广告创建结束时间            |
+| fiatUnit      |body           | String            | YES      | 法币类型            |
+| page          |body           | String            | YES      | 页数            |
+| rows          |body           | String            | YES      | 每页条目数            |
+| tradeType     |body           | List String       | YES      | 交易类型，BUY, SELL            |
+
+
+
+
+> **请求示例:**
+
+```javascript
+{
+   "code": "000000",
+   "message": "success",
+   "data": [
+   {
+      "orderNumber":"20219644646554779648",
+      "advNo": "11218246497340923904",
+      "tradeType": "SELL",  
+      "asset": "BUSD", 
+      "fiat": "CNY",
+      "fiatSymbol": "￥",
+      "amount": "5000.00000000",  // Quantity (in Crypto)
+      "totalPrice": "33400.00000000",
+      "unitPrice": "6.68", // Unit Price (in Fiat)
+      "orderStatus": "COMPLETED",  // PENDING, TRADING, BUYER_PAYED, DISTRIBUTING, COMPLETED, IN_APPEAL, CANCELLED, CANCELLED_BY_SYSTEM
+      "createTime": 1619361369000,
+      "commission": "0",  // Transaction Fee (in Crypto)
+      "counterPartNickName": "阿涛❤***",
+      "advertisementRole": "TAKER"        
+     }
+   ],
+   "total": 1,
+   "success": true
+}
+```
+
+
+## 获取 C2C 搜索广告 (NONE)
+
+> **响应:**
+
+```javascript
+{
+   "code": "000000",
+   "message": "success",
+   "data": [
+   {
+      "orderNumber":"20219644646554779648",
+      "advNo": "11218246497340923904",
+      "tradeType": "SELL",  
+      "asset": "BUSD", 
+      "fiat": "CNY",
+      "fiatSymbol": "￥",
+      "amount": "5000.00000000",  // Quantity (in Crypto)
+      "totalPrice": "33400.00000000",
+      "unitPrice": "6.68", // Unit Price (in Fiat)
+      "orderStatus": "COMPLETED",  // PENDING, TRADING, BUYER_PAYED, DISTRIBUTING, COMPLETED, IN_APPEAL, CANCELLED, CANCELLED_BY_SYSTEM
+      "createTime": 1619361369000,
+      "commission": "0",  // Transaction Fee (in Crypto)
+      "counterPartNickName": "阿涛❤***",
+      "advertisementRole": "TAKER"        
+     }
+   ],
+   "total": 1,
+   "success": true
+}
+```
+
+``
+POST /sapi/v1/c2c/ads/search
+``
+
+
+**参数:**
+
+| 名称           |      传参形式| 类型   | 是否必需 | 描述                 |
+| --------------|-------------  | ------ | -------- | -------------------- |
+| advNo         |body           |  String           | YES      | 数字货币种类                   |
+| advStatus     |body           | String            | YES      | 广告状态 1在线 3下线 4关闭        |
+| asset         |body           | String            | YES      | 数字货币类型，如BTC  |
+| startDate     |body           | String            | YES      | 广告创建开始时间            |
+| endDate       |body           | String            | YES      | 广告创建结束时间            |
+| fiatUnit      |body           | String            | YES      | 法币类型            |
+| page          |body           | String            | YES      | 页数            |
+| rows          |body           | String            | YES      | 每页条目数            |
+| tradeType     |body           | List String       | YES      | 交易类型，BUY, SELL            |
+
+
+
+
+> **请求示例:**
+
+```javascript
+{
+   "code": "000000",
+   "message": "success",
+   "data": [
+   {
+      "orderNumber":"20219644646554779648",
+      "advNo": "11218246497340923904",
+      "tradeType": "SELL",  
+      "asset": "BUSD", 
+      "fiat": "CNY",
+      "fiatSymbol": "￥",
+      "amount": "5000.00000000",  // Quantity (in Crypto)
+      "totalPrice": "33400.00000000",
+      "unitPrice": "6.68", // Unit Price (in Fiat)
+      "orderStatus": "COMPLETED",  // PENDING, TRADING, BUYER_PAYED, DISTRIBUTING, COMPLETED, IN_APPEAL, CANCELLED, CANCELLED_BY_SYSTEM
+      "createTime": 1619361369000,
+      "commission": "0",  // Transaction Fee (in Crypto)
+      "counterPartNickName": "阿涛❤***",
+      "advertisementRole": "TAKER"        
+     }
+   ],
+   "total": 1,
+   "success": true
+}
+```
+
+## 获取 C2C 更新广告状态 (TRADING)
+
+> **响应:**
+
+```javascript
+{
+   "code": "000000",
+   "message": "success",
+   "data": [
+   {
+      "orderNumber":"20219644646554779648",
+      "advNo": "11218246497340923904",
+      "tradeType": "SELL",  
+      "asset": "BUSD", 
+      "fiat": "CNY",
+      "fiatSymbol": "￥",
+      "amount": "5000.00000000",  // Quantity (in Crypto)
+      "totalPrice": "33400.00000000",
+      "unitPrice": "6.68", // Unit Price (in Fiat)
+      "orderStatus": "COMPLETED",  // PENDING, TRADING, BUYER_PAYED, DISTRIBUTING, COMPLETED, IN_APPEAL, CANCELLED, CANCELLED_BY_SYSTEM
+      "createTime": 1619361369000,
+      "commission": "0",  // Transaction Fee (in Crypto)
+      "counterPartNickName": "阿涛❤***",
+      "advertisementRole": "TAKER"        
+     }
+   ],
+   "total": 1,
+   "success": true
+}
+```
+
+``
+POST /sapi/v1/c2c/ads/update
+``
+
+
+**参数:**
+
+| 名称           |      传参形式| 类型   | 是否必需 | 描述                 |
+| --------------|-------------  | ------ | -------- | -------------------- |
+| advNo         |body           |  String           | YES      | 数字货币种类                   |
+| advStatus     |body           | String            | YES      | 广告状态 1在线 3下线 4关闭        |
+| asset         |body           | String            | YES      | 数字货币类型，如BTC  |
+| startDate     |body           | String            | YES      | 广告创建开始时间            |
+| endDate       |body           | String            | YES      | 广告创建结束时间            |
+| fiatUnit      |body           | String            | YES      | 法币类型            |
+| page          |body           | String            | YES      | 页数            |
+| rows          |body           | String            | YES      | 每页条目数            |
+| tradeType     |body           | List String       | YES      | 交易类型，BUY, SELL            |
+
+
+
+
+> **请求示例:**
+
+```javascript
+{
+   "code": "000000",
+   "message": "success",
+   "data": [
+   {
+      "orderNumber":"20219644646554779648",
+      "advNo": "11218246497340923904",
+      "tradeType": "SELL",  
+      "asset": "BUSD", 
+      "fiat": "CNY",
+      "fiatSymbol": "￥",
+      "amount": "5000.00000000",  // Quantity (in Crypto)
+      "totalPrice": "33400.00000000",
+      "unitPrice": "6.68", // Unit Price (in Fiat)
+      "orderStatus": "COMPLETED",  // PENDING, TRADING, BUYER_PAYED, DISTRIBUTING, COMPLETED, IN_APPEAL, CANCELLED, CANCELLED_BY_SYSTEM
+      "createTime": 1619361369000,
+      "commission": "0",  // Transaction Fee (in Crypto)
+      "counterPartNickName": "阿涛❤***",
+      "advertisementRole": "TAKER"        
+     }
+   ],
+   "total": 1,
+   "success": true
+}
+```
+
+
+
 # 错误代码
 
 > 错误JSON格式:
@@ -225,9 +873,6 @@ GET /sapi/v1/c2c/orderMatch/listUserOrderHistory (HMAC SHA256)
 ```
 
 错误由两部分组成：错误代码和消息。 代码是通用的，但是消息可能会有所不同。 
-
-
-
 
 ## 10xx -常规服务器或网络问题
 ### -1000 UNKNOWN
