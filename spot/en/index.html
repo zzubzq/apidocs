@@ -282,9 +282,6 @@
                     <a href="#endpoint-security-type" class="toc-h2 toc-link" data-title="Endpoint security type">Endpoint security type</a>
                   </li>
                   <li>
-                    <a href="#trade-and-user_data-endpoints-are-signed-endpoints" class="toc-h2 toc-link" data-title="* TRADE and USER_DATA endpoints are SIGNED endpoints.">* <code>TRADE</code> and <code>USER_DATA</code> endpoints are <code>SIGNED</code> endpoints.</a>
-                  </li>
-                  <li>
                     <a href="#signed-trade-user_data-and-margin-endpoint-security" class="toc-h2 toc-link" data-title="SIGNED (TRADE, USER_DATA, AND MARGIN) Endpoint security">SIGNED (TRADE, USER_DATA, AND MARGIN) Endpoint security</a>
                   </li>
                   <li>
@@ -483,7 +480,13 @@ can access everything except for TRADE routes.</li>
 <td>Endpoint requires sending a valid API-Key and signature.</td>
 </tr>
 </tbody></table>
-<h2 id='trade-and-user_data-endpoints-are-signed-endpoints'>* <code>TRADE</code> and <code>USER_DATA</code> endpoints are <code>SIGNED</code> endpoints.</h2><h2 id='signed-trade-user_data-and-margin-endpoint-security'>SIGNED (TRADE, USER_DATA, AND MARGIN) Endpoint security</h2>
+
+<ul>
+<li><code>TRADE</code> and <code>USER_DATA</code> endpoints are <code>SIGNED</code> endpoints.</li>
+</ul>
+
+<hr>
+<h2 id='signed-trade-user_data-and-margin-endpoint-security'>SIGNED (TRADE, USER_DATA, AND MARGIN) Endpoint security</h2>
 <ul>
 <li><code>SIGNED</code> endpoints require an additional parameter, <code>signature</code>, to be
 sent in the  <code>query string</code> or <code>request body</code>.</li>
